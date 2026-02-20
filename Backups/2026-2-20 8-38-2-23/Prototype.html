@@ -1,0 +1,61 @@
+<tw-storydata name="Prototype" startnode="23" creator="Twine" creator-version="2.8.1" format="Harlowe" format-version="3.3.9" ifid="6FE84546-B681-402B-B46D-F602F2A6A5A2" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Check Social Media" tags="" position="1075,325" size="100,100">You see two videos on your phone
+
+(if: not $SawVideoUno)
+    [[See video one-&gt;Pick Video 1]]
+
+
+(if: not $SawVideoDos)
+    [[See video two-&gt;Pick Video 2]]
+    
+   (if:$SawVideoUno and $SawVideoDos)
+    [[You&#39;ve already explored both options, it&#39;s time to go home!-&gt;Finish Holiday]]</tw-passagedata><tw-passagedata pid="2" name="Check phone again" tags="" position="1050,750" size="100,100">[[Check the phone again-&gt;Check Social Media]]
+
+[[Finish Holiday]]</tw-passagedata><tw-passagedata pid="3" name="Explore other paths" tags="" position="625,875" size="100,100">[[Explore more outside-&gt;Go outside]] 
+
+[[Finish Holiday]]</tw-passagedata><tw-passagedata pid="4" name="Finish Holiday" tags="" position="625,1050" size="100,100">[[Restart]]</tw-passagedata><tw-passagedata pid="5" name="Go Home" tags="" position="200,900" size="100,100">[[Go back to room-&gt;Look around the room]] 
+
+[[Finish Holiday]]</tw-passagedata><tw-passagedata pid="6" name="Go on holiday" tags="" position="600,300" size="100,100">[[Look on phone]] 
+[[Step out airport]]</tw-passagedata><tw-passagedata pid="7" name="Go outside" tags="" position="625,450" size="100,100">(if: not $TrainStation)
+    [[Go to train station]] 
+
+
+(if: not $WalkExplore)
+    [[Walk around and explore]]
+    
+       (if:$TrainStation and $WalkExplore)
+    [[You already explored what you can outside, go to hostel?-&gt;Go to hostel]]
+    
+              (if:$Maps and $GuideBook and $TrainStation and $WalkExplore)
+    [[Your holiday is coming to an end-&gt;Finish Holiday]]</tw-passagedata><tw-passagedata pid="8" name="Go to hostel" tags="" position="225,325" size="100,100">[[Look around the room]]</tw-passagedata><tw-passagedata pid="9" name="Go to suggestion A" tags="" position="250,700" size="100,100">[[Go Home]]</tw-passagedata><tw-passagedata pid="10" name="Go to train station" tags="" position="575,600" size="100,100">[[Travel to random station]] 
+
+(set: $TrainStation to true)</tw-passagedata><tw-passagedata pid="11" name="Go to video location 1" tags="" position="1125,575" size="100,100">[[Check phone again]]</tw-passagedata><tw-passagedata pid="12" name="Go to video location 2" tags="" position="975,575" size="100,100">[[Check phone again]]</tw-passagedata><tw-passagedata pid="13" name="Look around the room" tags="" position="225,450" size="100,100">(if: not $GuideBook)
+    [[Look at guidebook]]
+
+
+(if: not $Maps)
+    [[Look at map]]
+    
+              (if:$Maps and $GuideBook and $TrainStation and $WalkExplore)
+    [[Your holiday is coming to an end-&gt;Finish Holiday]]
+    
+    
+    
+      (if:$Maps and $GuideBook)
+    [[You&#39;ve already explored everywhere in the room, Go outside?-&gt;Go outside]]</tw-passagedata><tw-passagedata pid="14" name="Look at guidebook" tags="" position="275,575" size="100,100">[[That place looks cool!-&gt;Go to suggestion A]]
+(set: $GuideBook to true)</tw-passagedata><tw-passagedata pid="15" name="Look at map" tags="" position="75,575" size="100,100">[[This place has a interesting name!-&gt;Map Location]]
+(set: $Maps to true)</tw-passagedata><tw-passagedata pid="16" name="Look on phone" tags="" position="825,300" size="100,100">[[Check Social Media]]</tw-passagedata><tw-passagedata pid="17" name="Map Location" tags="" position="50,725" size="100,100">[[Go Home]]</tw-passagedata><tw-passagedata pid="18" name="Pick Video 1" tags="" position="1125,450" size="100,100">[[Go to video location 1]] 
+
+(set: $SawVideoUno to true)</tw-passagedata><tw-passagedata pid="19" name="Pick Video 2" tags="" position="975,450" size="100,100">[[Go to video location 2]]
+
+(set: $SawVideoDos to true)</tw-passagedata><tw-passagedata pid="20" name="Restart" tags="" position="475,25" size="100,100">[[Start]]</tw-passagedata><tw-passagedata pid="21" name="Start" tags="" position="675,150" size="100,100">[[Go on holiday]]</tw-passagedata><tw-passagedata pid="22" name="Step out airport" tags="" position="400,325" size="100,100">[[Go to hostel]] 
+[[Go outside]]</tw-passagedata><tw-passagedata pid="23" name="Story Int" tags="" position="750,0" size="100,100">(set: $SawVideoUno to false)
+(set: $SawVideoDos to false)
+(set: $TrainStation to false)
+(set: $WalkExplore to false)
+(set: $Maps to false)
+(set: $GuideBook to false)
+
+Congrats! You finally have a holiday! Wanna get started?
+[[Fly to Japan-&gt;Start]]</tw-passagedata><tw-passagedata pid="24" name="Travel to random station" tags="" position="575,725" size="100,100">[[Explore other paths]]</tw-passagedata><tw-passagedata pid="25" name="Walk around and explore" tags="" position="700,600" size="100,100">[[Walk around local area]] 
+
+(set: $WalkExplore to true)</tw-passagedata><tw-passagedata pid="26" name="Walk around local area" tags="" position="700,725" size="100,100">[[Explore other paths]]</tw-passagedata></tw-storydata>
