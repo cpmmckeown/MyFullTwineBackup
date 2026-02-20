@@ -9,7 +9,7 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Ultimate Twine Video Templates.</tw-noscript></noscript></tw-story>
-<tw-storydata name="Ultimate Twine Video Templates" startnode="1" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="88E28825-F98D-4B08-B27C-460BD270BE65" options="debug" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">body{
+<tw-storydata name="Ultimate Twine Video Templates" startnode="2" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="88E28825-F98D-4B08-B27C-460BD270BE65" options="debug" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">body{
   background-color:black;
      text-align: center;
 }
@@ -130,6 +130,44 @@ tw-link
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* =========== Countdown Bar ======== */
+/* ===== Minimal Cinematic Countdown Bar ===== */
+
+.timer-wrapper {
+  grid-column: 1 / -1; /* span ALL columns */
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  z-index: 7;
+}
+
+.timer-bar {
+  --duration: 5s; /* fallback */
+
+  width: min(60vw, 500px);
+  height: 6px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 0 15px rgba(255, 255, 255, 0.25);
+
+  transform-origin: center;
+  animation: collapseBar var(--duration) linear forwards;
+}
+
+@keyframes collapseBar {
+  0% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(0);
+    opacity: 0.3;
+  }
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Choice Example" tags="" position="700,275" size="100,100">{{{
 &lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
   &lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
@@ -149,9 +187,32 @@ tw-link
 
 &lt;/div&gt;
 &lt;/div&gt;
-}}}</tw-passagedata><tw-passagedata pid="2" name="Timed Choice Example" tags="" position="1000,275" size="100,100"></tw-passagedata><tw-passagedata pid="3" name="Next Section" tags="" position="925,125" size="100,100">{{{
+}}}</tw-passagedata><tw-passagedata pid="2" name="Timed Choice Example" tags="" position="1000,275" size="100,100">{{{
 &lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
-  &lt;source src=&quot;JPvideo.mp4&quot; type=&quot;video/mp4&quot;&gt;
+  &lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
+&lt;/video&gt;
+
+&lt;div class=&quot;main-section&quot;&gt;
+&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;;&quot;&gt;
+
+&lt;div class=&quot;choice&quot;&gt;
+[[Next Section]]
+&lt;/div&gt;
+
+&lt;div class=&quot;choice&quot;&gt;
+[[Next Section 3]]
+&lt;/div&gt;
+
+&lt;div class=&quot;timer-wrapper&quot;&gt;
+  &lt;div class=&quot;timer-bar&quot; style=&quot;--duration: 8s;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+(after: 8s)[(go-to:&quot;Choice Example&quot;)]
+
+&lt;/div&gt;
+&lt;/div&gt;
+}}}</tw-passagedata><tw-passagedata pid="3" name="Next Section" tags="" position="925,125" size="100,100">{{{
+&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
+  &lt;source src=&quot;Quick Vid 2.mp4&quot; type=&quot;video/mp4&quot;&gt;
 &lt;/video&gt;
 
 &lt;div class=&quot;main-section&quot;&gt;
@@ -170,7 +231,7 @@ tw-link
 &lt;/div&gt;
 }}}</tw-passagedata><tw-passagedata pid="4" name="Next Section 2" tags="" position="825,400" size="100,100">{{{
 &lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
-  &lt;source src=&quot;JPvideo.mp4&quot; type=&quot;video/mp4&quot;&gt;
+  &lt;source src=&quot;Quick Vid 3.mp4&quot; type=&quot;video/mp4&quot;&gt;
 &lt;/video&gt;
 
 &lt;div class=&quot;main-section&quot;&gt;
