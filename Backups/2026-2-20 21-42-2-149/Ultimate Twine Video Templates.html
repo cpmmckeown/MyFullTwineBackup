@@ -34,6 +34,16 @@ tw-story
     sans-serif;
 }
 
+tw-link
+{
+  color:white;
+}
+
+tw-passage
+{
+  height: 500px;
+}
+
 .main-section
 {
   z-index: 5;
@@ -55,7 +65,7 @@ tw-story
   animation: fadeUp 0.8s cubic-bezier(.22,.61,.36,1) forwards;
 }
 
-.choice
+tw-link
 {
   display: inline-flex;
   align-items: center;
@@ -86,10 +96,10 @@ tw-story
     transform 0.3s ease,
     background 0.3s ease,
     box-shadow 0.3s ease;
-  
+  width:80%;
 }
 
-.choice:hover {
+tw-link:hover {
   background: rgba(100, 100, 100, 0.55);
   transform: translateY(-3px);
   box-shadow:
@@ -103,8 +113,8 @@ tw-story
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   z-index: -10;
+  aspect-ratio: 16/9;
 }
 
 /* ===== Click Feedback ===== */
@@ -178,16 +188,13 @@ tw-story
 &lt;div class=&quot;main-section&quot;&gt;
 
 &lt;!--This controls when your options appear - look at the timer! Change the number to change the timing--&gt;
-&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;;&quot;&gt;
+&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 
-&lt;!--This is a choice; it looks quite different to what you&#39;re used to but it enables the formatting--&gt;
-&lt;div class=&quot;choice&quot;&gt;
-[[Next Section]]
-&lt;/div&gt;
+&lt;!--This is a choice. it looks quite different to what you&#39;re used to but it enables the formatting. There is an issue though: they don&#39;t enable clickable boxes--&gt;
 
-&lt;div class=&quot;choice&quot;&gt;
-[[Next Section 3]]
-&lt;/div&gt;
+[[Timed Choice Example]]
+
+[[Next Section 2]]
 
 &lt;!--This /DIV CLOSES the choices section--&gt;
 &lt;/div&gt;
@@ -201,33 +208,27 @@ tw-story
 &lt;/video&gt;
 
 &lt;div class=&quot;main-section&quot;&gt;
-&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;;&quot;&gt;
-
-&lt;div class=&quot;choice&quot;&gt;
-[[Next Section]]
-&lt;/div&gt;
-
-&lt;div class=&quot;choice&quot;&gt;
-[[Next Section 3]]
-&lt;/div&gt;
-
+&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 &lt;div class=&quot;timer-wrapper&quot;&gt;
-  &lt;div class=&quot;timer-bar&quot; style=&quot;--duration: 8s;&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;timer-bar&quot; style=&quot;--duration: 120s;&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
-(after: 9s)[(go-to:&quot;Choice Example&quot;)]
+[[Next Section]]
+
+[[Next Section 3]]
 
 &lt;/div&gt;
 &lt;/div&gt;
+(after: 120s)[(go-to:&quot;Choice Example&quot;)]
 }}}</tw-passagedata><tw-passagedata pid="3" name="Next Section" tags="" position="925,75" size="100,100">{{{
 &lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
   &lt;source src=&quot;Quick Vid 2.mp4&quot; type=&quot;video/mp4&quot;&gt;
 &lt;/video&gt;
 
 &lt;div class=&quot;main-section&quot;&gt;
-&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;;&quot;&gt;
+&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 
 &lt;div class=&quot;choice&quot;&gt;
-[[Next Section]]
+[[Choice Example]]
 &lt;/div&gt;
 
 &lt;div class=&quot;choice&quot;&gt;
