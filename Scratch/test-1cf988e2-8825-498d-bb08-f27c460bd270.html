@@ -9,7 +9,7 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Ultimate Twine Video Templates.</tw-noscript></noscript></tw-story>
-<tw-storydata name="Ultimate Twine Video Templates" startnode="11" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="88E28825-F98D-4B08-B27C-460BD270BE65" options="debug" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/*---------------------------------------------------
+<tw-storydata name="Ultimate Twine Video Templates" startnode="2" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="88E28825-F98D-4B08-B27C-460BD270BE65" options="debug" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/*---------------------------------------------------
 To use this stylesheet, copy this entire passage the drop
 into your Twine's stylesheet by clicking on 
 Story -> Stylesheet and then just pasting these contents 
@@ -65,11 +65,6 @@ tw-story
     sans-serif;
 }
 
-tw-link
-{
-  color:white;
-}
-
 tw-passage
 {
   height: 500px;
@@ -99,6 +94,7 @@ tw-passage
 
 tw-link
 {
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -183,6 +179,14 @@ tw-link:hover {
   z-index: 7;
 }
 
+.timer-wrapper.appear
+{
+  /* Fade-in animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
 .timer-bar {
   --duration: 5s; /* fallback */
 
@@ -242,6 +246,7 @@ tw-link:hover {
 &lt;!------TIMER END-------&gt;
 [[BlankTemplate2]]
 [[Next Section 3]]
+[[SecretPassage]]
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;!-----------------------------------------------&gt;
@@ -940,12 +945,8 @@ body {
 	&lt;div class=&quot;main-section&quot;&gt;
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 
-&lt;!----------BUTTONS--------------------------&gt;
-&lt;div class=&quot;buttons-row&quot;&gt;
 (if:$videosSeen &gt; 2)[[[You Unlocked a Secret -&gt;SecretPassage]]]
 [[Timer Passage-&gt;TimedTemplate2]]
-&lt;/div&gt;
-&lt;!-----------------------------------------------&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -973,12 +974,12 @@ It will now reset.
 &lt;div class=&quot;main-section&quot;&gt;
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 
-&lt;div class=&quot;buttons-row&quot;&gt;
 [[Try Again-&gt;ExampleWithVariables]]
+
 &lt;/div&gt;
-&lt;/div&gt;
+
 &lt;!------TIMER-------&gt;
-&lt;div class=&quot;timer-wrapper&quot;&gt;
+&lt;div class=&quot;timer-wrapper appear&quot; style=&quot;animation-delay: 2s&quot;&gt;
 	&lt;div class=&quot;timer-bar&quot; style=&quot;--duration: 90s;&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
 (after: 100s)[(go-to:&quot;ExampleWithVariables&quot;)]
