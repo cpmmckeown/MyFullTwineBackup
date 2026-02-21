@@ -9,16 +9,12 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Ultimate Twine Video Templates.</tw-noscript></noscript></tw-story>
-<tw-storydata name="Ultimate Twine Video Templates" startnode="1" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="88E28825-F98D-4B08-B27C-460BD270BE65" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/*---------------------------------------------------
-To use this stylesheet, copy this entire passage the drop
-into your Twine's stylesheet by clicking on 
-Story -> Stylesheet and then just pasting these contents 
------------------------------------------------------*/
-
-body{
+<tw-storydata name="Ultimate Twine Video Templates" startnode="8" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="88E28825-F98D-4B08-B27C-460BD270BE65" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">body{
   background-color:black;
      text-align: center;
 }
+
+
 
 .TopText
 {
@@ -36,16 +32,13 @@ body{
   transform: translate(-50%, -50%);
 }
 
+tw-include{visibility:hidden;position:fixed;}
+
 tw-sidebar
 {
   visibility: hidden; /*Stops it from being visible*/
   z-index:-100; /*Stops it from being clickable*/
   position: fixed; /*Taking it out of the flow*/
-}
-
-tw-include
-{
-  position:fixed;
 }
 
 tw-story
@@ -65,23 +58,21 @@ tw-story
     sans-serif;
 }
 
-tw-link
-{
-  color:white;
-}
-
 tw-passage
 {
+  display: flex;
   height: 500px;
 }
 
 .main-section
 {
-  z-index: 5;
+  position:relative;
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: flex-end; /* pushes content to bottom */
   min-height: 80dvh; /* better than 100vh for mobile */
+  z-index: 5;
 }
 
 .choices
@@ -90,6 +81,7 @@ tw-passage
   z-index: 6;
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
+  grid-auto-rows: auto; /* each row sized to content */
   align-content: center;
   /* Fade-in animation */
   opacity: 0;
@@ -97,8 +89,21 @@ tw-passage
   animation: fadeUp 0.8s cubic-bezier(.22,.61,.36,1) forwards;
 }
 
+/* container for buttons */
+.buttons-row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;        /* allows more than 2 choices to wrap to next row */
+  justify-content: center; /* center 1–2 buttons */
+  width: 100%;
+  flex: 1 1 200px;   /* grow + shrink 0 1 auto also good*/
+  max-width: 2*expected-content-width; /* cap growth */
+
+}
+
 tw-link
 {
+  color:white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -131,6 +136,11 @@ tw-link
 flex: 1 1 200px;   /* grow + shrink 0 1 auto also good*/
   max-width: 2*expected-content-width; /* cap growth */
   font-size: clamp(0.95rem, 1vw, 1.1rem);
+}
+
+.buttons-row:has(.tw-link:only-child) .tw-link {
+  width: min(60vw, 500px); /* match timer-bar width */
+  flex: none;              /* don’t shrink/grow */
 }
 
 tw-link:hover {
@@ -175,13 +185,14 @@ tw-link:hover {
 /* ===== Minimal Cinematic Countdown Bar ===== */
 
 .timer-wrapper {
-
   grid-column: 1 / -1; /* span ALL columns */
   display: flex;
   justify-content: center;
+  width:100%;
   margin-top: 1rem;
   z-index: 7;
 }
+
 
 .timer-bar {
   --duration: 5s; /* fallback */
@@ -976,14 +987,14 @@ It will now reset.
 &lt;div class=&quot;buttons-row&quot;&gt;
 [[Try Again-&gt;ExampleWithVariables]]
 &lt;/div&gt;
-&lt;/div&gt;
+
 &lt;!------TIMER-------&gt;
+(after: 100s)[(go-to:&quot;ExampleWithVariables&quot;)]
 &lt;div class=&quot;timer-wrapper&quot;&gt;
 	&lt;div class=&quot;timer-bar&quot; style=&quot;--duration: 90s;&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
-(after: 100s)[(go-to:&quot;ExampleWithVariables&quot;)]
 
-
+&lt;/div&gt;
 
 &lt;/div&gt;
 }}}</tw-passagedata></tw-storydata>

@@ -14,13 +14,32 @@
      text-align: center;
 }
 
+.TopText
+{
+    position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.BottomText
+{
+    position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 tw-sidebar
 {
-  z-index:-100;
+  visibility: hidden; /*Stops it from being visible*/
+  z-index:-100; /*Stops it from being clickable*/
+  position: fixed; /*Taking it out of the flow*/
 }
 
 tw-story
 {
+
   padding: 6.5% 20%;
   background-color:transparent;
     font-family: 
@@ -42,6 +61,7 @@ tw-link
 
 tw-passage
 {
+  
   height: 500px;
 }
 
@@ -60,6 +80,7 @@ tw-passage
   z-index: 6;
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
+  align-content: center;
   /* Fade-in animation */
   opacity: 0;
   transform: translateY(20px);
@@ -68,11 +89,11 @@ tw-passage
 
 tw-link
 {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 1rem 2rem;
+  padding: 1em 2em;
   border-radius: 16px;
 
   background: rgba(80, 80, 80, 0.45);
@@ -97,7 +118,9 @@ tw-link
     transform 0.3s ease,
     background 0.3s ease,
     box-shadow 0.3s ease;
-  width:80%;
+flex: 1 1 200px;   /* grow + shrink 0 1 auto also good*/
+  max-width: 2*expected-content-width; /* cap growth */
+  font-size: clamp(0.95rem, 1vw, 1.1rem);
 }
 
 tw-link:hover {
@@ -175,40 +198,43 @@ tw-link:hover {
     opacity: 0.3;
   }
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="BlankTemplate" tags="" position="850,75" size="100,100">{{{
-&lt;!--This is where your videos will be added--&gt;
-&lt;!--Pay attention to the options as they can autoplay, be muted and loop--&gt;
-&lt;!--If you want sound, and to only play once, remove those words--&gt;
+&lt;!----------VIDEO SECTION-------------------&gt;
+	&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
+  		&lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
+	&lt;/video&gt;
+&lt;!-----------------------------------------------&gt;
 
-&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
-  &lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
-&lt;/video&gt;
-
-&lt;!--This is here to keep the formatting correct and your options at the bottom of the screen--&gt;
-&lt;div class=&quot;main-section&quot;&gt;
-&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
+&lt;!----------CHOICE SECTION------------------&gt;
+	&lt;div class=&quot;main-section&quot;&gt;
+	&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 [[Go to same -&gt;BlankTemplate2]]
 [[Timed Example-&gt;TimedTemplate]]
-
+&lt;!-----------------------------------------------&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 }}}</tw-passagedata><tw-passagedata pid="2" name="TimedTemplate" tags="" position="925,250" size="100,100">{{{
+&lt;!----------VIDEO SECTION-------------------&gt;
 &lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
-  &lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
+	&lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
 &lt;/video&gt;
+&lt;!-----------------------------------------------&gt;
 
+&lt;!----------CHOICE SECTION------------------&gt;
 &lt;div class=&quot;main-section&quot;&gt;
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
+&lt;!------TIMER-------&gt;
+(after: 5s)[(go-to:&quot;BlankTemplate&quot;)]
 &lt;div class=&quot;timer-wrapper&quot;&gt;
-  &lt;div class=&quot;timer-bar&quot; style=&quot;--duration: 120s;&quot;&gt;&lt;/div&gt;
+	&lt;div class=&quot;timer-bar&quot; style=&quot;--duration: 4s;&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
+&lt;!--------------------&gt;
 [[BlankTemplate2]]
-
 [[Next Section 3]]
+&lt;!-----------------------------------------------&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
-(after: 120s)[(go-to:&quot;Choice Example&quot;)]
 }}}</tw-passagedata><tw-passagedata pid="3" name="BlankTemplate2" tags="" position="700,250" size="100,100">{{{
 &lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
   &lt;source src=&quot;Quick Vid 2.mp4&quot; type=&quot;video/mp4&quot;&gt;
@@ -219,23 +245,677 @@ tw-link:hover {
 
 
 [[BlankTemplate]]
-
-
 [[TimedTemplate]]
-
-
 
 &lt;/div&gt;
 &lt;/div&gt;
 }}}</tw-passagedata><tw-passagedata pid="4" name="Next Section 3" tags="" position="925,400" size="100,100">{{{
 &lt;div class=&quot;main-section&quot;&gt;
-This is what the section would be like with text instead of video
+&lt;!--Note, to get text at the top, make sure to use the &#39;TopText&#39; class--&gt;
+&lt;!--There is also &#39;BottomText&#39; if you want it, and you can customise these--&gt;
+&lt;p class=&quot;BottomText&quot;&gt;This is what the section would be like with text instead of video. This is what the section would be like with text instead of video. This is what the section would be like with text instead of video.&lt;/p&gt;
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:5s;&quot;&gt;
 [[BlankTemplate&lt;-Back to Start]]
 [[Back to Timed-&gt;TimedTemplate]]
 &lt;/div&gt;
 &lt;/div&gt;
-}}}</tw-passagedata><tw-passagedata pid="5" name="With options" tags="" position="1000,550" size="100,100">Hi hello</tw-passagedata></tw-storydata>
+}}}</tw-passagedata><tw-passagedata pid="5" name="Blank Template With Comments" tags="" position="550,75" size="100,100">{{{
+&lt;!--Keep these three lines or Twine&#39;s auto formatting will cause formatting issues--&gt;
+
+&lt;!----------VIDEO SECTION-------------------&gt;
+&lt;!--This is where your videos will be added--&gt;
+	&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
+  		&lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
+	&lt;/video&gt;
+&lt;!--Pay attention to the options as they can autoplay, be muted and loop--&gt;
+&lt;!--If you want sound, and to only play once, remove those words--&gt;
+&lt;!-----------------------------------------------&gt;
+
+&lt;!----------CHOICE SECTION------------------&gt;
+&lt;!--First, is a Div called &#39;main section--&gt;
+	&lt;div class=&quot;main-section&quot;&gt;
+&lt;!--This keeps options at the bottom of the screen--&gt;
+
+&lt;!--Next is the Div where your choices will appear--&gt;
+	&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
+&lt;!--Pay attention to animation delay timing.--&gt;
+&lt;!--This controls how long it takes until the choices appear--&gt;
+
+
+[[]] &lt;!--In a real Twine Project you&#39;d add your intend Passage names as normal--&gt;
+[[]] &lt;!--You can add as many as you like, but odd numbers look a bit off--&gt;
+[[]]
+
+
+&lt;/div&gt;
+&lt;/div&gt;
+}}}</tw-passagedata><tw-passagedata pid="6" name="Basic Stylesheet" tags="" position="525,200" size="100,100">/*---------------------------------------------------
+To use this stylesheet, copy this entire passage the drop
+into your Twine&#39;s stylesheet by clicking on 
+Story -&gt; Stylesheet and then just pasting these contents 
+-----------------------------------------------------*/
+
+body{
+  background-color:black;
+     text-align: center;
+}
+
+.TopText
+{
+    position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.BottomText
+{
+    position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+tw-sidebar
+{
+  visibility: hidden; /*Stops it from being visible*/
+  z-index:-100; /*Stops it from being clickable*/
+  position: fixed; /*Taking it out of the flow*/
+}
+
+tw-story
+{
+
+  padding: 6.5% 20%;
+  background-color:transparent;
+    font-family: 
+    &quot;Inter&quot;, 
+    &quot;SF Pro Display&quot;, 
+    -apple-system, 
+    BlinkMacSystemFont, 
+    &quot;Segoe UI&quot;, 
+    Roboto, 
+    Helvetica, 
+    Arial, 
+    sans-serif;
+}
+
+tw-link
+{
+  color:white;
+}
+
+tw-passage
+{
+  
+  height: 500px;
+}
+
+.main-section
+{
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* pushes content to bottom */
+  min-height: 80dvh; /* better than 100vh for mobile */
+}
+
+.choices
+{
+  display: grid;
+  z-index: 6;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
+  align-content: center;
+  /* Fade-in animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+tw-link
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1em 2em;
+  border-radius: 16px;
+
+  background: rgba(80, 80, 80, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+flex: 1 1 200px;   /* grow + shrink 0 1 auto also good*/
+  max-width: 2*expected-content-width; /* cap growth */
+  font-size: clamp(0.95rem, 1vw, 1.1rem);
+}
+
+tw-link:hover {
+  background: rgba(100, 100, 100, 0.55);
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  aspect-ratio: 16/9;
+}
+
+/* ===== Click Feedback ===== */
+
+.choice:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+
+/* ===== Fade In + Up Animation ===== */
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========== Countdown Bar ======== */
+/* ===== Minimal Cinematic Countdown Bar ===== */
+
+.timer-wrapper {
+  grid-column: 1 / -1; /* span ALL columns */
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  z-index: 7;
+}
+
+.timer-bar {
+  --duration: 5s; /* fallback */
+
+  width: min(60vw, 500px);
+  height: 6px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 0 15px rgba(255, 255, 255, 0.25);
+
+  transform-origin: center;
+  animation: collapseBar var(--duration) linear forwards;
+}
+
+@keyframes collapseBar {
+  0% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(0);
+    opacity: 0.3;
+  }
+}</tw-passagedata><tw-passagedata pid="7" name="Improved Stylesheet" tags="" position="500,325" size="100,100">/* ============================= */
+/*        EXPERIMENTAL MODE       */
+/* DO NOT COPY PASTE THIS INTO STORY STYLESHEET  */
+/* ============================= */
+
+
+body{
+  background-color:black;
+  text-align: center;
+}
+
+.TopText
+{
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.BottomText
+{
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+tw-sidebar
+{
+  visibility: hidden; /*Stops it from being visible*/
+  z-index:-100; /*Stops it from being clickable*/
+  position: fixed; /*Taking it out of the flow*/
+}
+
+tw-story
+{
+
+  padding: 6.5% 20%;
+  background-color:transparent;
+    font-family: 
+    &quot;Inter&quot;, 
+    &quot;SF Pro Display&quot;, 
+    -apple-system, 
+    BlinkMacSystemFont, 
+    &quot;Segoe UI&quot;, 
+    Roboto, 
+    Helvetica, 
+    Arial, 
+    sans-serif;
+}
+
+tw-link
+{
+  color:white;
+}
+
+tw-passage
+{
+  
+  height: 500px;
+}
+
+.main-section
+{
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* pushes content to bottom */
+  min-height: 80dvh; /* better than 100vh for mobile */
+}
+
+.choices
+{
+  display: grid;
+  z-index: 6;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
+  align-content: center;
+  /* Fade-in animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+tw-link
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1em 2em;
+  border-radius: 16px;
+
+  background: rgba(80, 80, 80, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+flex: 1 1 200px;   /* grow + shrink 0 1 auto also good*/
+  max-width: 2*expected-content-width; /* cap growth */
+  font-size: clamp(0.95rem, 1vw, 1.1rem);
+}
+
+tw-link:hover {
+  background: rgba(100, 100, 100, 0.55);
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  aspect-ratio: 16/9;
+}
+
+/* ===== Click Feedback ===== */
+
+.choice:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+
+/* ===== Fade In + Up Animation ===== */
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========== Countdown Bar ======== */
+/* ===== Minimal Cinematic Countdown Bar ===== */
+
+.timer-wrapper {
+  grid-column: 1 / -1; /* span ALL columns */
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  z-index: 7;
+}
+
+.timer-bar {
+  --duration: 5s; /* fallback */
+
+  width: min(60vw, 500px);
+  height: 6px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 0 15px rgba(255, 255, 255, 0.25);
+
+  transform-origin: center;
+  animation: collapseBar var(--duration) linear forwards;
+}
+
+@keyframes collapseBar {
+  0% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(0);
+    opacity: 0.3;
+  }
+}
+
+body {
+  background: black;
+  color: #e6e6e6;
+  text-shadow:
+    0 0 2px rgba(255,255,255,0.2),
+    0 0 8px rgba(255,0,0,0.15);
+}
+
+/* ===== Distorted Title Text ===== */
+
+.TopText {
+  font-family: &quot;Courier New&quot;, monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  animation: textFlicker 3s infinite alternate;
+}
+
+/* Subtle flicker */
+@keyframes textFlicker {
+  0%   { opacity: 1; }
+  5%   { opacity: 0.4; }
+  10%  { opacity: 1; }
+  11%  { opacity: 0.6; }
+  20%  { opacity: 1; }
+  100% { opacity: 0.95; }
+}
+
+
+/* ===== Glitch Buttons ===== */
+
+tw-link {
+  border-radius: 0; /* no friendly curves */
+  background: rgba(30,30,30,0.85);
+  border: 1px solid rgba(255,0,0,0.3);
+
+  color: #f2f2f2;
+
+  box-shadow:
+    0 0 12px rgba(255,0,0,0.15),
+    inset 0 0 8px rgba(255,0,0,0.1);
+
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* ===== Hover Distortion ===== */
+
+tw-link:hover {
+  background: rgba(60,0,0,0.8);
+  box-shadow:
+    0 0 20px rgba(255,0,0,0.4),
+    inset 0 0 12px rgba(255,0,0,0.3);
+  transform: translateY(-2px) skewX(-1deg);
+}
+
+
+/* ===== Glitch Effect Layer ===== */
+
+tw-link::before,
+tw-link::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+}
+
+tw-link::before {
+  color: #ff0000;
+  transform: translate(2px, -2px);
+}
+
+tw-link::after {
+  color: #00ffff;
+  transform: translate(-2px, 2px);
+}
+
+/* Random glitch flicker */
+tw-link:hover::before,
+tw-link:hover::after {
+  opacity: 0.6;
+  animation: glitchShift 0.15s infinite;
+}
+
+@keyframes glitchShift {
+  0%   { transform: translate(2px, -2px); }
+  25%  { transform: translate(-3px, 1px); }
+  50%  { transform: translate(3px, 2px); }
+  75%  { transform: translate(-1px, -3px); }
+  100% { transform: translate(2px, -2px); }
+}
+
+
+/* ===== Choice Grid Slight Unease ===== */
+
+.choices {
+  filter: contrast(1.05) brightness(0.95);
+}
+
+
+/* ===== Countdown Bar: Dying Signal ===== */
+
+.timer-bar {
+  background: linear-gradient(
+    90deg,
+    #ff0000,
+    #550000,
+    #ff0000
+  );
+
+  box-shadow:
+    0 0 20px rgba(255,0,0,0.4);
+
+  animation:
+    collapseBar var(--duration) linear forwards,
+    pulseBar 1.5s infinite alternate;
+}
+
+@keyframes pulseBar {
+  from { filter: brightness(1); }
+  to   { filter: brightness(1.4); }
+}
+
+
+/* ===== Subtle Screen Noise Overlay ===== */
+
+body::after {
+  content: &quot;&quot;;
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.02) 0px,
+      rgba(255,255,255,0.02) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+  pointer-events: none;
+  animation: noiseMove 0.2s infinite linear;
+}
+
+@keyframes noiseMove {
+  from { transform: translateY(0); }
+  to   { transform: translateY(2px); }
+}
+
+/* ============================= */
+/*           VHS LAYER           */
+/* ============================= */
+
+body::before {
+  content: &quot;&quot;;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.03) 0px,
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+
+  animation:
+    vhsScan 8s linear infinite,
+    vhsFlicker 3s infinite alternate;
+}
+
+/* Subtle vertical scan drift */
+@keyframes vhsScan {
+  from { transform: translateY(0); }
+  to   { transform: translateY(6px); }
+}
+
+/* Global brightness instability */
+@keyframes vhsFlicker {
+  0%   { opacity: 0.3; }
+  5%   { opacity: 0.1; }
+  10%  { opacity: 0.35; }
+  50%  { opacity: 0.25; }
+  100% { opacity: 0.4; }
+}
+
+/* ============================= */
+/*     GLOBAL DECAY ANIMATION    */
+/* ============================= */
+
+body {
+  animation: corruption 30s linear forwards;
+}
+
+@keyframes corruption {
+
+  /* 0% — Clean */
+  0% {
+    filter: none;
+  }
+
+  /* 30% — Slight unease */
+  30% {
+    filter: contrast(1.05) brightness(0.95);
+  }
+
+  /* 60% — Noticeable degradation */
+  60% {
+    filter: contrast(1.2)
+            brightness(0.85)
+            saturate(0.8);
+  }
+
+  /* 80% — Digital rot */
+  80% {
+    filter: contrast(1.4)
+            brightness(0.7)
+            blur(1px);
+  }
+
+  /* 100% — Fully corrupted */
+  100% {
+    filter: contrast(1.8)
+            brightness(0.6)
+            blur(2px)
+            hue-rotate(-20deg);
+  }
+}</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
