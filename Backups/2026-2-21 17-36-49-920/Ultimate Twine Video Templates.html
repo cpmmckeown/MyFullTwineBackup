@@ -14,13 +14,23 @@
      text-align: center;
 }
 
+.TopText
+{
+    position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 tw-sidebar
 {
-  z-index:-100;
+  visibility: hidden; /*Stops it from being visible*/
+  z-index:-100; /*Stops it from being clickable*/
 }
 
 tw-story
 {
+  padding: 6.5% 20%;
   background-color:transparent;
     font-family: 
     "Inter", 
@@ -37,6 +47,11 @@ tw-story
 tw-link
 {
   color:white;
+}
+
+tw-passage
+{
+  height: 500px;
 }
 
 .main-section
@@ -60,7 +75,7 @@ tw-link
   animation: fadeUp 0.8s cubic-bezier(.22,.61,.36,1) forwards;
 }
 
-.choice
+tw-link
 {
   display: inline-flex;
   align-items: center;
@@ -91,10 +106,10 @@ tw-link
     transform 0.3s ease,
     background 0.3s ease,
     box-shadow 0.3s ease;
-  
+  width:80%;
 }
 
-.choice:hover {
+tw-link:hover {
   background: rgba(100, 100, 100, 0.55);
   transform: translateY(-3px);
   box-shadow:
@@ -108,8 +123,8 @@ tw-link
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   z-index: -10;
+  aspect-ratio: 16/9;
 }
 
 /* ===== Click Feedback ===== */
@@ -168,65 +183,45 @@ tw-link
     transform: scaleX(0);
     opacity: 0.3;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Choice Example" tags="" position="600,250" size="100,100">&lt;!--These three lines keep Twine from adding auto fomatting which can mess things up--&gt;
-{{{
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="BlankTemplate" tags="" position="850,75" size="100,100">{{{
+&lt;!----------VIDEO SECTION-------------------&gt;
+	&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
+  		&lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
+	&lt;/video&gt;
+&lt;!-----------------------------------------------&gt;
 
-&lt;!--This is where your videos will be added--&gt;
-&lt;!--Pay attention to the options as they can autoplay, be muted and loop--&gt;
-&lt;!--If you want sound, and to only play once, remove those words--&gt;
+&lt;!----------CHOICE SECTION------------------&gt;
+	&lt;div class=&quot;main-section&quot;&gt;
+	&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
+[[Go to same -&gt;BlankTemplate2]]
+[[Timed Example-&gt;TimedTemplate]]
+&lt;!-----------------------------------------------&gt;
 
+&lt;/div&gt;
+&lt;/div&gt;
+}}}</tw-passagedata><tw-passagedata pid="2" name="TimedTemplate" tags="" position="925,250" size="100,100">{{{
+&lt;!----------VIDEO SECTION-------------------&gt;
 &lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
-  &lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
+	&lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
 &lt;/video&gt;
+&lt;!-----------------------------------------------&gt;
 
-&lt;!--This is here to keep the formatting correct and your options at the bottom of the screen--&gt;
+&lt;!----------CHOICE SECTION------------------&gt;
 &lt;div class=&quot;main-section&quot;&gt;
-
-&lt;!--This controls when your options appear - look at the timer! Change the number to change the timing--&gt;
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
-
-&lt;!--This is a choice. it looks quite different to what you&#39;re used to but it enables the formatting--&gt;
-
-(link:&quot;
-&lt;div class=&#39;choice&#39;&gt;
-Next Section
-&lt;/div&gt;
-&quot;)[]
-
-&lt;div class=&quot;choice&quot;&gt;
-[[Next Section 3]]
-&lt;/div&gt;
-
-&lt;!--This /DIV CLOSES the choices section--&gt;
-&lt;/div&gt;
-
-&lt;!--This /DIV CLOSES the main formatting section--&gt;
-&lt;/div&gt;
-}}}
-</tw-passagedata><tw-passagedata pid="2" name="Timed Choice Example" tags="" position="1000,275" size="100,100">{{{
-&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
-  &lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
-&lt;/video&gt;
-
-&lt;div class=&quot;main-section&quot;&gt;
-&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;;&quot;&gt;
-
-&lt;div class=&quot;choice&quot;&gt;
-[[Next Section]]
-&lt;/div&gt;
-
-&lt;div class=&quot;choice&quot;&gt;
-[[Next Section 3]]
-&lt;/div&gt;
-
+&lt;!------TIMER-------&gt;
+(after: 5s)[(go-to:&quot;BlankTemplate&quot;)]
 &lt;div class=&quot;timer-wrapper&quot;&gt;
-  &lt;div class=&quot;timer-bar&quot; style=&quot;--duration: 8s;&quot;&gt;&lt;/div&gt;
+	&lt;div class=&quot;timer-bar&quot; style=&quot;--duration: 4s;&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
-(after: 9s)[(go-to:&quot;Choice Example&quot;)]
+&lt;!--------------------&gt;
+[[BlankTemplate2]]
+[[Next Section 3]]
+&lt;!-----------------------------------------------&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
-}}}</tw-passagedata><tw-passagedata pid="3" name="Next Section" tags="" position="925,75" size="100,100">{{{
+}}}</tw-passagedata><tw-passagedata pid="3" name="BlankTemplate2" tags="" position="700,250" size="100,100">{{{
 &lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
   &lt;source src=&quot;Quick Vid 2.mp4&quot; type=&quot;video/mp4&quot;&gt;
 &lt;/video&gt;
@@ -234,39 +229,53 @@ Next Section
 &lt;div class=&quot;main-section&quot;&gt;
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 
-&lt;div class=&quot;choice&quot;&gt;
-[[Next Section]]
-&lt;/div&gt;
 
-&lt;div class=&quot;choice&quot;&gt;
-[[Timed Choice Example]]
-&lt;/div&gt;
-
+[[BlankTemplate]]
+[[TimedTemplate]]
 
 &lt;/div&gt;
 &lt;/div&gt;
-}}}</tw-passagedata><tw-passagedata pid="4" name="Next Section 2" tags="" position="600,75" size="100,100">{{{
-&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
-  &lt;source src=&quot;Quick Vid 3.mp4&quot; type=&quot;video/mp4&quot;&gt;
-&lt;/video&gt;
-
+}}}</tw-passagedata><tw-passagedata pid="4" name="Next Section 3" tags="" position="925,400" size="100,100">{{{
 &lt;div class=&quot;main-section&quot;&gt;
-&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;;&quot;&gt;
-
-&lt;div class=&quot;choice&quot;&gt;
-[[Next Section]]
-&lt;/div&gt;
-
-&lt;div class=&quot;choice&quot;&gt;
-[[Next Section 2]]
-&lt;/div&gt;
-
-
+&lt;!--Note, to get text at the top, make sure to use the &#39;TopText&#39; class--&gt;
+&lt;!
+&lt;p class=&quot;TopText&quot;&gt;This is what the section would be like with text instead of video&lt;/p&gt;
+&lt;div class=&quot;choices&quot; style=&quot;animation-delay:5s;&quot;&gt;
+[[BlankTemplate&lt;-Back to Start]]
+[[Back to Timed-&gt;TimedTemplate]]
 &lt;/div&gt;
 &lt;/div&gt;
-}}}</tw-passagedata><tw-passagedata pid="5" name="Next Section 3" tags="" position="1000,425" size="100,100">This is just some text
+}}}</tw-passagedata><tw-passagedata pid="5" name="Blank Template With Comments" tags="" position="550,75" size="100,100">{{{
+&lt;!--Keep these three lines or Twine&#39;s auto formatting will cause formatting issues--&gt;
 
-[[With options]]</tw-passagedata><tw-passagedata pid="6" name="With options" tags="" position="1000,550" size="100,100">Hi hello</tw-passagedata></tw-storydata>
+&lt;!----------VIDEO SECTION-------------------&gt;
+&lt;!--This is where your videos will be added--&gt;
+	&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
+  		&lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
+	&lt;/video&gt;
+&lt;!--Pay attention to the options as they can autoplay, be muted and loop--&gt;
+&lt;!--If you want sound, and to only play once, remove those words--&gt;
+&lt;!-----------------------------------------------&gt;
+
+&lt;!----------CHOICE SECTION------------------&gt;
+&lt;!--First, is a Div called &#39;main section--&gt;
+	&lt;div class=&quot;main-section&quot;&gt;
+&lt;!--This keeps options at the bottom of the screen--&gt;
+
+&lt;!--Next is the Div where your choices will appear--&gt;
+	&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
+&lt;!--Pay attention to animation delay timing.--&gt;
+&lt;!--This controls how long it takes until the choices appear--&gt;
+
+
+[[]] &lt;!--In a real Twine Project you&#39;d add your intend Passage names as normal--&gt;
+[[]] &lt;!--You can add as many as you like, but odd numbers look a bit off--&gt;
+[[]]
+
+
+&lt;/div&gt;
+&lt;/div&gt;
+}}}</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
