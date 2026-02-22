@@ -14,6 +14,10 @@ To use this stylesheet, copy this entire passage the drop
 into your Twine's stylesheet by clicking on 
 Story -> Stylesheet and then just pasting these contents 
 -----------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 /* ===== Background ===== */
 body{
   background-color:black;
@@ -33,7 +37,9 @@ body{
 /* ===== Text Formatting ===== */
 .TopText
 {
-    position: absolute;
+  position: absolute;
+  font-size: 2vw;
+  line-height: normal;
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -41,7 +47,9 @@ body{
 
 .BottomText
 {
-    position: absolute;
+  position: absolute;
+  font-size: 2vw;
+  line-height: normal;
   top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -93,9 +101,9 @@ tw-passage
 }
 
 /* ===== Space that holds the Link Buttons ===== */
-.choices > *
-{
+.choices {
   display: flex;
+
   flex-wrap: wrap;
   z-index: 6;
   gap: 2rem;
@@ -110,7 +118,6 @@ tw-passage
 /* ===== Turning Links into Buttons ===== */
 tw-link
 {
-  flex: 1 1 220px;   /* KEY LINE */
   color: white;
   display: flex;
   align-items: center;
@@ -143,9 +150,12 @@ tw-link
     background 0.3s ease,
     box-shadow 0.3s ease;
 
-  min-width: 10vw; 
+  min-width: 20vw; 
   max-width: 500px;/* cap growth */
+}
 
+.choices:has(> :nth-child(4):last-child) > * {
+  min-width: 10vw;
 }
 
 tw-link:hover {
@@ -219,7 +229,123 @@ tw-link:active {
     transform: scaleX(0);
     opacity: 0.3;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="startup" color="yellow"></tw-tag><tw-passagedata pid="1" name="BlankTemplate" tags="" position="850,75" size="100,100">{{{
+}
+
+/* ===== HORROR THEME ===== */
+tw-story.theme-horror tw-link {
+  font-family: "Cinzel", "Cormorant Garamond", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  background: linear-gradient(180deg, #1a0000, #000);
+  border: 1px solid #3a0000;
+  border-radius: 4px;
+
+  color: #e6e6e6;
+
+  box-shadow:
+    0 0 12px rgba(120, 0, 0, 0.6),
+    inset 0 0 8px rgba(255, 0, 0, 0.15);
+
+  transition: all 0.25s ease;
+}
+
+tw-story.theme-horror tw-link:hover {
+  color: #fff;
+  background: linear-gradient(180deg, #2a0000, #000);
+  box-shadow:
+    0 0 20px rgba(200, 0, 0, 0.9),
+    inset 0 0 12px rgba(255, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+tw-story.theme-horror tw-link:active {
+  transform: scale(0.96);
+}
+
+/* ===== SKATER THEME ===== */
+tw-story.theme-skater tw-link {
+  font-family: "Oswald", "Arial Black", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  background: #111;
+  color: #f5f5f5;
+
+  border: 3px solid #ff2e63;
+  border-radius: 2px;
+
+  box-shadow: 6px 6px 0 #00f5d4;
+
+  transition: all 0.15s ease;
+}
+
+tw-story.theme-skater tw-link:hover {
+  background: #ff2e63;
+  color: #000;
+  box-shadow: 3px 3px 0 #00f5d4;
+  transform: translate(3px, 3px);
+}
+
+tw-story.theme-skater tw-link:active {
+  box-shadow: none;
+  transform: translate(6px, 6px);
+}
+
+/* ===== RETRO ARCADE THEME ===== */
+tw-story.theme-arcade tw-link {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.8rem;
+
+  background: #0d0221;
+  color: #00f7ff;
+
+  border: 2px solid #ff00c8;
+  border-radius: 8px;
+
+  text-shadow: 0 0 6px #00f7ff;
+
+  box-shadow:
+    0 0 10px #ff00c8,
+    0 0 20px #ff00c8 inset;
+
+  transition: all 0.2s ease;
+}
+
+tw-story.theme-arcade tw-link:hover {
+  color: #fff;
+  background: #1a0440;
+  box-shadow:
+    0 0 20px #00f7ff,
+    0 0 30px #ff00c8 inset;
+}
+
+/* ===== INDIE FILM THEME ===== */
+tw-story.theme-indie tw-link {
+  font-family: "Playfair Display", serif;
+
+  background: #e8e3dc;
+  color: #2a2a2a;
+
+  border: none;
+  border-radius: 40px;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+  transition: all 0.3s ease;
+}
+
+tw-story.theme-indie tw-link:hover {
+  background: #d6cec3;
+  transform: translateY(-2px);
+}
+
+tw-story.theme-indie tw-link:active {
+  transform: scale(0.98);
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">window.setTheme = function(themeName) {
+  var story = document.querySelector("tw-story");
+  story.className = themeName;
+};</script><tw-tag name="startup" color="yellow"></tw-tag><tw-passagedata pid="1" name="BlankTemplate" tags="" position="850,75" size="100,100">{{{
 &lt;!----------VIDEO SECTION-------------------&gt;
 	&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
   		&lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
@@ -317,6 +443,10 @@ To use this stylesheet, copy this entire passage the drop
 into your Twine&#39;s stylesheet by clicking on 
 Story -&gt; Stylesheet and then just pasting these contents 
 -----------------------------------------------------*/
+@import url(&#39;https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&amp;display=swap&#39;);
+
+@import url(&#39;https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap&#39;);
+
 /* ===== Background ===== */
 body{
   background-color:black;
@@ -336,7 +466,9 @@ body{
 /* ===== Text Formatting ===== */
 .TopText
 {
-    position: absolute;
+  position: absolute;
+  font-size: 2vw;
+  line-height: normal;
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -344,7 +476,9 @@ body{
 
 .BottomText
 {
-    position: absolute;
+  position: absolute;
+  font-size: 2vw;
+  line-height: normal;
   top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -396,9 +530,9 @@ tw-passage
 }
 
 /* ===== Space that holds the Link Buttons ===== */
-.choices
-{
+.choices {
   display: flex;
+
   flex-wrap: wrap;
   z-index: 6;
   gap: 2rem;
@@ -445,9 +579,12 @@ tw-link
     background 0.3s ease,
     box-shadow 0.3s ease;
 
-  min-width: 10vw; 
+  min-width: 20vw; 
   max-width: 500px;/* cap growth */
+}
 
+.choices:has(&gt; :nth-child(4):last-child) &gt; * {
+  min-width: 10vw;
 }
 
 tw-link:hover {
@@ -521,6 +658,119 @@ tw-link:active {
     transform: scaleX(0);
     opacity: 0.3;
   }
+}
+
+/* ===== HORROR THEME ===== */
+tw-story.theme-horror tw-link {
+  font-family: &quot;Cinzel&quot;, &quot;Cormorant Garamond&quot;, serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  background: linear-gradient(180deg, #1a0000, #000);
+  border: 1px solid #3a0000;
+  border-radius: 4px;
+
+  color: #e6e6e6;
+
+  box-shadow:
+    0 0 12px rgba(120, 0, 0, 0.6),
+    inset 0 0 8px rgba(255, 0, 0, 0.15);
+
+  transition: all 0.25s ease;
+}
+
+tw-story.theme-horror tw-link:hover {
+  color: #fff;
+  background: linear-gradient(180deg, #2a0000, #000);
+  box-shadow:
+    0 0 20px rgba(200, 0, 0, 0.9),
+    inset 0 0 12px rgba(255, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+tw-story.theme-horror tw-link:active {
+  transform: scale(0.96);
+}
+
+/* ===== SKATER THEME ===== */
+tw-story.theme-skater tw-link {
+  font-family: &quot;Oswald&quot;, &quot;Arial Black&quot;, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  background: #111;
+  color: #f5f5f5;
+
+  border: 3px solid #ff2e63;
+  border-radius: 2px;
+
+  box-shadow: 6px 6px 0 #00f5d4;
+
+  transition: all 0.15s ease;
+}
+
+tw-story.theme-skater tw-link:hover {
+  background: #ff2e63;
+  color: #000;
+  box-shadow: 3px 3px 0 #00f5d4;
+  transform: translate(3px, 3px);
+}
+
+tw-story.theme-skater tw-link:active {
+  box-shadow: none;
+  transform: translate(6px, 6px);
+}
+
+/* ===== RETRO ARCADE THEME ===== */
+tw-story.theme-arcade tw-link {
+  font-family: &quot;Press Start 2P&quot;, monospace;
+  font-size: 0.8rem;
+
+  background: #0d0221;
+  color: #00f7ff;
+
+  border: 2px solid #ff00c8;
+  border-radius: 8px;
+
+  text-shadow: 0 0 6px #00f7ff;
+
+  box-shadow:
+    0 0 10px #ff00c8,
+    0 0 20px #ff00c8 inset;
+
+  transition: all 0.2s ease;
+}
+
+tw-story.theme-arcade tw-link:hover {
+  color: #fff;
+  background: #1a0440;
+  box-shadow:
+    0 0 20px #00f7ff,
+    0 0 30px #ff00c8 inset;
+}
+
+/* ===== INDIE FILM THEME ===== */
+tw-story.theme-indie tw-link {
+  font-family: &quot;Playfair Display&quot;, serif;
+
+  background: #e8e3dc;
+  color: #2a2a2a;
+
+  border: none;
+  border-radius: 40px;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+  transition: all 0.3s ease;
+}
+
+tw-story.theme-indie tw-link:hover {
+  background: #d6cec3;
+  transform: translateY(-2px);
+}
+
+tw-story.theme-indie tw-link:active {
+  transform: scale(0.98);
 }</tw-passagedata><tw-passagedata pid="7" name="&quot;Improved Stylesheet&quot;" tags="" position="550,450" size="100,100">/* ============================= */
 /*        EXPERIMENTAL MODE       */
 /* DO NOT COPY PASTE THIS INTO STORY STYLESHEET  */
@@ -968,14 +1218,23 @@ body {
 	&lt;div class=&quot;main-section&quot;&gt;
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 
-(if:$videosSeen &gt; 2)[[[You Unlocked a Secret-&gt;SecretPassage]]]
-[[Timer Passage-&gt;TimedTemplate2]]
+\(if:$videosSeen &gt; 2)[[[You Unlocked a Secret-&gt;SecretPassage]]]
+\(else:)[[Timer Passage-&gt;TimedTemplate2]]
 
 &lt;/div&gt;
 &lt;/div&gt;
 }}}</tw-passagedata><tw-passagedata pid="9" name="StartUp Variables" tags="startup" position="1400,100" size="100,100">&lt;!--Variables are initialised here--&gt;
 
-(set:$videosSeen to 0)</tw-passagedata><tw-passagedata pid="10" name="SecretPassage" tags="" position="1275,250" size="100,100">{{{
+(set:$videosSeen to 0)
+
+&lt;script&gt;
+/*
+setTheme(&quot;theme-horror&quot;);
+setTheme(&quot;theme-indie&quot;);
+setTheme(&quot;theme-skater&quot;);
+setTheme(&quot;theme-arcade&quot;);
+*/
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="10" name="SecretPassage" tags="" position="1275,250" size="100,100">{{{
 &lt;div class=&quot;main-section&quot;&gt;
 &lt;p class=&quot;TopText&quot;&gt;
 Because you watched enough videos the secret option was unlocked.

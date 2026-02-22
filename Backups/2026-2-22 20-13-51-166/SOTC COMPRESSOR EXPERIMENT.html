@@ -162,111 +162,107 @@ background: radial-gradient(circle at 50% 50%, rgba(38, 38, 38, 0.84) 99%, rgba(
   100% {opacity: 1;}
 }
 
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">  window.startComp = function()
-  {
-  window.startComp = function() {
-      // Ensure that the AudioContext is created after a user interaction
-      let audioElement = new Audio("FMUS.mp3");
-      //audioElement.autoplay = false; // Disable autoplay to trigger on user interaction
-      audioElement.id = "myAudio";
-      audioElement.crossOrigin = 'anonymous'; // for local testing
-      audioElement.loop = true; // Optional, if you want it to loop
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">window.startComp = function()
+{
+window.startComp = function() {
+    // Ensure that the AudioContext is created after a user interaction
+    let audioElement = new Audio("FMUS.mp3");
+    audioElement.autoplay = false; // Disable autoplay to trigger on user interaction
+    audioElement.id = "myAudio";
+    audioElement.crossOrigin = 'anonymous'; // for local testing
+    audioElement.loop = true; // Optional, if you want it to loop
 
-      // Create the AudioContext
-      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      window.audioContext = audioContext;
+    // Create the AudioContext
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    window.audioContext = audioContext;
 
-      // Create nodes to affect the gain of the audio
-      const gainNode2 = audioContext.createGain();
-      const videoSource = audioContext.createMediaElementSource(audioElement);
-      videoSource.connect(gainNode2);
-      gainNode2.connect(audioContext.destination);
+    // Create nodes to affect the gain of the audio
+    const gainNode2 = audioContext.createGain();
+    const videoSource = audioContext.createMediaElementSource(audioElement);
+    videoSource.connect(gainNode2);
+    gainNode2.connect(audioContext.destination);
+  
+  // Store the gainNode2 on the window to access it globally
+    window.gainNode2 = gainNode2;
 
-    // Store the gainNode2 on the window to access it globally
-      window.gainNode2 = gainNode2;
-
-      // Ensure AudioContext is resumed before starting audio
-      if (audioContext.state === 'suspended') {
-          audioContext.resume();
-      }
-
-      // Play the audio after the AudioContext has been resumed
-      audioElement.play().catch((error) => {
-          console.log("Error starting audio: ", error);
-      });
-
-      window.audioElement = audioElement;
-  };
-
-  }
-
-  //Method for compression
-  window.compressor = function()
-  {
-  try {
-
-  const video1 = document.getElementById('myVideo');
-
-      // Create nodes to analyse the Video's volume
-      const analyser1 = audioContext.createAnalyser();
-      const source1 = audioContext.createMediaElementSource(video1);
-      source1.connect(analyser1);
-      analyser1.connect(audioContext.destination);
-
-      // Set analyser properties
-      analyser1.fftSize = 256;
-      const bufferLength = analyser1.frequencyBinCount;
-      const dataArray = new Uint8Array(bufferLength);
-
-      function updateVolume() {
-        console.log("Eveliina is a fitty");
-        // Get the frequency data from the first audio (audio1)
-        analyser1.getByteFrequencyData(dataArray);
-
-        // Calculate the volume of audio1 based on frequency data
-        let sum = 0;
-        for (let i = 0; i < bufferLength; i++) {
-          sum += dataArray[i];
-        }
-        const averageVolume = sum / bufferLength;
-
-        // Map the average volume (0 to 255) to a range between 0 and 1 for video audio (audio2)
-        const normalizedVolume = averageVolume / 255;
-
-
-        // Set the volume of video1's audio based on the volume of audio1
-       window.gainNode2.gain.setValueAtTime((1-(normalizedVolume*4)), audioContext.currentTime);
-
-        //Print the gain value after calculation
-        console.log("Current gain value:", gainNode2.gain.value);
-
-        // Continuously adjust the volume
-        if(!video1.paused)
-        {requestAnimationFrame(updateVolume);}
-      }
-
-      // Start updating the volume when audio1 starts playing
-      video1.onplay = () => 
-      {
-        audioContext.resume().then(() =>{updateVolume();});
-      }
-
-
-  // Check if the element was found
-    if (!myVideo) 
-    {  
-      throw new Error('Element with id "myVideo" not found');
+    // Ensure AudioContext is resumed before starting audio
+    if (audioContext.state === 'suspended') {
+        audioContext.resume();
     }
-      } 
-    catch (error) 
-      {
-       console.log('Error: ', error.message);
+
+    // Play the audio after the AudioContext has been resumed
+    audioElement.play().catch((error) => {
+        console.log("Error starting audio: ", error);
+    });
+
+    window.audioElement = audioElement;
+};
+
+}
+
+//Method for compression
+window.compressor = function()
+{
+try {
+
+const video1 = document.getElementById('myVideo');
+
+    // Create nodes to analyse the Video's volume
+    const analyser1 = audioContext.createAnalyser();
+    const source1 = audioContext.createMediaElementSource(video1);
+    source1.connect(analyser1);
+    analyser1.connect(audioContext.destination);
+
+    // Set analyser properties
+    analyser1.fftSize = 256;
+    const bufferLength = analyser1.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    function updateVolume() {
+      console.log("Eveliina is a fitty");
+      // Get the frequency data from the first audio (audio1)
+      analyser1.getByteFrequencyData(dataArray);
+      
+      // Calculate the volume of audio1 based on frequency data
+      let sum = 0;
+      for (let i = 0; i < bufferLength; i++) {
+        sum += dataArray[i];
       }
+      const averageVolume = sum / bufferLength;
+      
+      // Map the average volume (0 to 255) to a range between 0 and 1 for video audio (audio2)
+      const normalizedVolume = averageVolume / 255;
+      
+      
+      // Set the volume of video1's audio based on the volume of audio1
+     window.gainNode2.gain.setValueAtTime((1-(normalizedVolume*4)), audioContext.currentTime);
+      
+      //Print the gain value after calculation
+      console.log("Current gain value:", gainNode2.gain.value);
+      
+      // Continuously adjust the volume
+      if(!video1.paused)
+      {requestAnimationFrame(updateVolume);}
+    }
+
+    // Start updating the volume when audio1 starts playing
+    video1.onplay = () => 
+    {
+      audioContext.resume().then(() =>{updateVolume();});
+    }
+
+
+// Check if the element was found
+  if (!myVideo) 
+  {  
+    throw new Error('Element with id "myVideo" not found');
   }
-
-
-
-</script><tw-passagedata pid="1" name="init" tags="startup" position="625,375" size="100,100">
+	} 
+  catch (error) 
+    {
+ 	 console.log('Error: ', error.message);
+	}
+}</script><tw-passagedata pid="1" name="init" tags="startup" position="625,375" size="100,100">
 
 &lt;!-- it is always a good idea to initialize your variables, but with arrays it is particularly important --&gt;
 (set: $correctDoorCode to (a: &#39;Ghost&#39;, &#39;Ghost&#39;, &#39;Ghost&#39;))
@@ -278,7 +274,7 @@ window.startComp();
 &lt;/script&gt;
 
 &lt;!-- The video --&gt;
-&lt;video autoplay id=&quot;myVideo&quot; playsinline  crossorigin=&quot;anonymous&quot; &gt;
+&lt;video autoplay id=&quot;myVideo&quot;&gt;
   &lt;source src=&quot;INTRO.mp4&quot; type=&quot;video/mp4&quot;&gt;
 &lt;/video&gt;
 
@@ -306,7 +302,7 @@ window.startComp();
 
 (if: $guessDoorCode is (a:))[
 &lt;!-- The video --&gt;
-&lt;video id=&quot;myVideo&quot; autoplay playsinline crossorigin=&quot;anonymous&quot; &gt;
+&lt;video id=&quot;myVideo&quot; autoplay&gt;
   &lt;source src=&quot;DUCKY.mp4&quot; type=&quot;video/mp4&quot; &gt;
 &lt;/video&gt;
 
@@ -319,7 +315,7 @@ window.compressor();
 	(if: $guessDoorCode&#39;s (1) is &quot;father&quot;)[
 	&lt;!-- The video --&gt;
 &lt;video autoplay id=&quot;myVideo&quot; playsinline&gt;
-  &lt;source src=&quot;R%20FATHER.mp4&quot; type=&quot;video/mp4&quot; playsinline&gt;
+  &lt;source src=&quot;R FATHER.mp4&quot; type=&quot;video/mp4&quot; playsinline&gt;
 &lt;/video&gt;
 &lt;script&gt;
 window.compressor();
@@ -327,7 +323,7 @@ window.compressor();
 	](else-if: $guessDoorCode&#39;s (1) is &quot;son&quot;)[
 		&lt;!-- The video --&gt;
 &lt;video autoplay id=&quot;myVideo&quot; playsinline&gt;
-  &lt;source src=&quot;R%20SON.mp4&quot; type=&quot;video/mp4&quot; playsinline&gt;
+  &lt;source src=&quot;R SON.mp4&quot; type=&quot;video/mp4&quot; playsinline&gt;
 &lt;/video&gt;
 &lt;script&gt;
 window.compressor();
@@ -335,7 +331,7 @@ window.compressor();
 	](else:)[
 	&lt;!-- The video --&gt;
 &lt;video autoplay id=&quot;myVideo&quot; playsinline&gt;
-  &lt;source src=&quot;R%20GHOST.mp4&quot; type=&quot;video/mp4&quot; playsinline&gt;
+  &lt;source src=&quot;R GHOST.mp4&quot; type=&quot;video/mp4&quot; playsinline&gt;
 &lt;/video&gt;
 &lt;script&gt;
 window.compressor();
@@ -412,14 +408,116 @@ window.compressor();
 (after:6s)[(go-to:&quot;Pray&quot;))]
 
 }}}</tw-passagedata><tw-passagedata pid="9" name="Splash Screen" tags="" position="875,175" size="100,100">This is here so that autoplay audio will work
-
-&lt;!--Don&#39;t forget, if testing locally, to start a local server such as by using NodeJS &quot;node server.js&quot; from CMD within the Twine scratch folder--&gt;
 &lt;button onclick=&quot;window.startComp()&quot; id=&quot;startMusicButton&quot;&gt;Start Music on iOS&lt;/button&gt;
 [[Start]]
 
 
 
-</tw-passagedata><tw-passagedata pid="10" name="header" tags="footer" position="625,525" size="100,100"></tw-passagedata></tw-storydata>
+</tw-passagedata><tw-passagedata pid="10" name="header" tags="footer" position="625,525" size="100,100"></tw-passagedata><tw-passagedata pid="11" name="Untitled Passage" tags="" position="1150,275" size="100,100">  window.startComp = function()
+  {
+  window.startComp = function() {
+      // Ensure that the AudioContext is created after a user interaction
+      let audioElement = new Audio(&quot;FMUS.mp3&quot;);
+      //audioElement.autoplay = false; // Disable autoplay to trigger on user interaction
+      audioElement.id = &quot;myAudio&quot;;
+      audioElement.crossOrigin = &#39;anonymous&#39;; // for local testing
+      audioElement.loop = true; // Optional, if you want it to loop
+
+      // Create the AudioContext
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      window.audioContext = audioContext;
+
+      // Create nodes to affect the gain of the audio
+      const gainNode2 = audioContext.createGain();
+      const videoSource = audioContext.createMediaElementSource(audioElement);
+      videoSource.connect(gainNode2);
+      gainNode2.connect(audioContext.destination);
+
+    // Store the gainNode2 on the window to access it globally
+      window.gainNode2 = gainNode2;
+
+      // Ensure AudioContext is resumed before starting audio
+      if (audioContext.state === &#39;suspended&#39;) {
+          audioContext.resume();
+      }
+
+      // Play the audio after the AudioContext has been resumed
+      audioElement.play().catch((error) =&gt; {
+          console.log(&quot;Error starting audio: &quot;, error);
+      });
+
+      window.audioElement = audioElement;
+  };
+
+  }
+
+  //Method for compression
+  window.compressor = function()
+  {
+  try {
+
+  const video1 = document.getElementById(&#39;myVideo&#39;);
+
+      // Create nodes to analyse the Video&#39;s volume
+      const analyser1 = audioContext.createAnalyser();
+      const source1 = audioContext.createMediaElementSource(video1);
+      source1.connect(analyser1);
+      analyser1.connect(audioContext.destination);
+
+      // Set analyser properties
+      analyser1.fftSize = 256;
+      const bufferLength = analyser1.frequencyBinCount;
+      const dataArray = new Uint8Array(bufferLength);
+
+      function updateVolume() {
+        console.log(&quot;Eveliina is a fitty&quot;);
+        // Get the frequency data from the first audio (audio1)
+        analyser1.getByteFrequencyData(dataArray);
+
+        // Calculate the volume of audio1 based on frequency data
+        let sum = 0;
+        for (let i = 0; i &lt; bufferLength; i++) {
+          sum += dataArray[i];
+        }
+        const averageVolume = sum / bufferLength;
+
+        // Map the average volume (0 to 255) to a range between 0 and 1 for video audio (audio2)
+        const normalizedVolume = averageVolume / 255;
+
+
+        // Set the volume of video1&#39;s audio based on the volume of audio1
+       window.gainNode2.gain.setValueAtTime((1-(normalizedVolume*4)), audioContext.currentTime);
+
+        //Print the gain value after calculation
+        console.log(&quot;Current gain value:&quot;, gainNode2.gain.value);
+
+        // Continuously adjust the volume
+        if(!video1.paused)
+        {requestAnimationFrame(updateVolume);}
+      }
+
+      // Start updating the volume when audio1 starts playing
+      video1.onplay = () =&gt; 
+      {
+        audioContext.resume().then(() =&gt;{updateVolume();});
+      }
+
+
+  // Check if the element was found
+    if (!myVideo) 
+    {  
+      throw new Error(&#39;Element with id &quot;myVideo&quot; not found&#39;);
+    }
+      } 
+    catch (error) 
+      {
+       console.log(&#39;Error: &#39;, error.message);
+      }
+  }
+
+
+
+</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
