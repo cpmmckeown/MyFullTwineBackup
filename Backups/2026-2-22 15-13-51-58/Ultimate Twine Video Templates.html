@@ -14,15 +14,28 @@ To use this stylesheet, copy this entire passage the drop
 into your Twine's stylesheet by clicking on 
 Story -> Stylesheet and then just pasting these contents 
 -----------------------------------------------------*/
-
+/* ===== Background ===== */
 body{
   background-color:black;
-     text-align: center;
+  text-align: center;
 }
 
+/* ===== Background Video ===== */
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  aspect-ratio: 16/9;
+}
+
+/* ===== Text Formatting ===== */
 .TopText
 {
-    position: absolute;
+  position: absolute;
+  font-size: 2vw;
+  line-height: normal;
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -30,12 +43,15 @@ body{
 
 .BottomText
 {
-    position: absolute;
+  position: absolute;
+  font-size: 2vw;
+  line-height: normal;
   top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
+/* ===== Harlowe Tweaks ===== */
 tw-sidebar
 {
   visibility: hidden; /*Stops it from being visible*/
@@ -52,9 +68,8 @@ tw-story
 {
 
   padding: 6.5% 20%;
-  padding-top: 4%;
   background-color:transparent;
-    font-family: 
+  font-family: 
     "Inter", 
     "SF Pro Display", 
     -apple-system, 
@@ -71,9 +86,9 @@ tw-passage
   height: 500px;
 }
 
+/* ===== Setting up the Interactive Video space ===== */
 .main-section
 {
-  align-items: center;
   z-index: 5;
   display: flex;
   flex-direction: column;
@@ -81,23 +96,25 @@ tw-passage
   min-height: 80dvh; /* better than 100vh for mobile */
 }
 
-.choices
-{
-  --btn: 200px; 
- --gap: 20px; 
-  gap: 1rem;
-  display: grid;
+/* ===== Space that holds the Link Buttons ===== */
+.choices {
+  display: flex;
+
+  flex-wrap: wrap;
   z-index: 6;
-  grid-template-columns: var(--btn) var(--gap) var(--btn); 
-  width: calc(var(--btn) * 2 + var(--gap)); 
+  gap: 2rem;
+  justify-content: space-evenly;
+  align-items: center;
   /* Fade-in animation */
   opacity: 0;
   transform: translateY(20px);
   animation: fadeUp 0.8s cubic-bezier(.22,.61,.36,1) forwards;
 }
 
-.choice
+/* ===== Turning Links into Buttons ===== */
+tw-link
 {
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -112,7 +129,8 @@ tw-passage
   border: 1px solid rgba(255, 255, 255, 0.15);
 
   color: rgba(255, 255, 255, 0.95);
-  font-size: 1rem;
+  font-size: clamp(0.95rem, 1vw, 1.1rem);
+ 
   font-weight: 500;
   letter-spacing: 0.02em;
 
@@ -127,38 +145,16 @@ tw-passage
     transform 0.3s ease,
     background 0.3s ease,
     box-shadow 0.3s ease;
-  width: var(--btn);
-  font-size: clamp(0.95rem, 1vw, 1.1rem);
+
+  min-width: 20vw; 
+  max-width: 500px;/* cap growth */
 }
 
-tw-link
-{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1em 2em;
-  border-radius: 16px;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-cursor: pointer;
-  user-select: none;
-
-  transition:
-    transform 0.3s ease,
-    background 0.3s ease,
-    box-shadow 0.3s ease;
-  width: var(--btn);
-  font-size: clamp(0.95rem, 1vw, 1.1rem);
+.choices:has(> :nth-child(4):last-child) > * {
+  min-width: 10vw;
 }
 
-.choice.bottomRow
-{
- grid-column: 2; 
- transform: translateX(-44%); 
-}
-
-.choice:hover {
+tw-link:hover {
   background: rgba(100, 100, 100, 0.55);
   transform: translateY(-3px);
   box-shadow:
@@ -166,31 +162,9 @@ cursor: pointer;
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.choice.bottomRow:hover 
-{
-  background: rgba(100, 100, 100, 0.55);
-  transform: translate(-44%, -3px);
-  box-shadow:
-    0 12px 32px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-
-.bg-video {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -10;
-  aspect-ratio: 16/9;
-}
-
-/* ===== Click Feedback ===== */
-
-.choice:active {
+tw-link:active {
   transform: translateY(0px) scale(0.98);
 }
-
 
 /* ===== Fade In + Up Animation ===== */
 
@@ -206,11 +180,12 @@ cursor: pointer;
 }
 
 /* =========== Countdown Bar ======== */
+/* ===== Could experiment with Harlowe's built in meter? ===== */
 /* ===== Minimal Cinematic Countdown Bar ===== */
 
 .timer-wrapper {
-
-  grid-column: 1 / -1; /* span ALL columns */
+  /*grid-column: 1 / -1; span ALL columns */
+  flex: 0 0 100%;
   display: flex;
   justify-content: center;
   margin-top: 1rem;
@@ -260,7 +235,7 @@ cursor: pointer;
 &lt;!----------CHOICE SECTION------------------&gt;
 	&lt;div class=&quot;main-section&quot;&gt;
 	&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
-[[Go to same -&gt;BlankTemplate2]]
+[[Go to same with more choices -&gt;BlankTemplate2]]
 [[Timed Example-&gt;TimedTemplate]]
 &lt;!-----------------------------------------------&gt;
 
@@ -277,7 +252,7 @@ cursor: pointer;
 &lt;div class=&quot;main-section&quot;&gt;
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 &lt;!------TIMER-------&gt;
-(after: 10s)[(go-to:&quot;ExampleWithVariables&quot;)]
+(after: 10s)[(go-to:&quot;BlankTemplate&quot;)]
 &lt;div class=&quot;timer-wrapper&quot;&gt;
 	&lt;div class=&quot;timer-bar&quot; style=&quot;--duration: 9s;&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -296,6 +271,8 @@ cursor: pointer;
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 
 
+[[BlankTemplate]]
+[[TimedTemplate]]
 [[BlankTemplate]]
 [[TimedTemplate]]
 
@@ -346,12 +323,23 @@ To use this stylesheet, copy this entire passage the drop
 into your Twine&#39;s stylesheet by clicking on 
 Story -&gt; Stylesheet and then just pasting these contents 
 -----------------------------------------------------*/
-
+/* ===== Background ===== */
 body{
   background-color:black;
-     text-align: center;
+  text-align: center;
 }
 
+/* ===== Background Video ===== */
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  aspect-ratio: 16/9;
+}
+
+/* ===== Text Formatting ===== */
 .TopText
 {
     position: absolute;
@@ -368,6 +356,7 @@ body{
   transform: translate(-50%, -50%);
 }
 
+/* ===== Harlowe Tweaks ===== */
 tw-sidebar
 {
   visibility: hidden; /*Stops it from being visible*/
@@ -385,7 +374,7 @@ tw-story
 
   padding: 6.5% 20%;
   background-color:transparent;
-    font-family: 
+  font-family: 
     &quot;Inter&quot;, 
     &quot;SF Pro Display&quot;, 
     -apple-system, 
@@ -402,6 +391,7 @@ tw-passage
   height: 500px;
 }
 
+/* ===== Setting up the Interactive Video space ===== */
 .main-section
 {
   z-index: 5;
@@ -411,19 +401,22 @@ tw-passage
   min-height: 80dvh; /* better than 100vh for mobile */
 }
 
+/* ===== Space that holds the Link Buttons ===== */
 .choices
 {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   z-index: 6;
   gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
-  align-content: center;
+  justify-content: space-evenly;
+  align-items: center;
   /* Fade-in animation */
   opacity: 0;
   transform: translateY(20px);
   animation: fadeUp 0.8s cubic-bezier(.22,.61,.36,1) forwards;
 }
 
+/* ===== Turning Links into Buttons ===== */
 tw-link
 {
   color: white;
@@ -441,7 +434,8 @@ tw-link
   border: 1px solid rgba(255, 255, 255, 0.15);
 
   color: rgba(255, 255, 255, 0.95);
-  font-size: 1rem;
+  font-size: clamp(0.95rem, 1vw, 1.1rem);
+ 
   font-weight: 500;
   letter-spacing: 0.02em;
 
@@ -456,9 +450,10 @@ tw-link
     transform 0.3s ease,
     background 0.3s ease,
     box-shadow 0.3s ease;
-flex: 1 1 200px;   /* grow + shrink 0 1 auto also good*/
-  max-width: 2*expected-content-width; /* cap growth */
-  font-size: clamp(0.95rem, 1vw, 1.1rem);
+
+  min-width: 10vw; 
+  max-width: 500px;/* cap growth */
+
 }
 
 tw-link:hover {
@@ -469,22 +464,9 @@ tw-link:hover {
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-
-.bg-video {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -10;
-  aspect-ratio: 16/9;
-}
-
-/* ===== Click Feedback ===== */
-
-.choice:active {
+tw-link:active {
   transform: translateY(0px) scale(0.98);
 }
-
 
 /* ===== Fade In + Up Animation ===== */
 
@@ -500,11 +482,12 @@ tw-link:hover {
 }
 
 /* =========== Countdown Bar ======== */
+/* ===== Could experiment with Harlowe&#39;s built in meter? ===== */
 /* ===== Minimal Cinematic Countdown Bar ===== */
 
 .timer-wrapper {
-
-  grid-column: 1 / -1; /* span ALL columns */
+  /*grid-column: 1 / -1; span ALL columns */
+  flex: 0 0 100%;
   display: flex;
   justify-content: center;
   margin-top: 1rem;
@@ -544,7 +527,7 @@ tw-link:hover {
     transform: scaleX(0);
     opacity: 0.3;
   }
-}</tw-passagedata><tw-passagedata pid="7" name="Improved Stylesheet" tags="" position="500,325" size="100,100">/* ============================= */
+}</tw-passagedata><tw-passagedata pid="7" name="&quot;Improved Stylesheet&quot;" tags="" position="550,450" size="100,100">/* ============================= */
 /*        EXPERIMENTAL MODE       */
 /* DO NOT COPY PASTE THIS INTO STORY STYLESHEET  */
 /* ============================= */
@@ -991,12 +974,12 @@ body {
 	&lt;div class=&quot;main-section&quot;&gt;
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 
-(if:$videosSeen &gt; 2)[[[You Unlocked a Secret -&gt;SecretPassage]]]
+(if:$videosSeen &gt; 2)[[[You Unlocked a Secret-&gt;SecretPassage]]]
 [[Timer Passage-&gt;TimedTemplate2]]
 
 &lt;/div&gt;
 &lt;/div&gt;
-}}}</tw-passagedata><tw-passagedata pid="9" name="StartUp" tags="startup" position="1400,100" size="100,100">&lt;!--Variables are initialised here--&gt;
+}}}</tw-passagedata><tw-passagedata pid="9" name="StartUp Variables" tags="startup" position="1400,100" size="100,100">&lt;!--Variables are initialised here--&gt;
 
 (set:$videosSeen to 0)</tw-passagedata><tw-passagedata pid="10" name="SecretPassage" tags="" position="1275,250" size="100,100">{{{
 &lt;div class=&quot;main-section&quot;&gt;
@@ -1012,7 +995,7 @@ It will now reset.
 }}}</tw-passagedata><tw-passagedata pid="11" name="TimedTemplate2" tags="" position="1100,250" size="100,100">{{{
 &lt;!----------VIDEO SECTION-------------------&gt;
 &lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
-	&lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
+	&lt;source src=&quot;Quick Vid 2.mp4&quot; type=&quot;video/mp4&quot;&gt;
 &lt;/video&gt;
 &lt;!-----------------------------------------------&gt;
 
@@ -1020,22 +1003,31 @@ It will now reset.
 &lt;div class=&quot;main-section&quot;&gt;
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 
+(after: 100s)[(go-to:&quot;ExampleWithVariables&quot;)]
 [[Try Again-&gt;ExampleWithVariables]]
-
+&lt;!------TIMER-----&gt;
+&lt;div class=&quot;timer-wrapper&quot;&gt;
+	&lt;div class=&quot;timer-bar&quot; style=&quot;--duration: 90s;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!------TIMER-------&gt;
+&lt;!------TIMER-----
 &lt;div class=&quot;timer-wrapper appear&quot; style=&quot;animation-delay: 2s&quot;&gt;
 	&lt;div class=&quot;timer-bar&quot; style=&quot;--duration: 90s;&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
 (after: 100s)[(go-to:&quot;ExampleWithVariables&quot;)]
-
+--&gt;
 
 
 &lt;/div&gt;
-}}}</tw-passagedata><tw-passagedata pid="12" name="More Detailed Example" tags="" position="1575,100" size="100,100">&lt;!--If you want things to be more specific - for example - controlling precisely how options show up to players, that&#39;s also possible but we will be making less use of HARLOWE here. This is more like Using SugarCube but we still benefit from some quality of life things--&gt;
+}}}</tw-passagedata><tw-passagedata pid="12" name="More Detailed Example" tags="" position="1575,100" size="100,100">{{{
+&lt;!--If you want things to be more specific - for example - controlling precisely how options show up to players, that&#39;s also possible but we will be making less use of HARLOWE here. This is more like Using SugarCube but we still benefit from some quality of life things--&gt;
 
-{{{
+&lt;!--NOTE -- YOU MUST CHANGE THE STYLESHEET FIRST FOR THIS TO WORK! --&gt;
+
+&lt;!--TLDR Doing layouts like this - quite specific ones - in Harlowe is a huge pain! so if that&#39;s what&#39;s really important to you, I recommend switching to Sugarcube--&gt;
+
+
 &lt;!----------VIDEO SECTION-------------------&gt;
 	&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
   		&lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
@@ -1052,11 +1044,12 @@ It will now reset.
 	&lt;/div&gt;
 &lt;/div&gt;
 }}}
-</tw-passagedata><tw-passagedata pid="13" name="Detailed Stylesheet" tags="" position="550,450" size="100,100">/*---------------------------------------------------
+</tw-passagedata><tw-passagedata pid="13" name="Detailed Stylesheet" tags="" position="500,325" size="100,100">/*---------------------------------------------------
+Detailed Stylesheet
+This enables clickable buttons in specific positions but it&#39;s a bit of a pain
 To use this stylesheet, copy this entire passage the drop
 into your Twine&#39;s stylesheet by clicking on 
 Story -&gt; Stylesheet and then just pasting these contents 
-This stylesheet is different from the basic stylesheet as standard hooks [[]] won&#39;t work.
 -----------------------------------------------------*/
 
 body{
@@ -1096,6 +1089,7 @@ tw-story
 {
 
   padding: 6.5% 20%;
+  padding-top: 4%;
   background-color:transparent;
     font-family: 
     &quot;Inter&quot;, 
@@ -1116,6 +1110,7 @@ tw-passage
 
 .main-section
 {
+  align-items: center;
   z-index: 5;
   display: flex;
   flex-direction: column;
@@ -1125,25 +1120,26 @@ tw-passage
 
 .choices
 {
+  --btn: 200px; 
+ --gap: 20px; 
+  gap: 1rem;
   display: grid;
   z-index: 6;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
-  align-content: center;
+  grid-template-columns: var(--btn) var(--gap) var(--btn); 
+  width: calc(var(--btn) * 2 + var(--gap)); 
   /* Fade-in animation */
   opacity: 0;
   transform: translateY(20px);
   animation: fadeUp 0.8s cubic-bezier(.22,.61,.36,1) forwards;
 }
 
-tw-link
+.choice
 {
-  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 1em 2em;
+  padding: 0;
   border-radius: 16px;
 
   background: rgba(80, 80, 80, 0.45);
@@ -1151,11 +1147,6 @@ tw-link
   -webkit-backdrop-filter: blur(12px);
 
   border: 1px solid rgba(255, 255, 255, 0.15);
-
-  color: rgba(255, 255, 255, 0.95);
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
 
   box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.35),
@@ -1168,14 +1159,54 @@ tw-link
     transform 0.3s ease,
     background 0.3s ease,
     box-shadow 0.3s ease;
-flex: 1 1 200px;   /* grow + shrink 0 1 auto also good*/
-  max-width: 2*expected-content-width; /* cap growth */
+  width: var(--btn);
   font-size: clamp(0.95rem, 1vw, 1.1rem);
 }
 
-tw-link:hover {
+tw-link
+{
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 2em;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+cursor: pointer;
+  user-select: none;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+  width: var(--btn);
+  font-size: clamp(0.95rem, 1vw, 1.1rem);
+}
+
+.choice.bottomRow
+{
+ grid-column: 2; 
+ transform: translateX(-44%); 
+}
+
+.choice:hover {
   background: rgba(100, 100, 100, 0.55);
   transform: translateY(-3px);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.choice.bottomRow:hover 
+{
+  background: rgba(100, 100, 100, 0.55);
+  transform: translate(-44%, -3px);
   box-shadow:
     0 12px 32px rgba(0, 0, 0, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
