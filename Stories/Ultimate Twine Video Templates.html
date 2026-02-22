@@ -9,7 +9,7 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Ultimate Twine Video Templates.</tw-noscript></noscript></tw-story>
-<tw-storydata name="Ultimate Twine Video Templates" startnode="1" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="88E28825-F98D-4B08-B27C-460BD270BE65" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/*---------------------------------------------------
+<tw-storydata name="Ultimate Twine Video Templates" startnode="1" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="88E28825-F98D-4B08-B27C-460BD270BE65" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/*---------------------------------------------------
 To use this stylesheet, copy this entire passage the drop
 into your Twine's stylesheet by clicking on 
 Story -> Stylesheet and then just pasting these contents 
@@ -246,7 +246,6 @@ tw-link:hover {
 &lt;!------TIMER END-------&gt;
 [[BlankTemplate2]]
 [[Next Section 3]]
-[[SecretPassage]]
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;!-----------------------------------------------&gt;
@@ -305,6 +304,7 @@ tw-link:hover {
 &lt;/div&gt;
 &lt;/div&gt;
 }}}</tw-passagedata><tw-passagedata pid="6" name="Basic Stylesheet" tags="" position="525,200" size="100,100">/*---------------------------------------------------
+Basic Stylesheet
 To use this stylesheet, copy this entire passage the drop
 into your Twine&#39;s stylesheet by clicking on 
 Story -&gt; Stylesheet and then just pasting these contents 
@@ -338,6 +338,11 @@ tw-sidebar
   position: fixed; /*Taking it out of the flow*/
 }
 
+tw-include
+{
+  position:fixed;
+}
+
 tw-story
 {
 
@@ -353,11 +358,6 @@ tw-story
     Helvetica, 
     Arial, 
     sans-serif;
-}
-
-tw-link
-{
-  color:white;
 }
 
 tw-passage
@@ -389,6 +389,7 @@ tw-passage
 
 tw-link
 {
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -473,6 +474,14 @@ tw-link:hover {
   z-index: 7;
 }
 
+.timer-wrapper.appear
+{
+  /* Fade-in animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
 .timer-bar {
   --duration: 5s; /* fallback */
 
@@ -498,7 +507,7 @@ tw-link:hover {
     transform: scaleX(0);
     opacity: 0.3;
   }
-}</tw-passagedata><tw-passagedata pid="7" name="Improved Stylesheet" tags="" position="500,325" size="100,100">/* ============================= */
+}</tw-passagedata><tw-passagedata pid="7" name="&quot;Improved Stylesheet&quot;" tags="" position="550,450" size="100,100">/* ============================= */
 /*        EXPERIMENTAL MODE       */
 /* DO NOT COPY PASTE THIS INTO STORY STYLESHEET  */
 /* ============================= */
@@ -986,6 +995,290 @@ It will now reset.
 
 
 
+&lt;/div&gt;
+}}}</tw-passagedata><tw-passagedata pid="12" name="More Detailed Example" tags="" position="1575,100" size="100,100">{{{
+&lt;!--If you want things to be more specific - for example - controlling precisely how options show up to players, that&#39;s also possible but we will be making less use of HARLOWE here. This is more like Using SugarCube but we still benefit from some quality of life things--&gt;
+
+&lt;!--NOTE -- YOU MUST CHANGE THE STYLESHEET FIRST FOR THIS TO WORK! --&gt;
+
+&lt;!--TLDR Doing layouts like this - quite specific ones - in Harlowe is a huge pain! so if that&#39;s what&#39;s really important to you, I recommend switching to Sugarcube--&gt;
+
+
+&lt;!----------VIDEO SECTION-------------------&gt;
+	&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
+  		&lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
+	&lt;/video&gt;
+&lt;!-----------------------------------------------&gt;
+
+&lt;!----------CHOICE SECTION------------------&gt;
+&lt;div class=&quot;main-section&quot;&gt;
+	&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
+		&lt;div class=&quot;choice&quot;&gt;[[Test]]&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+		&lt;div class=&quot;choice&quot;&gt;[[Test]]&lt;/div&gt;
+		&lt;div class=&quot;choice bottomRow&quot;&gt;[[Test]]&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+}}}
+</tw-passagedata><tw-passagedata pid="13" name="Detailed Stylesheet" tags="" position="500,325" size="100,100">/*---------------------------------------------------
+Detailed Stylesheet
+This enables clickable buttons in specific positions but it&#39;s a bit of a pain
+To use this stylesheet, copy this entire passage the drop
+into your Twine&#39;s stylesheet by clicking on 
+Story -&gt; Stylesheet and then just pasting these contents 
+-----------------------------------------------------*/
+
+body{
+  background-color:black;
+     text-align: center;
+}
+
+.TopText
+{
+    position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.BottomText
+{
+    position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+tw-sidebar
+{
+  visibility: hidden; /*Stops it from being visible*/
+  z-index:-100; /*Stops it from being clickable*/
+  position: fixed; /*Taking it out of the flow*/
+}
+
+tw-include
+{
+  position:fixed;
+}
+
+tw-story
+{
+
+  padding: 6.5% 20%;
+  padding-top: 4%;
+  background-color:transparent;
+    font-family: 
+    &quot;Inter&quot;, 
+    &quot;SF Pro Display&quot;, 
+    -apple-system, 
+    BlinkMacSystemFont, 
+    &quot;Segoe UI&quot;, 
+    Roboto, 
+    Helvetica, 
+    Arial, 
+    sans-serif;
+}
+
+tw-passage
+{
+  height: 500px;
+}
+
+.main-section
+{
+  align-items: center;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* pushes content to bottom */
+  min-height: 80dvh; /* better than 100vh for mobile */
+}
+
+.choices
+{
+  --btn: 200px; 
+ --gap: 20px; 
+  gap: 1rem;
+  display: grid;
+  z-index: 6;
+  grid-template-columns: var(--btn) var(--gap) var(--btn); 
+  width: calc(var(--btn) * 2 + var(--gap)); 
+  /* Fade-in animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+.choice
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  border-radius: 16px;
+
+  background: rgba(80, 80, 80, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+  width: var(--btn);
+  font-size: clamp(0.95rem, 1vw, 1.1rem);
+}
+
+tw-link
+{
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 2em;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+cursor: pointer;
+  user-select: none;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+  width: var(--btn);
+  font-size: clamp(0.95rem, 1vw, 1.1rem);
+}
+
+.choice.bottomRow
+{
+ grid-column: 2; 
+ transform: translateX(-44%); 
+}
+
+.choice:hover {
+  background: rgba(100, 100, 100, 0.55);
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.choice.bottomRow:hover 
+{
+  background: rgba(100, 100, 100, 0.55);
+  transform: translate(-44%, -3px);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  aspect-ratio: 16/9;
+}
+
+/* ===== Click Feedback ===== */
+
+.choice:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+
+/* ===== Fade In + Up Animation ===== */
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========== Countdown Bar ======== */
+/* ===== Minimal Cinematic Countdown Bar ===== */
+
+.timer-wrapper {
+
+  grid-column: 1 / -1; /* span ALL columns */
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  z-index: 7;
+}
+
+.timer-wrapper.appear
+{
+  /* Fade-in animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+.timer-bar {
+  --duration: 5s; /* fallback */
+
+  width: min(60vw, 500px);
+  height: 6px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 0 15px rgba(255, 255, 255, 0.25);
+
+  transform-origin: center;
+  animation: collapseBar var(--duration) linear forwards;
+}
+
+@keyframes collapseBar {
+  0% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(0);
+    opacity: 0.3;
+  }
+}</tw-passagedata><tw-passagedata pid="14" name="Test" tags="" position="1575,225" size="100,100">&lt;!--If you want things to be more specific - for example - controlling precisely how options show up to players, that&#39;s also possible but we will be making less use of HARLOWE here. This is more like Using SugarCube but we still benefit from some quality of life things--&gt;
+
+{{{
+&lt;!----------VIDEO SECTION-------------------&gt;
+	&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
+  		&lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
+	&lt;/video&gt;
+&lt;!-----------------------------------------------&gt;
+
+&lt;!----------CHOICE SECTION------------------&gt;
+&lt;div class=&quot;main-section&quot;&gt;
+	&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
+		(link-goto:&quot;More Detailed Example&quot;)[&lt;div class=&quot;choice&quot;&gt;Test&lt;/div&gt;]
+		(link-goto:&quot;More Detailed Example&quot;)[&lt;div class=&quot;choice&quot;&gt;Test&lt;/div&gt;]
+		(link-goto:&quot;More Detailed Example&quot;)[&lt;div class=&quot;choice bottomRow&quot;&gt;Test&lt;/div&gt;]
+	&lt;/div&gt;
 &lt;/div&gt;
 }}}</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";

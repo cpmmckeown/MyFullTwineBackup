@@ -9,7 +9,13 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Ultimate Twine Video Templates.</tw-noscript></noscript></tw-story>
-<tw-storydata name="Ultimate Twine Video Templates" startnode="1" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="88E28825-F98D-4B08-B27C-460BD270BE65" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">body{
+<tw-storydata name="Ultimate Twine Video Templates" startnode="1" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="88E28825-F98D-4B08-B27C-460BD270BE65" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/*---------------------------------------------------
+To use this stylesheet, copy this entire passage the drop
+into your Twine's stylesheet by clicking on 
+Story -> Stylesheet and then just pasting these contents 
+-----------------------------------------------------*/
+
+body{
   background-color:black;
      text-align: center;
 }
@@ -37,6 +43,11 @@ tw-sidebar
   position: fixed; /*Taking it out of the flow*/
 }
 
+tw-include
+{
+  position:fixed;
+}
+
 tw-story
 {
 
@@ -54,14 +65,8 @@ tw-story
     sans-serif;
 }
 
-tw-link
-{
-  color:white;
-}
-
 tw-passage
 {
-  
   height: 500px;
 }
 
@@ -89,6 +94,7 @@ tw-passage
 
 tw-link
 {
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -165,11 +171,20 @@ tw-link:hover {
 /* ===== Minimal Cinematic Countdown Bar ===== */
 
 .timer-wrapper {
+
   grid-column: 1 / -1; /* span ALL columns */
   display: flex;
   justify-content: center;
   margin-top: 1rem;
   z-index: 7;
+}
+
+.timer-wrapper.appear
+{
+  /* Fade-in animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s cubic-bezier(.22,.61,.36,1) forwards;
 }
 
 .timer-bar {
@@ -224,17 +239,17 @@ tw-link:hover {
 &lt;div class=&quot;main-section&quot;&gt;
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 &lt;!------TIMER-------&gt;
-(after: 5s)[(go-to:&quot;BlankTemplate&quot;)]
+(after: 10s)[(go-to:&quot;ExampleWithVariables&quot;)]
 &lt;div class=&quot;timer-wrapper&quot;&gt;
-	&lt;div class=&quot;timer-bar&quot; style=&quot;--duration: 4s;&quot;&gt;&lt;/div&gt;
+	&lt;div class=&quot;timer-bar&quot; style=&quot;--duration: 9s;&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;!--------------------&gt;
+&lt;!------TIMER END-------&gt;
 [[BlankTemplate2]]
 [[Next Section 3]]
+[[SecretPassage]]
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;!-----------------------------------------------&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
 }}}</tw-passagedata><tw-passagedata pid="3" name="BlankTemplate2" tags="" position="700,250" size="100,100">{{{
 &lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
   &lt;source src=&quot;Quick Vid 2.mp4&quot; type=&quot;video/mp4&quot;&gt;
@@ -347,7 +362,6 @@ tw-link
 
 tw-passage
 {
-  
   height: 500px;
 }
 
@@ -451,6 +465,7 @@ tw-link:hover {
 /* ===== Minimal Cinematic Countdown Bar ===== */
 
 .timer-wrapper {
+
   grid-column: 1 / -1; /* span ALL columns */
   display: flex;
   justify-content: center;
@@ -916,6 +931,10 @@ body {
             hue-rotate(-20deg);
   }
 }</tw-passagedata><tw-passagedata pid="8" name="ExampleWithVariables" tags="" position="1175,100" size="100,100">{{{
+&lt;!----------INCREASE THE VARIABLE-------------------&gt;
+(set:$videosSeen to it +1)
+&lt;!-----------------------------------------------&gt;
+
 &lt;!----------VIDEO SECTION-------------------&gt;
 	&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
   		&lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
@@ -925,13 +944,12 @@ body {
 &lt;!----------CHOICE SECTION------------------&gt;
 	&lt;div class=&quot;main-section&quot;&gt;
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
+
 (if:$videosSeen &gt; 2)[[[You Unlocked a Secret -&gt;SecretPassage]]]
 [[Timer Passage-&gt;TimedTemplate2]]
-&lt;!-----------------------------------------------&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
-(set:$videosSeen to it +1)
 }}}</tw-passagedata><tw-passagedata pid="9" name="StartUp" tags="startup" position="1400,100" size="100,100">&lt;!--Variables are initialised here--&gt;
 
 (set:$videosSeen to 0)</tw-passagedata><tw-passagedata pid="10" name="SecretPassage" tags="" position="1275,250" size="100,100">{{{
@@ -955,13 +973,19 @@ It will now reset.
 &lt;!----------CHOICE SECTION------------------&gt;
 &lt;div class=&quot;main-section&quot;&gt;
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
-&lt;!------TIMER-------&gt;
-(after: 5s)[(go-to:&quot;ExampleWithVariables&quot;)]
-&lt;div class=&quot;timer-wrapper&quot;&gt;
-	&lt;div class=&quot;timer-bar&quot; style=&quot;--duration: 4s;&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
+
 [[Try Again-&gt;ExampleWithVariables]]
+
 &lt;/div&gt;
+
+&lt;!------TIMER-------&gt;
+&lt;div class=&quot;timer-wrapper appear&quot; style=&quot;animation-delay: 2s&quot;&gt;
+	&lt;div class=&quot;timer-bar&quot; style=&quot;--duration: 90s;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+(after: 100s)[(go-to:&quot;ExampleWithVariables&quot;)]
+
+
+
 &lt;/div&gt;
 }}}</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
