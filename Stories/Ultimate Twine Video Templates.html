@@ -1218,8 +1218,8 @@ body {
 	&lt;div class=&quot;main-section&quot;&gt;
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 
-(if:$videosSeen &gt; 2)[[[You Unlocked a Secret-&gt;SecretPassage]]]
-[[Timer Passage-&gt;TimedTemplate2]]
+\(if:$videosSeen &gt; 2)[[[You Unlocked a Secret-&gt;SecretPassage]]]
+\(else:)[[Timer Passage-&gt;TimedTemplate2]]
 
 &lt;/div&gt;
 &lt;/div&gt;
