@@ -3,568 +3,531 @@
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
-<title>Visual Novel Project</title>
+<title>Dinosaur MK2</title>
 <style title="Twine CSS">@keyframes appear{0%{opacity:0}to{opacity:1}}@keyframes fade-in-out{0%,to{opacity:0}50%{opacity:1}}@keyframes rumble{25%{top:-0.1em}75%{top:.1em}0%,to{top:0px}}@keyframes shudder{25%{left:.1em}75%{left:-0.1em}0%,to{left:0px}}@keyframes buoy{25%{top:.25em}75%{top:-0.25em}0%,to{top:0px}}@keyframes sway{25%{left:.25em}75%{left:-0.25em}0%,to{left:0px}}@keyframes pulse{0%{transform:scale(0, 0)}20%{transform:scale(1.2, 1.2)}40%{transform:scale(0.9, 0.9)}60%{transform:scale(1.05, 1.05)}80%{transform:scale(0.925, 0.925)}to{transform:scale(1, 1)}}@keyframes zoom-in{0%{transform:scale(0, 0)}to{transform:scale(1, 1)}}@keyframes shudder-in{0%,to{transform:translateX(0em)}5%,25%,45%{transform:translateX(-1em)}15%,35%,55%{transform:translateX(1em)}65%{transform:translateX(-0.6em)}75%{transform:translateX(0.6em)}85%{transform:translateX(-0.2em)}95%{transform:translateX(0.2em)}}@keyframes rumble-in{0%,to{transform:translateY(0em)}5%,25%,45%{transform:translateY(-1em)}15%,35%,55%{transform:translateY(1em)}65%{transform:translateY(-0.6em)}75%{transform:translateY(0.6em)}85%{transform:translateY(-0.2em)}95%{transform:translateY(0.2em)}}@keyframes fidget{0%,8.1%,82.1%,31.1%,38.1%,44.1%,40.1%,47.1%,74.1%,16.1%,27.1%,72.1%,24.1%,95.1%,6.1%,36.1%,20.1%,4.1%,91.1%,14.1%,87.1%,to{left:0px;top:0px}8%,82%,31%,38%,44%{left:-1px}40%,47%,74%,16%,27%{left:1px}72%,24%,95%,6%,36%{top:-1px}20%,4%,91%,14%,87%{top:1px}}@keyframes slide-right{0%{transform:translateX(-100vw)}}@keyframes slide-left{0%{transform:translateX(100vw)}}@keyframes slide-up{0%{transform:translateY(100vh)}}@keyframes slide-down{0%{transform:translateY(-100vh)}}@keyframes fade-right{0%{opacity:0;transform:translateX(-1em)}to{opacity:1}}@keyframes fade-left{0%{opacity:0;transform:translateX(1em)}to{opacity:1}}@keyframes fade-up{0%{opacity:0;transform:translateY(1em)}to{opacity:1}}@keyframes fade-down{0%{opacity:0;transform:translateY(-1em)}to{opacity:1}}@keyframes flicker{0%,29%,31%,63%,65%,77%,79%,86%,88%,91%,93%{opacity:0}30%{opacity:.2}64%{opacity:.4}78%{opacity:.6}87%{opacity:.8}92%,to{opacity:1}}@keyframes blur{0%{filter:blur(2rem);opacity:0}25%{opacity:1}to{filter:blur(0rem);opacity:1}}.dom-debug-mode tw-story,.dom-debug-mode tw-passage,.dom-debug-mode tw-sidebar,.dom-debug-mode tw-include,.dom-debug-mode tw-hook,.dom-debug-mode tw-expression,.dom-debug-mode tw-link,.dom-debug-mode tw-dialog,.dom-debug-mode tw-columns,.dom-debug-mode tw-column,.dom-debug-mode tw-align{outline:1px solid #f5a3da;min-height:32px;display:block !important}.dom-debug-mode tw-story::before,.dom-debug-mode tw-passage::before,.dom-debug-mode tw-sidebar::before,.dom-debug-mode tw-include::before,.dom-debug-mode tw-hook::before,.dom-debug-mode tw-expression::before,.dom-debug-mode tw-link::before,.dom-debug-mode tw-dialog::before,.dom-debug-mode tw-columns::before,.dom-debug-mode tw-column::before,.dom-debug-mode tw-align::before{position:absolute;top:0;left:0;height:16px;background-color:#f5a3da;color:#000;font-size:16px;font-weight:normal;font-style:normal;font-family:monospace;display:inline-block;line-height:100%;white-space:pre;z-index:999997}.dom-debug-mode tw-story:hover,.dom-debug-mode tw-passage:hover,.dom-debug-mode tw-sidebar:hover,.dom-debug-mode tw-include:hover,.dom-debug-mode tw-hook:hover,.dom-debug-mode tw-expression:hover,.dom-debug-mode tw-link:hover,.dom-debug-mode tw-dialog:hover,.dom-debug-mode tw-columns:hover,.dom-debug-mode tw-column:hover,.dom-debug-mode tw-align:hover{outline:1px solid #fc9}.dom-debug-mode tw-story:hover::before,.dom-debug-mode tw-passage:hover::before,.dom-debug-mode tw-sidebar:hover::before,.dom-debug-mode tw-include:hover::before,.dom-debug-mode tw-hook:hover::before,.dom-debug-mode tw-expression:hover::before,.dom-debug-mode tw-link:hover::before,.dom-debug-mode tw-dialog:hover::before,.dom-debug-mode tw-columns:hover::before,.dom-debug-mode tw-column:hover::before,.dom-debug-mode tw-align:hover::before{background-color:#fc9;transition:background-color 1s}.dom-debug-mode tw-passage,.dom-debug-mode tw-include,.dom-debug-mode tw-hook,.dom-debug-mode tw-expression,.dom-debug-mode tw-link,.dom-debug-mode tw-dialog,.dom-debug-mode tw-columns,.dom-debug-mode tw-column,.dom-debug-mode tw-align{padding:1em;margin:0}.dom-debug-mode tw-story::before{content:'<tw-story tags="' attr(tags) '">'}.dom-debug-mode tw-passage::before{top:-16px;content:'<tw-passage tags="' attr(tags) '">'}.dom-debug-mode tw-sidebar::before{top:-16px;content:"<tw-sidebar>"}.dom-debug-mode tw-hook::before{content:'<tw-hook name="' attr(name) '">'}.dom-debug-mode tw-expression::before{content:'<tw-expression name="' attr(name) '">'}.dom-debug-mode tw-link::before{content:'<tw-link name="' attr(name) '">'}.dom-debug-mode tw-dialog::before{content:"<tw-dialog>"}.dom-debug-mode tw-columns::before{content:"<tw-columns>"}.dom-debug-mode tw-column::before{content:"<tw-column>"}.dom-debug-mode tw-align::before{content:"<tw-align>"}.dom-debug-mode tw-include::before{content:'<tw-include type="' attr(type) '" name="' attr(name) '">'}tw-open-button[goto]{display:none}.debug-mode tw-open-button[replay],.debug-mode tw-open-button[goto]{display:inline}.debug-mode tw-expression{display:inline-block !important}.debug-mode tw-expression[type=variable]::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"$" attr(name)}.debug-mode tw-expression[type=tempVariable]::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"_" attr(name)}.debug-mode tw-expression[return=boolean]{background-color:rgba(179,179,179,.2)}.debug-mode tw-expression[return=array]{background-color:rgba(255,102,102,.2)}.debug-mode tw-expression[return=dataset]{background-color:rgba(255,128,0,.2)}.debug-mode tw-expression[return=number]{background-color:rgba(255,179,102,.2)}.debug-mode tw-expression[return=datamap]{background-color:rgba(255,255,102,.2)}.debug-mode tw-expression[return=changer]{background-color:rgba(179,255,102,.2)}.debug-mode tw-expression[return=lambda]{background-color:rgba(102,255,102,.2)}.debug-mode tw-expression[return=hookname]{background-color:rgba(102,255,204,.2)}.debug-mode tw-expression[return=string]{background-color:rgba(102,255,255,.2)}.debug-mode tw-expression[return=datatype]{background-color:rgba(102,153,255,.2)}.debug-mode tw-expression[return=gradient],.debug-mode tw-expression[return=colour]{background-color:rgba(204,102,255,.2)}.debug-mode tw-expression[return=instant],.debug-mode tw-expression[return=macro]{background-color:rgba(240,117,199,.2)}.debug-mode tw-expression[return=command]{background-color:rgba(153,153,255,.2)}.debug-mode tw-expression.false{background-color:rgba(255,0,0,.2) !important}.debug-mode tw-expression[type=macro]::before{content:"(" attr(name) ":)";padding:0 .5rem;font-size:1rem;vertical-align:middle;line-height:normal;background-color:inherit;border:1px solid rgba(255,255,255,.5)}.debug-mode tw-expression[title]:not([title=""]){cursor:help}.debug-mode tw-hook{background-color:rgba(0,85,255,.1) !important}.debug-mode tw-hook::before{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"["}.debug-mode tw-hook::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"]"}.debug-mode tw-hook[name]::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"]<" attr(name) "|"}.debug-mode tw-pseudo-hook{background-color:rgba(255,170,0,.1) !important}.debug-mode tw-collapsed::before{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"{"}.debug-mode tw-collapsed::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"}"}.debug-mode tw-verbatim::before,.debug-mode tw-verbatim::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"`"}.debug-mode tw-align[style*="text-align: center"]{background:linear-gradient(to right, hsla(14, 100%, 87%, 0) 0%, hsla(14, 100%, 87%, 0.25) 50%, hsla(14, 100%, 87%, 0) 100%)}.debug-mode tw-align[style*="text-align: left"]{background:linear-gradient(to right, hsla(14, 100%, 87%, 0.25) 0%, hsla(14, 100%, 87%, 0) 100%)}.debug-mode tw-align[style*="text-align: right"]{background:linear-gradient(to right, hsla(14, 100%, 87%, 0) 0%, hsla(14, 100%, 87%, 0.25) 100%)}.debug-mode tw-column{background-color:rgba(189,228,255,.2)}.debug-mode tw-enchantment{animation:enchantment .5s infinite;border:1px solid}.debug-mode tw-link::after,.debug-mode tw-broken-link::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:attr(passage-name)}.debug-mode tw-include{background-color:rgba(204,128,51,.1)}.debug-mode tw-include::before{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:attr(type) ' "' attr(name) '"'}.debug-dialogs tw-backdrop:not(.eval-replay):not(.harlowe-crash){pointer-events:none;opacity:.1}tw-eval-replay tw-eval-code,tw-eval-replay tw-eval-explanation{max-height:20vh;overflow:auto;margin:10px auto}tw-eval-replay tw-eval-code{display:block;font-family:monospace;padding-bottom:1ex;border-bottom:2px solid gray}tw-eval-replay tw-eval-explanation{display:block;text-align:center}tw-eval-replay tw-eval-explanation>code{white-space:pre-wrap}tw-eval-replay tw-eval-explanation>code.from-block{width:40%;display:inline-block;text-align:left;max-height:4em;overflow-wrap:anywhere;overflow-y:scroll}tw-eval-replay tw-eval-explanation>code.from-block~.to-desc{width:calc(40% - 2em);margin-left:2em;display:inline-block}tw-eval-replay tw-eval-explanation>code.from-block+span::after{content:"..."}tw-eval-replay tw-eval-explanation>code.from-inline{text-align:right}tw-eval-replay tw-eval-explanation>:nth-child(2){white-space:pre}tw-eval-replay tw-eval-explanation>.to-desc{text-align:left}tw-eval-replay tw-eval-explanation>table{width:100%;margin-top:1em}tw-eval-replay tw-eval-explanation>table td{white-space:pre-wrap !important;word-wrap:anywhere}tw-eval-replay tw-eval-reason{text-align:center;font-size:80%;font-style:italic;display:block}tw-eval-replay tw-eval-it{text-align:center;font-size:80%;display:block}tw-eval-replay tw-dialog-links{display:-ms-flexbox;display:flex;-ms-flex-pack:distribute;justify-content:space-around}@keyframes enchantment{0%,to{border-color:#ffb366}50%{border-color:#6fc}}tw-debugger{position:fixed;box-sizing:border-box;bottom:0;right:0;z-index:999999;min-width:14em;min-height:1em;padding:0em .5em .5em 1em;font-size:1.25em;font-family:sans-serif;color:#262626;background-color:#fff;border-left:solid #262626 2px;border-top:solid #262626 2px;border-top-left-radius:.5em;opacity:1}tw-debugger.fade-panel:not(:hover){opacity:.33}tw-debugger.theme-dark{color:#d9d9d9;background-color:#000}tw-debugger.theme-dark{border-color:#d9d9d9 rgba(0,0,0,0) rgba(0,0,0,0) #d9d9d9}tw-debugger select{margin-right:1em;width:12em}tw-debugger button,tw-debugger tw-link{border-radius:3px;border:solid #999 1px;margin:auto 4px;color:#262626;background-color:#fff;cursor:pointer}tw-debugger button.enabled,tw-debugger tw-link.enabled{color:#000;background-color:#d9d9d9;box-shadow:inset #999 3px 5px .5em}tw-debugger.theme-dark button,tw-debugger.theme-dark tw-link{color:#d9d9d9;background-color:#000;border-color:#666}tw-debugger.theme-dark button.enabled,tw-debugger.theme-dark tw-link.enabled{color:#e6e6e6;background-color:#424242;box-shadow:inset #666 3px 5px .5em}tw-debugger button{font-size:1em;overflow-x:hidden;text-overflow:ellipsis;white-space:pre}tw-debugger tw-link{font-size:1.25em;border-radius:16px;border-style:solid;border-width:2px;text-align:center;padding:0px 8px;display:block}tw-debugger tw-link:hover{border-color:#262626;color:#262626}tw-debugger.theme-dark tw-link:hover{border-color:#d9d9d9;color:#d9d9d9}tw-debugger tw-dialog{background-color:#fff;color:#000;font-size:1.25em}tw-debugger.theme-dark tw-dialog{background-color:#000;color:#e6e6e6}tw-debugger .panel{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:absolute;bottom:100%;left:-2px;right:0;padding:1em;overflow-y:scroll;overflow-x:hidden;border:inherit;box-sizing:content-box;background-color:#fff;border-bottom:solid #999 2px;border-top-left-radius:.5em;border-bottom-left-radius:.5em;font-size:.8em}tw-debugger .panel:empty,tw-debugger .panel[hidden]{display:none}tw-debugger.theme-dark .panel{background-color:#000;border-bottom-color:#666}tw-debugger .panel-source .panel-row-buttons{width:2rem}tw-debugger .panel-source .source-tags{width:20%;font-style:italic}tw-debugger .panel-row-source td{font-family:monospace;font-size:1rem;white-space:pre-wrap;overflow-wrap:anywhere;max-height:8rem;padding:1rem}tw-debugger .panel-rows{width:100%;overflow-x:scroll}tw-debugger .panel-rows>*{display:table-row}tw-debugger .panel-rows>div:nth-of-type(2n){background-color:#e6e6e6}tw-debugger .panel-tools .panel-rows>*,tw-debugger .panel-options .panel-rows>*{margin-top:.4rem;display:block}tw-debugger.theme-dark .panel-rows>div:nth-of-type(2n){background-color:#212121}tw-debugger .panel-row-buttons{text-align:right}tw-debugger .panel-variables .panel-rows:empty::before{content:"~ No variables ~";font-style:italic;color:#575757;text-align:center}tw-debugger .panel-enchantments .panel-rows:empty::before{content:"~ No enchantments ~";font-style:italic;color:#575757;text-align:center}tw-debugger .panel-errors .panel-rows:empty::before{content:"~ No errors... for now. ~";font-style:italic;color:#575757;text-align:center}tw-debugger .panel-errors .panel-rows:empty+.panel-errors-bottom{display:none}tw-debugger.theme-dark .panel-variables .panel-rows:empty::before,tw-debugger.theme-dark .panel-enchantments .panel-rows:empty::before,tw-debugger.theme-dark .panel-errors .panel-rows:empty::before{color:#a8a8a8}tw-debugger .panel-rows:empty+.panel-variables-bottom{display:none}tw-debugger th[data-col]{text-decoration:underline;cursor:pointer}tw-debugger th[data-col][data-order=asc]::after{content:"↓"}tw-debugger th[data-col][data-order=desc]::after{content:"↑"}tw-debugger .panel-storylets:not(.panel-exclusive) .storylet-exclusive,tw-debugger .panel-storylets:not(.panel-urgent) .storylet-urgent{display:none}tw-debugger .storylet-exclusive,tw-debugger .storylet-urgent,tw-debugger .storylet-open{text-align:center}tw-debugger .panel-variables-bottom{padding-top:5px}tw-debugger .enchantment-row{min-height:1.5em}tw-debugger .variable-path{opacity:.4}tw-debugger .temporary-variable-scope,tw-debugger .enchantment-local{font-family:sans-serif;font-weight:normal;opacity:.8;font-size:.75em}tw-debugger .temporary-variable-scope:not(:empty)::before,tw-debugger .enchantment-local:not(:empty)::before{content:" in "}tw-debugger .variable-name,tw-debugger .enchantment-name{font-family:monospace;font-weight:bold}tw-debugger .variable-type{color:#575757;font-weight:normal;text-overflow:ellipsis;overflow:hidden;max-width:10em}tw-debugger.theme-dark .variable-type{color:#a8a8a8}tw-debugger .error-row{display:table-row;background-color:rgba(230,101,204,.3)}tw-debugger .error-row:nth-of-type(2n){background-color:rgba(237,145,219,.3)}tw-debugger .error-row>*{display:table-cell;padding:.25em .5em}tw-debugger .error-row .error-message[title]:not([title=""]){cursor:help}tw-debugger .error-row .error-passage{color:#575757}tw-debugger.theme-dark .error-row .error-passage{color:#a8a8a8}tw-debugger .storylet-row{background-color:rgba(193,240,225,.3)}tw-debugger .storylet-row:nth-child(2n){background-color:rgba(152,231,204,.3)}tw-debugger .storylet-row.storylet-closed{font-style:italic;background-color:#fff}tw-debugger .storylet-row.storylet-closed:nth-child(2n){background-color:#e6e6e6}tw-debugger .storylet-row.storylet-closed>:not(.storylet-lambda){opacity:.6}.storylet-error tw-debugger .storylet-row{background-color:rgba(230,101,204,.3)}.storylet-error tw-debugger .storylet-row:nth-child(2n){background-color:rgba(237,145,219,.3)}tw-debugger .storylet-row .storylet-name,tw-debugger .storylet-row .storylet-value{display:inline-block;width:50%}tw-debugger .storylet-row .storylet-lambda{font-family:monospace;font-size:1rem;white-space:pre-wrap;overflow-wrap:anywhere}tw-debugger.theme-dark .storylet-row.storylet-closed{background-color:#000}tw-debugger.theme-dark .storylet-row.storylet-closed:nth-child(2n){background-color:#212121}tw-debugger .tabs{padding-bottom:.5em}tw-debugger .tab{border-radius:0px 0px .5em .5em;border-top:none;top:-2px}tw-debugger .resizer-h{position:absolute;height:14em;border-left:2px solid #999;border-right:2px solid #999;top:10px;left:4px;width:8px;cursor:ew-resize}tw-debugger.theme-dark .resizer-h{border-color:rgba(0,0,0,0) #666}tw-debugger .resizer-v{position:absolute;height:8px;border-top:2px solid #999;border-bottom:2px solid #999;margin-bottom:4px;top:4px;left:10px;width:95%;cursor:ns-resize;box-sizing:border-box}tw-debugger.theme-dark .resizer-v{border-color:#666 rgba(0,0,0,0)}tw-debugger mark{color:inherit;background-color:rgba(101,230,230,.3) !important}tw-dialog{z-index:999997;border:#fff solid 2px;padding:2em;color:#fff;background-color:#000;display:block}@media(min-width: 576px){tw-dialog{max-width:50vw}}tw-dialog input[type=text]{font-size:inherit;width:100%;border:solid #fff !important}tw-dialog-links{text-align:right;display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end}tw-backdrop{z-index:999996;position:fixed;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,.8);display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center}tw-backdrop~tw-backdrop{display:none}tw-link,.enchantment-link{cursor:pointer;color:#4169e1;font-weight:bold;text-decoration:none;transition:color .2s ease-in-out}tw-passage [style^=color] tw-link:not(:hover),tw-passage [style*=" color"] tw-link:not(:hover),tw-passage [style^=color][hover=true] tw-link:hover,tw-passage [style*=" color"][hover=true] tw-link:hover,tw-passage [style^=color] .enchantment-link:not(:hover),tw-passage [style*=" color"] .enchantment-link:not(:hover),tw-passage [style^=color][hover=true] .enchantment-link:hover,tw-passage [style*=" color"][hover=true] .enchantment-link:hover{color:inherit}tw-link:hover,.enchantment-link:hover{color:#00bfff}tw-link:active,.enchantment-link:active{color:#dd4b39}.visited{color:#6941e1}tw-passage [style^=color] .visited:not(:hover),tw-passage [style*=" color"] .visited:not(:hover),tw-passage [style^=color][hover=true] .visited:hover,tw-passage [style*=" color"][hover=true] .visited:hover{color:inherit}.visited:hover{color:#e3e}tw-broken-link{color:#933;border-bottom:2px solid #933;cursor:not-allowed}tw-passage [style^=color] tw-broken-link:not(:hover),tw-passage [style*=" color"] tw-broken-link:not(:hover),tw-passage [style^=color][hover=true] tw-broken-link:hover,tw-passage [style*=" color"][hover=true] tw-broken-link:hover{color:inherit}tw-link.enchantment-mouseover,.link.enchantment-mouseover,tw-expression.enchantment-mouseover>tw-link{color:inherit;font-weight:inherit;transition:none;cursor:inherit;border-bottom:2px dashed #999}tw-link.enchantment-mouseover:hover,tw-link.enchantment-mouseover:active,.link.enchantment-mouseover:hover,.link.enchantment-mouseover:active,tw-expression.enchantment-mouseover>tw-link:hover,tw-expression.enchantment-mouseover>tw-link:active{color:inherit}tw-link.enchantment-mouseover.enchantment-button,.link.enchantment-mouseover.enchantment-button,tw-expression.enchantment-mouseover>tw-link.enchantment-button{border-style:dashed}tw-link.enchantment-mouseout,.link.enchantment-mouseout,tw-expression.enchantment-mouseout>tw-link{color:inherit;font-weight:inherit;transition:none;cursor:inherit;border:rgba(64,149,191,.6) 1px solid;border-radius:.2em}tw-link.enchantment-mouseout:hover,tw-link.enchantment-mouseout:active,.link.enchantment-mouseout:hover,.link.enchantment-mouseout:active,tw-expression.enchantment-mouseout>tw-link:hover,tw-expression.enchantment-mouseout>tw-link:active{color:inherit}tw-link.enchantment-mouseout:hover,.link.enchantment-mouseout:hover,tw-expression.enchantment-mouseout>tw-link:hover{background-color:rgba(175,197,207,.75);border:rgba(0,0,0,0) 1px solid}tw-link.enchantment-dblclick,.link.enchantment-dblclick,tw-expression.enchantment-dblclick>tw-link{color:inherit;font-weight:inherit;transition:none;cursor:inherit;cursor:pointer;border:2px solid #999;border-radius:0}tw-link.enchantment-dblclick:hover,tw-link.enchantment-dblclick:active,.link.enchantment-dblclick:hover,.link.enchantment-dblclick:active,tw-expression.enchantment-dblclick>tw-link:hover,tw-expression.enchantment-dblclick>tw-link:active{color:inherit}tw-link.enchantment-dblclick:active,.link.enchantment-dblclick:active,tw-expression.enchantment-dblclick>tw-link:active{background-color:#999}tw-link.enchantment-button,.link.enchantment-button,.enchantment-button:not(.link) tw-link,.enchantment-button:not(.link) .link{border-radius:16px;border-style:solid;border-width:2px;text-align:center;padding:0px 8px;display:block}.enchantment-button{display:block}.enchantment-clickblock{cursor:pointer;width:100%;height:100%;display:block}.enchantment-clickblock>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;color:rgba(65,105,225,.5);transition:color .2s ease-in-out}.enchantment-clickblock>:not(tw-enchantment):hover::after{color:rgba(0,191,255,.5)}.enchantment-clickblock>:not(tw-enchantment):active::after{color:rgba(222,78,59,.5)}.enchantment-clickblock>:not(tw-enchantment)::after{box-shadow:inset 0 0 0 .5vmax}.enchantment-clickblock>tw-passage::after,.enchantment-clickblock>tw-sidebar::after{box-shadow:0 0 0 .5vmax}.enchantment-mouseoverblock>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;border:2px dashed #999}.enchantment-mouseoutblock>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;border:rgba(64,149,191,.6) 2px solid}.enchantment-mouseoutblock:hover>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;background-color:rgba(175,197,207,.75);border:rgba(0,0,0,0) 2px solid;border-radius:.2em}.enchantment-dblclickblock>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;cursor:pointer;border:2px solid #999}tw-dialog-links{padding-top:1.5em}tw-dialog-links tw-link{border-radius:16px;border-style:solid;border-width:2px;text-align:center;padding:0px 8px;display:block;display:inline-block}html{margin:0;height:100%;overflow-x:hidden}*,:before,:after{position:relative;box-sizing:inherit}body{margin:0;height:100%}tw-storydata{display:none}tw-story{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;font:100% Georgia,serif;box-sizing:border-box;width:100%;min-height:100%;font-size:1.5em;line-height:1.5em;padding:5% 5%;overflow:hidden;background-color:#000;color:#fff}tw-story [style*=content-box] *{box-sizing:border-box}@media(min-width: 576px){tw-story{padding:5% 20%}}tw-story tw-consecutive-br{display:block;height:1.6ex;visibility:hidden}tw-story select{background-color:rgba(0,0,0,0);font:inherit;border-style:solid;padding:2px}tw-story select:not([disabled]){color:inherit}tw-story textarea{resize:none;background-color:rgba(0,0,0,0);font:inherit;color:inherit;border-style:none;padding:2px}tw-story input[type=text]{background-color:rgba(0,0,0,0);font:inherit;color:inherit;border-style:none}tw-story input[type=checkbox]{transform:scale(1.5);margin:0 .5em .5em .5em;vertical-align:middle}tw-story tw-noscript{animation:appear .8s}tw-passage{display:block}tw-sidebar{text-align:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}@media(min-width: 576px){tw-sidebar{left:-5em;width:3em;position:absolute;-ms-flex-direction:column;flex-direction:column}tw-enchantment[style*=width]>tw-sidebar{width:inherit}}tw-icon{display:inline-block;margin:.5em 0;font-size:66px;font-family:"Verdana",sans-serif}tw-icon[alt]{opacity:.2;cursor:pointer}tw-icon[alt]:hover{opacity:.4}tw-icon[data-label]::after{font-weight:bold;content:attr(data-label);font-size:20px;bottom:-20px;left:-50%;white-space:nowrap}tw-meter{display:block}tw-hook:empty,tw-expression:empty{display:none}tw-error{display:inline-block;border-radius:.2em;padding:.2em;font-size:1rem;cursor:help;white-space:pre-wrap}tw-error.error{background-color:rgba(223,58,190,.6);color:#fff}tw-error.warning{background-color:rgba(223,140,58,.6);color:#fff;display:none}.debug-mode tw-error.warning{display:inline}tw-error-explanation{display:block;font-size:.8rem;line-height:1rem}tw-open-button,tw-folddown{cursor:pointer;line-height:0em;border-radius:4px;border:1px solid rgba(255,255,255,.5);font-size:.8rem;margin:0 .2rem;padding:3px;white-space:pre}tw-folddown::after{content:"▶"}tw-folddown.open::after{content:"▼"}tw-open-button[replay]{display:none}tw-error tw-open-button,tw-eval-replay tw-open-button{display:inline !important}tw-open-button::after{content:attr(label)}tw-notifier{border-radius:.2em;padding:.2em;font-size:1rem;background-color:rgba(223,182,58,.4);display:none}.debug-mode tw-notifier{display:inline}tw-notifier::before{content:attr(message)}tw-colour{border:1px solid #000;display:inline-block;width:1em;height:1em}tw-enchantment:empty{display:none}h1{font-size:3em}h2{font-size:2.25em}h3{font-size:1.75em}h1,h2,h3,h4,h5,h6{line-height:1em;margin:.3em 0 .6em 0}pre{font-size:1rem;line-height:initial}small{font-size:70%}big{font-size:120%}mark{color:rgba(0,0,0,.6);background-color:#ff9}ins{color:rgba(0,0,0,.6);background-color:rgba(255,242,204,.5);border-radius:.5em;box-shadow:0em 0em .2em #ffe699;text-decoration:none}center{text-align:center;margin:0 auto;width:60%}blink{text-decoration:none;animation:fade-in-out 1s steps(1, end) infinite alternate}tw-align{display:block}tw-columns{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-pack:justify;justify-content:space-between}.transition-in{animation:appear 0ms step-start}.transition-out{animation:appear 0ms step-end}[data-t8n^=dissolve].transition-in,[data-t8n=fade].transition-in{animation:appear .8s}[data-t8n^=dissolve].transition-out,[data-t8n=fade].transition-out{animation:appear .8s reverse}[data-t8n^=shudder].transition-in{display:inline-block !important;animation:shudder-in .8s}[data-t8n^=shudder].transition-out{display:inline-block !important;animation:shudder-in .8s reverse}[data-t8n^=rumble].transition-in{display:inline-block !important;animation:rumble-in .8s}[data-t8n^=rumble].transition-out{display:inline-block !important;animation:rumble-in .8s reverse}[data-t8n^=pulse].transition-in{animation:pulse .8s;display:inline-block !important}[data-t8n^=pulse].transition-out{animation:pulse .8s reverse;display:inline-block !important}[data-t8n^=zoom].transition-in{animation:zoom-in .8s;display:inline-block !important}[data-t8n^=zoom].transition-out{animation:zoom-in .8s reverse;display:inline-block !important}[data-t8n^=blur].transition-in{animation:blur .8s;display:inline-block !important}[data-t8n^=blur].transition-out{animation:blur .8s reverse;display:inline-block !important}[data-t8n^=slideleft].transition-in{animation:slide-left .8s;display:inline-block !important}[data-t8n^=slideleft].transition-out{animation:slide-right .8s reverse;display:inline-block !important}[data-t8n^=slideright].transition-in{animation:slide-right .8s;display:inline-block !important}[data-t8n^=slideright].transition-out{animation:slide-left .8s reverse;display:inline-block !important}[data-t8n^=slideup].transition-in{animation:slide-up .8s;display:inline-block !important}[data-t8n^=slideup].transition-out{animation:slide-down .8s reverse;display:inline-block !important}[data-t8n^=slidedown].transition-in{animation:slide-down .8s;display:inline-block !important}[data-t8n^=slidedown].transition-out{animation:slide-up .8s reverse;display:inline-block !important}[data-t8n^=fadeleft].transition-in{animation:fade-left .8s;display:inline-block !important}[data-t8n^=fadeleft].transition-out{animation:fade-right .8s reverse;display:inline-block !important}[data-t8n^=faderight].transition-in{animation:fade-right .8s;display:inline-block !important}[data-t8n^=faderight].transition-out{animation:fade-left .8s reverse;display:inline-block !important}[data-t8n^=fadeup].transition-in{animation:fade-up .8s;display:inline-block !important}[data-t8n^=fadeup].transition-out{animation:fade-down .8s reverse;display:inline-block !important}[data-t8n^=fadedown].transition-in{animation:fade-down .8s;display:inline-block !important}[data-t8n^=fadedown].transition-out{animation:fade-up .8s reverse;display:inline-block !important}[data-t8n^=flicker].transition-in{animation:flicker .8s}[data-t8n^=flicker].transition-out{animation:flicker .8s reverse}
 </style>
 </head>
 <body>
-<tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Visual Novel Project.</tw-noscript></noscript></tw-story>
-<tw-storydata name="Visual Novel Project" startnode="1" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="26407949-4252-4A42-8107-74166E6CF44D" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/*THis stylesheet will help you making Visual Novels in a traditional sense. It's modelled after the kind of content that was popular in the early 1990's with a few modern touches. 
+<tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Dinosaur MK2.</tw-noscript></noscript></tw-story>
+<tw-storydata name="Dinosaur MK2" startnode="28" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="80a4310e-fc21-4f00-8fc3-0878c1018193" options="debug" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap');
 
-The text box is only suited for about 3 lines of text so try to avoid:
-having more than one line with two options on screen at once
-having more than 60 words
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-Of course you can resize the text window and characters to suit your needs. 
+/* ===== Background ===== */
+body{
+  background-color:#006600;
+  text-align: center;
+}
 
-It is designed to be a fixed size to work on most browsers, but it might have some problems*/
-
-
-tw-story{font-family: Verdana, sans-serif;
-  font-size: 20px;
-  line-height: 1.5;}
-
-/*hide the sidebar*/
-tw-sidebar{visibility: hidden;}
-
-/* Fullscreen background */
-#vn-background {
+/* ===== Background Video ===== */
+.bg-video {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1;
-}
-
-/* The "stage" is a fixed design resolution that scales uniformly */
-#vn-stage, #vn-stage2 {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 1280px;    /* your design width */
-  height: 720px;    /* your design height */
-  transform: translate(-50%, -50%) scale(1);
-  transform-origin: top left;
-  background-image: url('VNAssets/classbkg.webp');
-  background-size: cover;
-  background-position: center;
-  z-index: 2;
-}
-
-/* The "stage2" inherits from vn-stage with some changes */
-#vn-stage2 {
-  background-image: url('VNAssets/bear.avif');
-}
-
-/* SCALE the whole stage to fit viewport */
-@media (max-aspect-ratio: 16/9) {
-  #vn-stage, #vn-stage2 {
-    transform: translate(-50%, -50%) scale(calc(100vw / 1280));
-  }
-}
-@media (min-aspect-ratio: 16/9) {
-  #vn-stage, #vn-stage2 {
-    transform: translate(-50%, -50%) scale(calc(100vh / 720));
-  }
-}
-
-/* --- Larger screens -------------------------------------- */
-
-/* Scale 1.2 (optional middle step) */
-@media (min-width: 1400px) {
-  #vn-stage,
-  #vn-stage2 {
-    transform: translate(-60%, -60%) scale(1.2);
-  }
-}
-
-/* Scale 1.5 (your 1080p look) */
-@media (min-width: 1600px) {
-  #vn-stage,
-  #vn-stage2 {
-    transform: translate(-75%, -75%) scale(1.5);
-  }
-}
-
-
-/* --- Smaller screens -------------------------------------- */
-
-/* Scale 0.8 */
-@media (max-width: 1100px) {
-  #vn-stage,
-  #vn-stage2 {
-    transform: translate(-40%, -40%) scale(0.8);
-  }
-}
-
-/* Scale 0.6 */
-@media (max-width: 900px) {
-  #vn-stage,
-  #vn-stage2 {
-    transform: translate(-30%, -30%) scale(0.6);
-  }
-}
-
-/* Scale 0.52 (your smallest size) */
-@media (max-width: 800px) {
-  #vn-stage,
-  #vn-stage2 {
-    transform: translate(-26%, -26%) scale(0.52);
-  }
-}
-/*This is for the menu icons*/
-img.icon
-{
-  height: 50px;
-  width: 50px;
-}
-
-.menu
-{height: 500px;}
-
-#menuClosed
-{
-  float: right;
-}
-
-/* Character positioned relative to the stage */
-#vn-character {
-  position: absolute;
-  left: 50%;
-  bottom: 140px; /* fixed gap from bottom of stage */
-  transform: translateX(-50%);
-  width: 500px;
-  height: 500px;
-  /*background-color: cyan; placeholder if no img*/
-  display: flex;               /* Enables horizontal layout */
-  justify-content: center;     /* Centers images horizontally */
-  align-items: center;         /* Centers vertically */
-  z-index: 3;
-}
-
-#vn-2character {
-  position: absolute;
-  left: 50%;
-  bottom: 140px; /* fixed gap from bottom of stage */
-  transform: translateX(-50%);
-  width: 1000px;
-  height: 500px;
-  /*background-color: cyan; placeholder if no img */
-  display: flex;               /* Enables horizontal layout */
-  justify-content: center;     /* Centers images horizontally */
-  z-index: 3;
-}
-
-#vn-character img {
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  z-index: -10;
+  aspect-ratio: 16/9;
 }
 
-/* Dialogue box also relative to stage */
-#vn-dialogue {
+/* ===== Text Formatting ===== */
+.TopText
+{
   position: absolute;
-  bottom: 0;
+  font-size: 2vw;
+  line-height: normal;
+  top: 20%;
   left: 50%;
-  transform: translateX(-50%);
-  width: 1150px;
-  height: 150px;
-  background-color: #0033cc; /*blue*/
-  border: 4px solid white;
-  border-radius: 20px;
-  padding: 20px;
-  box-sizing: border-box;
-  color: white; /*font color*/
-  font-family: Verdana, sans-serif;
-  font-size: 20px;
-  line-height: 1.5;
-  display: grid;
-grid-template-columns: 1fr;
-grid-template-rows: repeat(5, 1fr);
-grid-column-gap: 0px;
-grid-row-gap: 0px;
+  transform: translate(-50%, -50%);
+}
+
+.BottomText
+{
+  position: absolute;
+  font-size: 2vw;
+  line-height: normal;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ===== Harlowe Tweaks ===== */
+tw-sidebar
+{
+  visibility: hidden; /*Stops it from being visible*/
+  z-index:-100; /*Stops it from being clickable*/
+  position: fixed; /*Taking it out of the flow*/
+}
+
+tw-include
+{
+  position:fixed;
+}
+
+tw-story
+{
+
+  padding: 6.5% 20%;
+  background-color:transparent;
+  font-family: 
+    "Inter", 
+    "SF Pro Display", 
+    -apple-system, 
+    BlinkMacSystemFont, 
+    "Segoe UI", 
+    Roboto, 
+    Helvetica, 
+    Arial, 
+    sans-serif;
+}
+
+tw-passage
+{
+  height: 500px;
+}
+
+/* ===== Setting up the Interactive Video space ===== */
+.main-section
+{
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* pushes content to bottom */
+  min-height: 80dvh; /* better than 100vh for mobile */
+}
+
+/* ===== Space that holds the Link Buttons ===== */
+.choices {
+  display: flex;
+
+  flex-wrap: wrap;
+  z-index: 6;
+  gap: 2rem;
+  justify-content: space-evenly;
   align-items: center;
-  z-index: 4;
-
+  /* Fade-in animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s cubic-bezier(.22,.61,.36,1) forwards;
 }
 
-#vn-name {
-  position: absolute;
-  top: -2.5em;
-  left: 30px;
-  background-color: #0033cc;
-  border: 2px solid white;
-  border-radius: 10px;
-  padding: 0.5em 1em;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-tw-hook[name="closedmenu"]
+/* ===== Turning Links into Buttons ===== */
+tw-link
 {
-  position: absolute;
-  right: 50px;
-  top: 2em;
- 
-  background-color: #0033cc;
-  border: 2px solid white;
-  border-radius: 10px;
-  padding: 0.5em 1em;
   color: white;
-  font-weight: bold;
-  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1em 2em;
+  border-radius: 16px;
+
+  background: rgba(80, 80, 80, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  color: rgba(255, 255, 255, 0.95);
+  font-size: clamp(0.95rem, 1vw, 1.1rem);
+ 
+  font-weight: 500;
+  letter-spacing: 0.02em;
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+
+  min-width: 20vw; 
+  max-width: 500px;/* cap growth */
 }
 
-tw-hook[name="openedmenu"]
-{
-  position: absolute;
-right: 50px;
-  top: 2em;
-  
-  background-color: #0033cc;
-  border: 2px solid white;
-  border-radius: 10px;
-  padding: 0.5em 1em;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  z-index: 100;
+.choices:has(> :nth-child(4):last-child) > * {
+  min-width: 10vw;
 }
 
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">/**
- * Harlowe Audio Library (HAL), by Chapel, v2.3.0
- * for Harlowe 2.1.0 and higher
- * Released under the Unlicense, and dedicated to the public domain.
-**/
-;!function(e){(jQuery.browser=jQuery.browser||{}).mobile=/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(e)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(e.substr(0,4))}(navigator.userAgent||navigator.vendor||window.opera),function(){"use strict";window.Fast={filter:function(e,t){for(var o=e.length,n=[],a=0;a<o;a++)t(e[a],a,e)&&n.push(e[a]);return n},forEach:function(e,t){for(var o=e.length,n=0;n<o;n++)t(e[n],n,e)},map:function(e,t){for(var o=e.length,n=new Array(o),a=0;a<o;a++)n[a]=t(e[a],a,e);return n},find:function(e,t){for(var o=e.length,n=0;n<o;n++)if(t(e[n],n,e))return e[n]},findIndex:function(e,t){for(var o=e.length,n=0;n<o;n++)if(t(e[n],n,e))return n;return-1},some:function(e,t){for(var o=e.length,n=0;n<o;n++)if(t(e[n],n,e))return!0;return!1}}}(),window.Chapel=window.Chapel||{},window.Chapel.options={preload:!0,loadDelay:0,muteOnBlur:!0,startingVol:.5,persistPrefs:!0,globalA:!0,showControls:!0,sidebarStartClosed:!0,volumeDisplay:!1,trackLoadLimit:500,totalLoadLimit:8e3,debug:!1},window.Chapel.debug=function(){Chapel.options.debug&&console.log.apply(null,arguments)},function(){"use strict";var n=$("tw-storydata"),o=/(.+?):(.+)/,t=/[\r\n]+/,a=/^["']/,r=/["']$/;function e(e){return Fast.map(Fast.filter(e.split(t),function(e){return e&&e.trim()&&e.includes(":")}),function(e){return e.trim()})}function i(e){return e.trim().replace(a,"").replace(r,"").trim()}function s(e){var t=e.match(o);return t instanceof Array?{key:i(t[1]),value:i(t[2])}:e}var u,l,c,p=n.find('tw-passagedata[name="hal.tracks"]'),d=null,p=(p.length&&(p=e(p.text()),u=[],l=[],Fast.forEach(p,function(e){var e=s(e);"string"==typeof e&&l.push(e),u.push([e.key,(e=e.value,Fast.map(e.split(","),i))])}),l.length&&console.error("Some track definitions could not be parsed:\n"+l.join("\n")+"\nPlease check these definitions and try again."),d=new Map(u)),n.find('tw-passagedata[name="hal.config"]')),m=null;function f(e){var t=n.attr("format-version");if(e)return t;var e=t.split("."),t=e[0],o=e[1],e=e[2],t=Number(t),o=Number(o);return[t=(t=Number.isNaN(t)?3:t)<1?3:t,o=Number.isNaN(o)?3:o,e=Number.isNaN(e)?0:e]}function h(){var e=f();return!(3<=e[0]&&3<=e[1])}function g(t){return function(){var e=[].slice.call(arguments).slice(1),e=t.apply(null,e);return"string"==typeof e||"boolean"==typeof e||"number"==typeof e?e:""}}p.length&&(p=e(p.text()),c={},Fast.forEach(Fast.map(p,function(e){return s(e)}),function(e){c[e.key]=e.value}),m=c),m&&Fast.forEach(Object.keys(m),function(e){var t=e,o=c[e],e=typeof Chapel.options[e];"boolean"==e?"true"===o?Chapel.options[t]=!0:"false"===o&&(Chapel.options[t]=!1):"number"==e?(o=Number(o),Number.isNaN(o)||(Chapel.options[t]=o)):"string"==e&&o&&(Chapel.options[t]=o)});var y=require("macros");if(window.Chapel=window.Chapel||{},window.Chapel.Macros={add:function(o){o&&"object"==typeof o&&Fast.forEach(Object.keys(o),function(e){var t;t=o[e=e],h()?y.add(e,g(t),y.TypeSignature.zeroOrMore(y.TypeSignature.Any)):y.add(e,"Any",g(t),y.TypeSignature.zeroOrMore(y.TypeSignature.Any))})}},window.Chapel.Get=Object.freeze({version:f(),isHarlowe3OrLater:3<=f()[0],storyTitle:n.attr("name"),IFID:n.attr("ifid"),useOldMacroAPI:h(),fromPassage:d}),Chapel.debug("Harlowe Version -> ",Chapel.Get.version.join(".")),Chapel.debug("Harlowe Major Version -> ",Chapel.Get.version[0]),Chapel.debug("Story Title -> ",Chapel.Get.storyTitle),Chapel.debug("Story IFID -> ",Chapel.Get.IFID),Chapel.Get.version[0]<2)throw new Error("The Harlowe Audio Library is only designed to work with Harlowe 2 and 3; you appear to be using Harlowe 1 or an otherwise invalid story format.","get.js -> initialization",176);Chapel.options.storagekey="%%hal-"+Chapel.Get.IFID+"-{"+Chapel.Get.storyTitle+"}",Chapel.debug("Storage Key -> ",Chapel.options.storagekey)}(),function(){"use strict";var t=Chapel.options,e=function(e,t){if(window.localStorage)try{e=""+e,"string"!=typeof t&&(t=JSON.stringify(t)),window.localStorage.setItem(e,t)}catch(e){console.error(e)}},o=function(e){if(window.localStorage)try{return e=""+e,window.localStorage.getItem(e)}catch(e){console.error(e)}},n=function(e){if(window.localStorage)try{e=""+e,window.localStorage.removeItem(e)}catch(e){console.error(e)}},a={loaded:[],classes:{},master:{volume:t.startingVol,mute:!1},groups:{playing:[],looping:[],custom:{}},mute:function(e){a.master.mute=!!e,$(document).trigger({type:":master-mute",mute:!!e})},isMuted:function(){return!!a.master.mute},volume:function(e){e=Number(e),Number.isNaN(e)||(1<e?e=1:e<0&&(e=0),a.master.volume=e),$(document).trigger({type:":master-volume",volume:e})},getVolume:function(){return a.master.volume},stopAll:function(){a.classes.Track&&Fast.forEach(a.classes.Track.list,function(e){e.stop()})},audioPlaying:function(){return!!a.groups.playing.length},savePrefs:function(){e(t.storagekey,a.master)},loadPrefs:function(){var e=o(t.storagekey);e&&"object"==typeof e&&e.hasOwnProperty("volume")&&"number"==typeof e.volume&&e.hasOwnProperty("mute")&&"boolean"==typeof e.volume&&(delete a.master,a.master=e)},clearPrefs:function(){n(t.storagekey)}},r={track:[":available",":loaded",":play",":stop",":mute",":volume"],master:[":master-mute",":master-volume"]};var i=r.track.concat(r.master);function s(e,t){if(!e||"string"!=typeof e||!e.trim())return null;e=Fast.filter(Fast.map(e.split(" "),function(e){return(e=":"!==(e=e.split(".")[0])[0]?":"+e:e)+".userland"}),function(e){return(t?i:r.track).includes(e)}).join(" ");return e&&e.trim()?e:null}a.data={parseEvent:s,bail:function(e){throw new Error(e,"audio.js -> bail()",140)}},a.on=function(e,t){t&&"function"==typeof t?(e=s(e,!0))&&$(document).on(e,t):console.error("Chapel.Audio.on() -> invalid callback")},a.one=function(e,t){t&&"function"==typeof t?(e=s(e,!0))&&$(document).one(e,t):console.error("Chapel.Audio.one() -> invalid callback")},a.off=function(e){(e=s(e,!0))&&$(document).off(e)},t.persistPrefs&&($(document).on(":master-mute",a.savePrefs),$(document).on(":master-volume",a.savePrefs)),$(document).on(":play",function(e){e.track.addToGroup("playing")}),$(document).on(":stop",function(e){e.track.removeFromGroup("playing")}),t.muteOnBlur&&$(window).on("blur",function(){a.isMuted()||(a.mute(!0),$(window).one("focus",function(){a.mute(!1)}))}),a.parseEvent=s,window.Chapel=window.Chapel||{},window.Chapel.Audio=a}(),function(){"use strict";var a=Chapel.Audio,o=a.data.pareEvent,r=a.data.bail,i=Chapel.options,t=$(document.createElement("div")).attr("id","audio-container").css("display","none").appendTo(document.body),s={aac:"audio/aac",caf:"audio/x-caf","x-caf":"audio/x-caf",mp3:'audio/mpeg; codecs="mp3"',mpeg:'audio/mpeg; codecs="mp3"',m4a:"audio/mp4",mp4:"audio/mp4","x-m4a":"audio/mp4","x-mp4":"audio/mp4",oga:"audio/ogg",ogg:"audio/ogg",opus:'audio/ogg; codecs="opus"',wav:"audio/wav",wave:"audio/wav",weba:"audio/webm",webm:"audio/webm"};function u(e,t,o){this instanceof u||r("Track: called without `new` operator"),e||r("Track: no id specified"),"string"!=typeof e&&r("Track: track id is not a string"),t&&(!Array.isArray(t)||t.length)||r("Track: no sources specified"),o?t=[].slice.call(arguments).slice(1):"string"==typeof t&&(t=[t]);var n=$(document.createElement("audio"));Fast.forEach(t,function(e){$(document.createElement("source")).attr({src:e,type:(e=(e=(e=(e=(e=e).split("."))[e.length-1]).includes("?")?e.split("?")[0]:e).toLowerCase().trim(),Object.keys(s).includes(e)||r('Track: unsupported file type "'+e+'"'),s[e])}).appendTo(n)}),n.attr({"data-track":"id","data-volume":1,"data-mute":!1}).one("canplaythrough.hal",function(){a.loaded.push(e)}),i.preload&&n.attr("preload","auto"),n[0].volume=+a.master.volume,this.id=e,this.$el=n,this.unwrap=n[0],this.sources=t}Object.assign(u,{list:[],is:function(e){return e instanceof u},has:function(t){return Fast.some(u.list,function(e){return e.id===t})},emit:function(e,t){$(document).trigger({type:e,track:t}),t.emit(e)},add:function(e,t,o){var n=new u(e,t=o?[].slice.call(arguments).slice(1):t);return u.list.push(n),n.$el.on("canplay",function(){u.emit(":available",n)}),n.$el.on("canplaythrough",function(){u.emit(":loaded",n)}),n.attach(),n},renew:function(){Fast.forEach(u.list,function(e){e.mute(e.isMuted()),e.volume(e.getVolume())})},getIdx:function(t){return Fast.findIndex(u.list,function(e){return e.id===t})},get:function(t){var e=Fast.find(u.list,function(e){return e.id===t});if(e)return e;throw new ReferenceError('There is no track with the id "'+t+'". Please check your spelling and capitalization.',"track.js -> Track.get()",155)},removeFromDOM:function(e){(e="string"==typeof e?u.get(e):e)&&u.is(e)?e.unattach():t.remove()},_runOnMultiple:function(e,t,o){e instanceof Array&&u.prototype.hasOwnProperty(t)&&Fast.forEach(e,function(e){(e=u.is(e)?e:u.get(e)||null)&&e[t].apply(e,o&&o instanceof Array?o:[])})}}),Object.assign(u.prototype,{constructor:u,emit:function(e){this.$el.trigger({type:e,track:this})},clone:function(){return new u(this.id,this.sources)},isAttached:function(){return $.contains(t[0],this.unwrap)},attach:function(){return this.isAttached()||this.$el.appendTo(t),this},unattach:function(){return this.isAttached()&&this.$el.remove(),this},isPlaying:function(){return!this.unwrap.paused},play:function(){var e=this;return this.unwrap.play(),u.emit(":play",this),this.$el.on("ended",function(){e.unwrap.loop||(e.unwrap.currentTime=0,u.emit(":stop",e))}),this},playWhenPossible:function(){var t=this;return this.unwrap.play().then(function(){u.emit(":play",t),t.$el.on("ended",function(){t.unwrap.loop||(t.unwrap.currentTime=0,u.emit(":stop",t))})},function(e){$(document).one("click mousedown keydown touchstart",function(){t.play()})}).catch(function(e){console.error(e)}),this},forcePlay:function(){var e=this,t=$(document.createElement("a")).css("display","none").appendTo(document.body).on("click",function(){e.play()});setTimeout(function(){t.trigger("click")},safeAudioStart)},pause:function(){return this.unwrap.pause(),u.emit(":pause",this),this},stop:function(){return this.unwrap.pause(),this.unwrap.currentTime=0,u.emit(":stop",this),this},mute:function(e){return this.$el.attr("data-mute",e=!!e),a.master.mute?this.unwrap.muted=!0:this.unwrap.muted=e,u.emit(":mute",this),this},isMuted:function(){var e=this.$el.attr("data-mute");return"boolean"==typeof e?e:"false"!==e},toggleMute:function(){return this.mute(!this.isMuted()),this},volume:function(e){return e=Number(e),Number.isNaN(e)||(1<e?e=1:e<0&&(e=0),this.$el.attr("data-volume",e),this.unwrap.volume=e*a.master.volume),u.emit(":volume",this),this},getVolume:function(){return Number(this.$el.attr("data-volume"))},addToGroup:function(e,t){var o=this,t=(t?a.groups.custom:a.groups)[e];return Fast.some(t,function(e){return o.id===e.id})||t.push(this),this},removeFromGroup:function(e,t){var o=this,t=(t?a.groups.custom:a.groups)[e],e=Fast.findIndex(t,function(e){return e.id&&e.id===o.id});return t.splice(e,1),this},loop:function(e){return this.unwrap.loop=!!e,this.unwrap.loop?this.addToGroup("looping"):this.removeFromGroup("looping"),this},isLooping:function(){return!!this.unwrap.loop},toggleLoop:function(){return this.loop(!this.isLooping()),this},seek:function(e){return e<0?e=this.unwrap.duration-e:e>this.unwrap.duration&&(e=this.unwrap.duration),this.unwrap.currentTime=e,this},fadeIn:function(e){var t=this,o=(e=e||1,this.getVolume());return this.volume(0),this.play(),this.$el.animate({volume:o*a.master.volume},1e3*e,function(){t.volume(o),u.emit(":volume",t),u.emit(":fade",t)}),this},fadeOut:function(e){e=e||1;var t=this,o=this.getVolume();return this.$el.animate({volume:0},1e3*e,function(){t.stop(),t.volume(o),u.emit(":volume",t),u.emit(":fade",t)}),this},fadeTo:function(e,t){var o=this;if(e=e||1,t=Number(t),!Number.isNaN(t))return 1<t?t=1:t<0&&(t=0),this.$el.animate({volume:t*a.master.volume},1e3*e,function(){o.volume(t),u.emit(":volume",o),u.emit(":fade",o)}),this;alert("ivalid volume level")},delay:function(e,t){var o=this;"function"==typeof t&&(e=Number(e),(Number.isNaN(e)||e<0)&&(e=0),setTimeout(function(){t.call(o,o,e)},e))},on:function(e,t){if(!t||"function"!=typeof t)return console.error("<track>.on() -> invalid callback"),this;(e=o(e))&&this.$el.on(e,t)},one:function(e,t){if(!t||"function"!=typeof t)return console.error("<track>.one() -> invalid callback"),this;(e=o(e))&&this.$el.one(e,t)},off:function(e){(e=o(e))&&this.$el.off(e)}}),a.classes.Track=u,a.newTrack=function(){try{return u.add.apply(null,arguments)}catch(e){console.error(e.message),alert("Error in A.newTrack() -> see the console for more information.")}},a.track=function(e){try{return u.get(e)}catch(e){console.error(e.message),alert("Error in A.track() -> see the console for more information.")}},$(document).on(":master-mute",u.renew),$(document).on(":master-volume",u.renew)}(),function(){"use strict";var n=Chapel.Audio,a=n.classes.Track,o=(n.data._extend,/(play)?list:(.+)/i);n.createGroup=function(e,t,o){o=o?[].slice.call(arguments).slice(1):t;t=e,(e=o)&&Array.isArray(e)||(e=[]),n.groups.custom[t]=Fast.map(e,function(e){return a.get(e)})},n.group=function(e){if(!(this instanceof n.group))return new n.group(e);if(Object.keys(n.groups.custom).includes(e))this.members=n.groups.custom[e];else{if(!(n.groups[e]&&n.groups[e]instanceof Array))throw new ReferenceError('There is no group with the id "'+id+'". Please check your spelling and capitalization.',"group.js -> A.group()",29);this.members=n.groups[e]}var t;o.test(e)&&(t=e.match(o)[2])&&t.trim()&&(this.members=n.playlist(t).tracks),Array.isArray(this.members)||(this.members=[],console.error('Could not find members for track group "'+e+'"!'))},Object.assign(n.group,{is:function(e){return this instanceof n.group},_runOnAll:function(e,t,o,n){null!=n?o=[].slice.call(arguments).slice(2):o instanceof Array||(o=[o]);n=[e.members,t,o];a._runOnMultiple.apply(null,n)}}),Object.assign(n.group.prototype,{constructor:n.group,_run:function(){n.group._runOnAll.apply(null,[this].concat([].slice.call(arguments)))},play:function(){return this._run("play"),this},pause:function(){return this._run("pause"),this},stop:function(){return this._run("stop"),this},mute:function(e){return this._run("mute",e),this},volume:function(e){return this._run("volume",e),this},loop:function(e){return this._run("loop",e),this}})}(),function(){"use strict";var e=Chapel.Audio,a=e.classes.Track;e.data._extend;function n(e,t){if(!(this instanceof n))return new n(e,t);this.id=e,this.tracks=t.map(function(e){return a.get(e)}),this.looping=!1,this.current="",this.playing=!1}Object.assign(n,{list:{},is:function(e){return e instanceof n},add:function(e,t,o){return o&&(t=[].slice.call(arguments).slice(1)),n.list[e]=new n(e,t),n.list[e]},_runOnAll:function(e,t,o,n){null!=n?o=[].slice.call(arguments).slice(2):o instanceof Array||(o=[o]);n=[e.tracks,t,o];a._runOnMultiple.apply(null,n)}}),Object.assign(n.prototype,{constructor:n,clone:function(){return new n(this.id,this.tracks.map(function(e){return e.id}))},_run:function(){n._runOnAll.apply(null,[this].concat([].slice.call(arguments)))},volume:function(e){return this._run("volume",e),this},mute:function(e){return this._run("mute",e),this},shuffle:function(){for(var e,t,o=this.tracks,n=o.length-1;0<n;n--)e=Math.floor(Math.random()*(n+1)),t=o[n],o[n]=o[e],o[e]=t;return this.tracks=o,this},random:function(){return this.tracks[Math.floor(Math.random()*this.tracks.length)]},isPlaying:function(){return this.playing},nowPlaying:function(){return a.get(this.current)},play:function(e){var t=this;if((e=e||(t.current?Fast.findIndex(t.tracks,function(e){return e.id===t.current}):0))>=t.tracks.length&&t.looping)e=0;else if(e>=t.tracks.length)return t.current="",void(t.playing=!1);var o=t.tracks[e],n=o.isLooping();return o.loop(!1),o.play(),t.playing=!0,setTimeout(function(){o.isPlaying()||(t.playing=!1)},20),t.current=o.id,o.$el.one("ended.playlist",function(){e++,o.loop(n),t.play(e)}),t},loop:function(e){return this.looping=!!e,this},isLooping:function(){return this.looping},stop:function(){var e;return this.current&&this.isPlaying()?(e=this.nowPlaying())&&(e.stop(),e.$el.off(".playlist")):this._run("stop"),this.current="",this.playing=!1,this},pause:function(){var e;return this.current&&this.isPlaying()&&((e=this.nowPlaying())&&e.pause()),this.playing=!1,this}}),e.classes.Playlist=n,e.createPlaylist=function(){try{n.add.apply(null,arguments)}catch(e){console.error(e.message),alert("Error in A.createPlaylist() -> see the console for more information.")}},e.playlist=function(e){try{var t=n.list[e]||null;if(t)return t;throw new ReferenceError('There is no playlist with the id "'+e+'". Please check your spelling and capitalization.',"list.js -> A.playlist()",171)}catch(e){console.error(e.message),alert("Error in A.createPlaylist() -> see the console for more information.")}}}(),function(){"use strict";var t=Chapel.Audio,o=t.classes.Track,n=t.classes.Playlist;function a(t,o){if("object"!=typeof o)throw new TypeError("Invalid extension.","extensions.js -> _extend()",8);Fast.forEach(Object.keys(o),function(e){if(void 0!==t[e])throw new Error('Invalid extension: cannot clobber existing property "'+e+'".',"extensions.js -> _extend()",8);t[e]=o[e]})}t.extend=function(e){a(Audio,e)},o.extend=function(e){a(o,e)},o.extendPrototype=function(e){a(o.prototype,e)},t.extendTrack=o.extend,t.extendTrackProto=o.extendPrototype,t.group.extend=function(e){a(t.group,e)},t.group.extendPrototype=function(e){a(t.group.prototype,e)},t.extendGroup=t.group.extend,t.extendGroupProto=t.group.extendPrototype,n.extend=function(e){a(n,e)},n.extendPrototype=function(e){a(n.prototype,e)},t.extendPlaylist=n.extend,t.extendPlaylistProto=n.extendPrototype}(),function(){"use strict";var e,t,o,n,a,r,i,s=Chapel.options;s.showControls&&(e=$(document.createElement("div")).attr("id","story-menu").css("display","none"),t=$(document.createElement("span")).attr("id","vol-title").append("Volume"),s.volumeDisplay||t.css("display","none"),o=$(document.createElement("input")).attr({id:"audio-volume",type:"range",min:1,max:99,step:1,title:"Volume"}).addClass("hal"),(a=Math.trunc(100*window.Chapel.Audio.master.volume))<0?a=0:100<a&&(a=100),o.attr("value",a),n=function(e){void 0===e&&(e=o.val()),t.empty().append("Volume "+e)},o.on("input",function(){window.Chapel.Audio.volume($(this).val()/100),n($(this).val())}),a=$(document.createElement("tw-link")).attr({id:"audio-mute",title:"Mute"}).append("Mute <span></span>").on("click",function(e){e.preventDefault(),$(this).toggleClass("muted"),Chapel.Audio.mute(!Chapel.Audio.isMuted())}),Chapel.Audio.isMuted()&&a.addClass("muted"),r=$(document.createElement("tw-link")).attr("id","audio-panel-toggle").on("click",function(e){e.preventDefault(),i.toggleClass("closed")}),i=$(document.createElement("div")).attr("id","audio-controls").append(e,t,o,a,r).appendTo(document.body),s.sidebarStartClosed&&i.addClass("closed"),window.Chapel=window.Chapel||{},window.Chapel.Audio=window.Chapel.Audio||{},window.Chapel.Audio.controls={$panel:i,$volume:o,$mute:a,$user:e,close:function(){i.addClass("closed")},open:function(){i.removeClass("closed")},toggle:function(){i.toggleClass("closed")},hide:function(){i.css("display","none")},show:function(){i.css("display","block")},updateVolume:n})}(),function(){"use strict";var s=Chapel.options,t=State,e=$(document.createElement("div")).attr("id","audio-overlay").css("display","none").appendTo(document.body);function o(){e.css("display","block").append('<div class="lds-ring"><div></div><div></div><div></div><div></div></div>')}function u(){e.fadeOut(function(){e.empty()})}window.Chapel=window.Chapel||{},window.Chapel.Audio=window.Chapel.Audio||{},window.Chapel.Audio.loadScreen={show:o,dismiss:u,kill:function(){$("#audio-overlay").remove()}},window.Chapel.Audio.$overlay=e,window.Chapel.Audio.preload=function(){var a,e,r,i;Chapel.debug("This is a mobile browser -> ",$.browser.mobile),t.pastLength||t.futureLength||$.browser.mobile||($(document).ready(function(){o()}),a=100+s.loadDelay,e=Chapel.Audio.classes.Track.list,r=Chapel.Audio.loaded,e.length?(i=Fast.map(e,function(e){return e.id}),0<s.totalLoadLimit&&setTimeout(function(){u()},s.totalLoadLimit),function e(){var t,o,n;i.length?(t=i.shift(),r.includes(t)?e():(o=Chapel.Audio.classes.Track.get(t)).unwrap.readyState<2?(n=!1,o.$el.one("canplaythrough.hal",function(){e(),n=!0}),setTimeout(function(){n||(o.$el.off("canplaythrough.hal"),e())},s.trackLoadLimit)):(r.includes(t)||r.push(t),e())):setTimeout(u,a)}()):setTimeout(u,a))}}(),function(){"use strict";var e,t,o=Chapel.options.storagekey+"_hal_restart_",n=(Chapel.debug("HAL Session Key -> ",o),window.sessionStorage?(Chapel.debug("Session Storage Available"),e=function(e,t){window.sessionStorage.setItem(o+e,t)},t=function(e){return window.sessionStorage.getItem(o+e)}):(Chapel.debug("Session Storage Unavailable"),e=function(){},t=function(){},console.warn("Session storage is unavailable...")),{save:e,load:t});window.Chapel.Audio.state={_store:n,saveTracks:function(){var e;try{e=Fast.map(Chapel.Audio.classes.Track.list,function(e){return{id:e.id,sources:e.sources}}),Chapel.debug("Session Saved (Tracks) -> ",e),e=JSON.stringify(e),n.save("tracks",e)}catch(e){console.error(e.message)}},loadTracks:function(){var e;try{e=(e=n.load("tracks"))&&JSON.parse(e),Array.isArray(e)&&e.length&&(Chapel.debug("Session Loaded (Tracks) -> ",e),Fast.forEach(e,function(e){e.id&&e.sources&&!Chapel.Audio.classes.Track.has(e.id)?Chapel.Audio.newTrack.apply(null,[e.id].concat(e.sources)):Chapel.debug("Track reloading skipped.")}))}catch(e){console.error(e.message)}},savePlaylists:function(){try{var o=Chapel.Audio.classes.Playlist.list,e=Fast.map(Object.keys(o),function(e){var t={};return t.tracks=Fast.map(o[e].tracks,function(e){return e.id}),t.id=o[e].id,t});Chapel.debug("Session Saved (Playlists) -> ",e),e=JSON.stringify(e),n.save("playlists",e)}catch(e){console.error(e.message)}},loadPlaylists:function(){var e;try{(e=(e=n.load("playlists"))&&JSON.parse(e))&&Array.isArray(e)&&e.length&&(Chapel.debug("Session Loaded (Playlists) -> ",e),Fast.forEach(e,function(e){e.id&&e.tracks&&Chapel.Audio.createPlaylist(e.id,e.tracks)}))}catch(e){console.error(e.message)}},saveGroups:function(){var t;try{t={},Fast.forEach(Object.keys(Chapel.Audio.groups.custom),function(e){t[e]=Fast.map(Chapel.Audio.groups.custom[e],function(e){return"string"==typeof e?e:e.id})}),Chapel.debug("Session Saved (Groups) -> ",t),t=JSON.stringify(t),n.save("groups",t)}catch(e){console.error(e.message)}},loadGroups:function(){var t;try{(t=(t=n.load("groups"))&&JSON.parse(t))&&"object"==typeof t&&(Chapel.debug("Session Loaded (Groups) -> ",t),Fast.forEach(Object.keys(t),function(e){Fast.map(t[e],function(e){return Chapel.Audio.classes.Track.get(e)})}),Chapel.Audio.groups.custom=t)}catch(e){console.error(e.message)}}}}(),function(){"use strict";var e=Chapel.options;e.globalA&&void 0===window.A&&(Chapel.debug("Created global A interface."),window.A=window.Chapel.Audio),Chapel.Get.fromPassage&&(Chapel.debug("Loading tracks from track def special passage -> ",Chapel.Get.fromPassage),Chapel.Get.fromPassage.forEach(function(e,t){Chapel.Audio.newTrack.apply(null,[t].concat(e))})),$(document).on("unload",function(){Chapel.debug("User Prefs Saved"),window.Chapel.Audio.savePrefs()}),Chapel.Audio.classes.Track.renew(),Chapel.Audio.controls&&Chapel.Audio.controls.updateVolume(),Chapel.Get.isHarlowe3OrLater&&($(window).on("unload",function(){Chapel.debug("HAL State Saved"),Chapel.Audio.state.saveTracks(),Chapel.Audio.state.savePlaylists(),Chapel.Audio.state.saveGroups()}),Chapel.debug("HAL State Loaded"),Chapel.Audio.state.loadTracks(),Chapel.Audio.state.loadPlaylists(),Chapel.Audio.state.loadGroups()),e.persistPrefs&&(Chapel.debug("User Prefs Loaded"),Chapel.Audio.loadPrefs())}(),function(){"use strict";var i,s,e,u,t;Chapel.options.showControls&&(i=Engine,s=Chapel.Audio.controls.$user,e=function(){return"none"!==s.css("display")},u=function(){return e()||s.css("display","block"),s},t=function(){return e()&&s.css("display","none"),s},Chapel.Audio.menu={hide:t,show:u,isShown:e,links:{add:function(e,t,o){var n,a;if(!e||"string"!=typeof e)return r="undefined",alert(r),void console.error(r);o||"function"!=typeof t?(t&&"string"==typeof t&&(n=t),o&&"function"==typeof o&&(a=o)):(a=t,n=null);var r=$(document.createElement("tw-link")).append(e).attr({tabindex:"0",name:e.toLowerCase().trim()}).on("click",function(){n&&i.goToPassage(n),a&&a()}).addClass("story-menu").appendTo(s);return u(),r},clear:function(){return s.empty(),t()},hide:function(e){e=e.toLowerCase().trim(),$('tw-link.story-menu[name="'+e+'"]').addClass("hide")},show:function(e){e=e.toLowerCase().trim(),$('tw-link.story-menu[name="'+e+'"]').removeClass("hide")},toggle:function(e){e=e.toLowerCase().trim(),$('tw-link.story-menu[name="'+e+'"]').toggleClass("hide")},remove:function(e){e=e.toLowerCase().trim(),$('tw-link.story-menu[name="'+e+'"]').remove()}}})}(),function(){"use strict";var n=Chapel.Audio;function o(e){return e&&"function"==typeof e}function a(e,t){if(!e||"string"!=typeof e)return null;switch(e=e.toLowerCase().trim()){case"isplaying":e="isPlaying";break;case"playwhenpossible":e="playWhenPossible";break;case"ismuted":e="isAMuted";break;case"togglemute":e="toggleMute";break;case"getvolume":e="getVolume";break;case"islooping":e="isLooping";break;case"toggleloop":e="toggleLoop";break;case"fadein":e="fadeIn";break;case"fadeout":e="fadeOut";break;case"fadeto":e="fadeTo";break;case"stopall":e="stopAll"}if("isPlaying"===e&&"master"===t&&(e="audioPlaying"),"group"===t){if(o(n.group.prototype[e]))return e}else if("master"===t){if(o(n[e]))return e}else if(o(n.classes[t].prototype[e]))return e;throw new ReferenceError('Cannot run the command: "'+e+'" on the API "'+t+'". The command may be invalid, or this may be a bug in HAL.',"macros.js -> getCommand()",10)}window.Chapel.Macros.add({newtrack:function(){var e=[].slice.call(arguments);try{return n.newTrack.apply(null,e)}catch(e){alert("Error in the (newtrack:) macro: "+e.message)}},newplaylist:function(e,t){t=[].slice.call(arguments).slice(1);try{return n.createPlaylist(e,t)}catch(e){alert("Error in the (newplaylist:) macro: "+e.message)}},newgroup:function(e,t){t=[].slice.call(arguments).slice(1);try{return n.createGroup(e,t)}catch(e){alert("Error in the (newgroup:) macro: "+e.message)}},masteraudio:function(e){try{return e=a(e,"master"),n[e].apply(null,[].slice.call(arguments).slice(1))}catch(e){alert("Error in the (masteraudio:) macro: "+e.message)}},track:function(e,t){try{var o=n.track(e);return o[t=a(t,"Track")].apply(o,[].slice.call(arguments).slice(2))}catch(e){alert("Error in the (track:) macro: "+e.message)}},playlist:function(e,t){try{var o=n.playlist(e);return o[t=a(t,"Playlist")].apply(o,[].slice.call(arguments).slice(2))}catch(e){alert("Error in the (playlist:) macro: "+e.message)}},group:function(e,t){try{var o=n.group(e);return o[t=a(t,"group")].apply(o,[].slice.call(arguments).slice(2))}catch(e){alert("Error in the (group:) macro: "+e.message)}}})}();
-/** End of HAL code */</script><tw-tag name="Startup" color="red"></tw-tag><tw-tag name="Header" color="green"></tw-tag><tw-passagedata pid="1" name="Haruka Line 1" tags="" position="700,300" size="100,100">
-&lt;div id=&quot;zoom-wrap&quot;&gt;
-&lt;!--This is comment, it does nothing but provides helpful tips to you!--&gt;
+tw-link:hover {
+  background: rgba(100, 100, 100, 0.55);
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
 
-{{{
-&lt;!--These 3 curly braces stop Twine Harlowe from autoformatting what comes below. This can be really useful for stopping animations doing weird things--&gt;
+tw-link:active {
+  transform: translateY(0px) scale(0.98);
+}
 
+/* ===== Fade In + Up Animation ===== */
 
-&lt;div id=&quot;vn-background&quot;&gt;&lt;/div&gt;
-&lt;!--This is your background--&gt;
-
-&lt;div id=&quot;vn-stage&quot;&gt;
-&lt;!--This is the &#39;space&#39; the game takes place in--&gt;
-
-(display:&quot;RelMenu&quot;)
-
-&lt;!--This is where you put characters--&gt;
-&lt;div id=&quot;vn-character&quot;&gt;&lt;img src=&quot;VNAssets/Haru.png&quot;&gt;&lt;/div&gt;
-
-&lt;!--This is where you put dialogue--&gt;
-&lt;div id=&quot;vn-dialogue&quot;&gt;
-  &lt;div id=&quot;vn-name&quot;&gt;Haruka&lt;/div&gt;
-  “Welcome to the first day of class… I hope you’re ready.”   
-  [[I am!]] [[I&#39;m not]]  
-&lt;/div&gt;
-
-&lt;!--This is needed to stop weird things happening with the formatting--&gt;
-&lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
-
-&lt;/div&gt;&lt;!--End of Zoom wrap--&gt;
-}}}</tw-passagedata><tw-passagedata pid="2" name="I&#39;m not" tags="" position="925,225" size="100,100">{{{
-&lt;div id=&quot;vn-background&quot; &gt;&lt;/div&gt;
-&lt;div id=&quot;vn-stage&quot;&gt;
-(display:&quot;RelMenu&quot;)
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 
-&lt;div id=&quot;vn-character&quot;&gt;&lt;img src=&quot;VNAssets/SadHaru.png&quot;&gt;&lt;/div&gt;
+/* ===== HORROR THEME ===== */
+tw-story.theme-horror tw-link {
+  font-family: "Cinzel", "Cormorant Garamond", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 
-&lt;div id=&quot;vn-dialogue&quot;&gt;
-  &lt;div id=&quot;vn-name&quot;&gt;Haruka&lt;/div&gt;
-  &quot;Oh no, that&#39;s too bad!&quot;
-  [[I&#39;m just kidding! Everything&#39;s fine-&gt;I am!]]
-  [[Who&#39;s that?]]
-&lt;/div&gt;
-(track: &#39;HaruEh&#39;, &#39;play&#39;)
+  background: linear-gradient(180deg, #1a0000, #000);
+  border: 1px solid #3a0000;
+  border-radius: 4px;
 
-&lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
-}}}</tw-passagedata><tw-passagedata pid="3" name="I am!" tags="" position="925,400" size="100,100">{{{
-&lt;!--Background--&gt;
-&lt;div id=&quot;vn-background&quot;&gt;&lt;/div&gt;
+  color: #e6e6e6;
 
-&lt;!--Stage--&gt;
-&lt;div id=&quot;vn-stage&quot;&gt;
+  box-shadow:
+    0 0 12px rgba(120, 0, 0, 0.6),
+    inset 0 0 8px rgba(255, 0, 0, 0.15);
 
-&lt;!--Relationship Menu--&gt;
-(display:&quot;RelMenu&quot;)
+  transition: all 0.25s ease;
+}
 
-&lt;!--Character Pic--&gt;
-&lt;div id=&quot;vn-character&quot;&gt;&lt;img src=&quot;VNAssets/LaughingHaru.png&quot;&gt;&lt;/div&gt;
+tw-story.theme-horror tw-link:hover {
+  color: #fff;
+  background: linear-gradient(180deg, #2a0000, #000);
+  box-shadow:
+    0 0 20px rgba(200, 0, 0, 0.9),
+    inset 0 0 12px rgba(255, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
 
-&lt;!--Dialogue Area--&gt;
-&lt;div id=&quot;vn-dialogue&quot;&gt;
-  &lt;div id=&quot;vn-name&quot;&gt;Haruka&lt;/div&gt;
-  &quot;That&#39;s great! Ganbatte!&quot;
-  [[Who&#39;s that? -&gt;Who&#39;s that?]]
-  [[Ask Haruka how they&#39;re feeling-&gt;HStory1]]
-&lt;/div&gt;
+tw-story.theme-horror tw-link:active {
+  transform: scale(0.96);
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">var audio = document.createElement('audio')
+audio.src = '"Sneaky%20Adventure.mp3"';
+audio.loop = true;
+audio.play();
+</script><tw-passagedata pid="1" name="Accept your fate" tags="" position="1175,525" size="100,100">You know there is no escape (Well the probably was you were just to ignorant to bother checking) 
 
-&lt;!--ENDOFVNSTAGE--&gt;
-&lt;/div&gt;
+[[END: Ignorance is bliss]]
 
-}}}</tw-passagedata><tw-passagedata pid="4" name="HStory1" tags="" position="1075,400" size="100,100">{{{
-&lt;div id=&quot;vn-background&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;vn-stage&quot;&gt;
-&lt;!--Relationship Menu--&gt;
-(display:&quot;RelMenu&quot;)
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="Befriend" tags="" position="1300,400" size="100,100">You attempt to stroke the dinosaur only for the beast to chop your hand clean off (Oh good idea befriend an apex predator, that&#39;ll work won&#39;t it) 
 
-&lt;div id=&quot;vn-character&quot;&gt;(t8n:&quot;rumble&quot;)[&lt;img src=&quot;VNAssets/ShockedHaru.png&quot;&gt;]&lt;/div&gt;
-(track: &#39;HaruEh&#39;,&#39;play&#39;)
-&lt;div id=&quot;vn-dialogue&quot;&gt;
-  &lt;div id=&quot;vn-name&quot;&gt;Haruka&lt;/div&gt;
- 
-(t8n:&quot;rumble&quot;)[&quot;Who, me?&quot;]
-(after:2s)[(t8n-arrive:&quot;instant&quot;)(go-to:&quot;HStory2&quot;)[[HStory2]]]
-&lt;/div&gt;
+[[END: you have been devoured trying to be friendly]]
 
-&lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
-}}}</tw-passagedata><tw-passagedata pid="5" name="HStory2" tags="" position="1200,400" size="100,100">{{{
-&lt;div id=&quot;vn-background&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;vn-stage&quot;&gt;
-&lt;!--Relationship Menu--&gt;
-(t8n:&quot;rumble&quot;)[
-(display:&quot;RelMenu&quot;)]
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="3" name="Behind the Door" tags="" position="2225,600" size="100,100">You hide behind the door to your potential escape, the dinosaur has not seen you yet.
 
-&lt;div id=&quot;vn-character&quot;&gt;[&lt;img src=&quot;VNAssets/LaughingHaru.png&quot;&gt;]&lt;/div&gt;
+[[Remain]] 
 
-&lt;div id=&quot;vn-dialogue&quot;&gt;
-  &lt;div id=&quot;vn-name&quot;&gt;Haruka&lt;/div&gt;
-&quot;Haha, thanks for asking! I feel like no one cares about my feelings these days...&quot;
+[[Flee]] 
 
-(set: $harukaRel to it +1)
+(set: $timer to 5)
+Time remaining: (live: 1s)[
+    (set: $timer to it - 1)
+    $timer
+        (if: $timer is 0)[(goto: &quot;Remain&quot;)]
+]</tw-passagedata><tw-passagedata pid="4" name="Continue Fleeing" tags="" position="2225,875" size="100,100">[Open Politely] The Dinosaur is right behind you
 
-[[Who&#39;s that-&gt;Who&#39;s that?]]
-&lt;/div&gt;
+[Open Violently] The Dinosaur is gaining on you
 
-&lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
-}}}
-</tw-passagedata><tw-passagedata pid="6" name="Who&#39;s that?" tags="" position="1375,200" size="100,100">{{{
-&lt;div id=&quot;vn-background&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;vn-stage&quot;&gt;
-&lt;!--Relationship Menu--&gt;
-(display:&quot;RelMenu&quot;)
+Down another corridor you are faced with two choices 
 
-&lt;div id=&quot;vn-2character&quot;&gt;&lt;img src=&quot;VNAssets/SadHaru.png&quot;&gt;&lt;img src=&quot;VNAssets/EvilHaru.png&quot;&gt;&lt;/div&gt;
+[[Left Corridor 2]] 
 
-&lt;div id=&quot;vn-dialogue&quot;&gt;
-  &lt;div id=&quot;vn-name&quot;&gt;Haruka&lt;/div&gt;
-  &quot;G-g-geh! I-I-It&#39;s evil Haru!!!&quot;
-[[Evil Haru?-&gt;EHaru1]]
-&lt;/div&gt;
+[[Right Corridor 2]]
 
-&lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
-}}}</tw-passagedata><tw-passagedata pid="7" name="startup" tags="startup" position="175,275" size="100,100">
-&lt;!--
-In this passage I&#39;ll set the initial states of the relationships in the game
-At present I only have two characters, Haruka and Evil Haruka. 
-I want the relationships to range from 1 to 5 throughout the game. 
-They&#39;ll begin at 1.
---&gt;
-
-(track: &#39;bgmus&#39;, &#39;loop&#39;, true)
-(track: &#39;bgmus&#39;, &#39;playwhenpossible&#39;)
-
-&lt;!--Basic Variables to keep score--&gt;
-(set: $harukaRel to 0)
-(set: $evilHarukaRel to 0)
-
-
-</tw-passagedata><tw-passagedata pid="8" name="EHaru1" tags="" position="1525,200" size="100,100">{{{
-&lt;div id=&quot;vn-background&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;vn-stage&quot;&gt;
-&lt;!--Relationship Menu--&gt;
-(display:&quot;RelMenu&quot;)
-
-&lt;div id=&quot;vn-character&quot;&gt;&lt;img src=&quot;VNAssets/EvilHaru.png&quot;&gt;&lt;/div&gt;
-
-&lt;div id=&quot;vn-dialogue&quot;&gt;
-  &lt;div id=&quot;vn-name&quot;&gt;Evil Haruka&lt;/div&gt;
- &quot;My real name&#39;s Shinoyoma, but everyone calls me Evil Haru. It&#39;s because we look alike, but I&#39;m not a complete dweeb.&quot;
- (track: &#39;EvilHaruEh&#39;,&#39;play&#39;)
- (after:3s)[(t8n-arrive:&quot;instant&quot;)(go-to:&quot;EHaru2&quot;)[[EHaru2]]]
-&lt;/div&gt;
-
-&lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
-}}}</tw-passagedata><tw-passagedata pid="9" name="EHaru2" tags="" position="1675,200" size="100,100">{{{
-&lt;div id=&quot;vn-background&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;vn-stage&quot;&gt;
-&lt;!--Relationship Menu--&gt;
-(display:&quot;RelMenu&quot;)
-
-&lt;div id=&quot;vn-character&quot;&gt;&lt;img src=&quot;VNAssets/EvilHaru.png&quot;&gt;&lt;/div&gt;
-
-&lt;div id=&quot;vn-dialogue&quot;&gt;
-  &lt;div id=&quot;vn-name&quot;&gt;Evil Haruka&lt;/div&gt;
- &quot;We should hang out some time - get away from dweebs like Haru. Maybe we could smoke cigarettes together?&quot;
- [[Yes -&gt; EHaruD1Yes]] [[No-&gt; EHaruD1No]]
-&lt;/div&gt;
-
-&lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
-}}}</tw-passagedata><tw-passagedata pid="10" name=" EHaruD1Yes" tags="" position="1850,200" size="100,100">{{{
-&lt;div id=&quot;vn-background&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;vn-stage&quot;&gt;
-&lt;!--Relationship Menu--&gt;
-(t8n:&quot;rumble&quot;)[
-(display:&quot;RelMenu&quot;)
+(set: $timer to 15)
+Time remaining: (live: 1s)[
+    (set: $timer to it - 1)
+    $timer
+        (if: $timer is 0)[(goto: &quot;END: You have Perished&quot;)]
 ]
 
-&lt;div id=&quot;vn-character&quot;&gt;&lt;img src=&quot;VNAssets/EvilHaru.png&quot;&gt;&lt;/div&gt;
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="Continue running" tags="" position="2475,1150" size="100,100">You ignore all the possible hiding spots and make you way down multiple corridors.
 
-&lt;div id=&quot;vn-dialogue&quot;&gt;
-  &lt;div id=&quot;vn-name&quot;&gt;Evil Haruka&lt;/div&gt;
- &quot;That&#39;s more like it! You&#39;&#39;ll go far around here kid!&quot;
- (set: $harukaRel to it -1)
- (set: $evilHarukaRel to it +1)
-(after:2s)[(t8n-arrive:&quot;instant&quot;)(go-to:&quot;HarukaSad&quot;)[[HarukaSad]]]
+As your running you see light, a fire exit.
+
+[[Escape]] 
+
+[[Stop and Face the Beast]] 
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="6" name="Dash Left" tags="" position="1325,850" size="100,100">You make it past the Dinosaur swiftly and enter into a hallway. 
+
+(transition-arrive: &quot;slide-left&quot;)[[Left Corridor]] 
+
+(transition-arrive: &quot;slide-right&quot;)[[Right Corridor]]
+
+&lt;/style&gt;
+&lt;img src=https://media.tenor.com/1h8ykXihf28AAAAM/gifmiah.gif&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="Dash Right" tags="" position="1550,800" size="100,100">You make it past the Dinosaur only for the beast to smack you with its tail, pummeling you to the ground 
+
+[[END: You have Perished]]
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="8" name="Dash for the Exit" tags="" position="1200,1100" size="100,100">[[END: FREEDOM]] 
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="9" name="END: FREEDOM" tags="" position="1875,1325" size="100,100">You escaped the dinosaur
+
+&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
+  		&lt;source src=&quot;https://v.ftcdn.net/18/48/66/60/240_F_1848666063_wvjZmHLjP4l7zmDGatRR7QXZTS5N7uqN_ST.mp4&quot; type=&quot;video/mp4&quot;&gt;
+	&lt;/video&gt;
+</tw-passagedata><tw-passagedata pid="10" name="END: Ignorance is bliss" tags="" position="1125,650" size="100,100">&lt;/style&gt;
+&lt;img src=https://media.tenor.com/MYZgsN2TDJAAAAAe/this-is.png&gt;
 &lt;/div&gt;
 
-&lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
-}}}</tw-passagedata><tw-passagedata pid="11" name=" EHaruD1No" tags="" position="1850,400" size="100,100">{{{
-&lt;div id=&quot;vn-background&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;vn-stage&quot;&gt;
-&lt;!--Relationship Menu--&gt;
-(t8n:&quot;rumble&quot;)[
-(display:&quot;RelMenu&quot;)
+</tw-passagedata><tw-passagedata pid="11" name="END: MUDAMUDAMUDAMUDA!!!" tags="" position="1150,775" size="100,100">&lt;/style&gt;
+&lt;img src=https://media1.tenor.com/m/B-pVEZkHCrEAAAAd/jojo-muda-muda-muda.gif&gt;
+&lt;/div&gt;
+
+</tw-passagedata><tw-passagedata pid="12" name="END: You have Perished" tags="" position="1475,1225" size="100,100">Can&#39;t say you didn&#39;t try at least
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot;
+src=&quot;https://www.youtube.com/watch?v=thaFTPd4JmM&quot; frameborder=&quot;0&quot;
+allowfullscreen&gt;&lt;/iframe&gt;</tw-passagedata><tw-passagedata pid="13" name="END: you have been devoured trying to be friendly" tags="" position="1175,375" size="100,100">&lt;/style&gt;
+&lt;img src=https://64.media.tumblr.com/ebac323ef2ff42f7e1038df0fd4ab7c3/tumblr_nqxclchCMC1uucpo1o3_500.gifv&gt;
+&lt;/div&gt;
+
+</tw-passagedata><tw-passagedata pid="14" name="Escape" tags="" position="1975,1150" size="100,100">[[END: FREEDOM]]
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="15" name="Fight Back" tags="" position="1300,675" size="100,100">You repeated punch the Dinosaur like your in Jojo&#39;s Bizzara Adventures, but this is real life not an anime and the only thing in pain are your hands having punched a hard scaled dinosaur. Whom is completely unfased by this attack. 
+
+[[END: MUDAMUDAMUDAMUDA!!!]]
+
+&lt;/style&gt;
+&lt;img src=https://pbs.twimg.com/media/FyR4FEdakAAlgnz.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="16" name="Flee" tags="" position="1725,575" size="100,100">You flee left down the corridor, approaching a set of double doors 
+
+[[Open Politely]] 
+[[Open Violently]] 
+[[Use your head]]
+
+&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
+  		&lt;source src=&quot;https://videos.pond5.com/first-person-view-running-down-footage-144571314_main_xxl.mp4&quot; type=&quot;video/mp4&quot;&gt;
+	&lt;/video&gt;
+</tw-passagedata><tw-passagedata pid="17" name="Hide" tags="" position="1950,550" size="100,100">You scan the room to see where you can hide
+
+[[Under Desk]]
+
+[[Behind the Door]]
+
+[[Flee]] 
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="18" name="Hide Under Pue" tags="" position="2350,1225" size="100,100">You hide under the pue hoping the beast will pass, but it can smell your presences
+
+[[Remain]] 
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="19" name="Hide Under Table" tags="" position="2200,1175" size="100,100">You hide under the table hoping the beast will pass, but it can smell your presences
+
+[[Remain]] 
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="20" name="Ignore" tags="" position="1550,375" size="100,100">You ignore the noise, but it continues to get louder approaching ever closing in your direction. 
+
+[[Keep Ignoring]] 
+[[Investigate]] 
+[[Jump out the nearest Window]] 
+[[Hide]]
+
+(set: $Fear to + 3)
+(set: $Adrenaline to + 0)
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="21" name="Investigate" tags="" position="1750,375" size="100,100">You get up from your desk and look out into the hallway looking left and right. You see a Dinosaur squeezing through the doorway. 
+
+(transition-arrive: &quot;slide-right&quot;)[[Flee]] 
+(transition-arrive: &quot;slide-right&quot;)[[Ignore]] 
+(transition-arrive: &quot;slide-right&quot;)[[Hide]] 
+(transition-arrive: &quot;slide-right&quot;)[[Jump out the nearest Window]]
+
+(set: $Fear to + 1)
+(set: $Adrenaline to + 2)
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;
+
+</tw-passagedata><tw-passagedata pid="22" name="Jump out the nearest Window" tags="" position="1975,350" size="100,100">Unfortunately the window is not open and is made of glass, so in your attempt to an action hero you accidently break through the glass cutting yourself quite badly, giving the dinosaur plenty of time to catch you.
+
+[[END: You have Perished]] 
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="23" name="Keep Ignoring" tags="" position="1425,525" size="100,100">You carry on working, in your Ignorance you fail to spot a Dinosaur looming over you. 
+[[Try and Run]] 
+
+(set: $Fear to + 3)
+(set: $Adrenaline to + 3)
+
+(if: $Fear is &gt; 10)[[Fight Back]]
+(if: $Fear is &lt; 10)[[Befriend]]
+(if: $Fear is &gt; 15)[[Accept your fate]] 
+
+
+(set: $timer to 20)
+Time remaining: (live: 1s)[
+    (set: $timer to it - 1)
+    $timer
+        (if: $timer is 0)[(goto: &quot;END: You have Perished&quot;)]
 ]
-&lt;div id=&quot;vn-2character&quot;&gt;&lt;img src=&quot;VNAssets/Haru.png&quot;&gt;&lt;img src=&quot;VNAssets/AngryEvilHaru.png&quot;&gt;&lt;/div&gt;
 
-&lt;div id=&quot;vn-dialogue&quot;&gt;
-  &lt;div id=&quot;vn-name&quot;&gt;Evil Haruka&lt;/div&gt;
- &quot;Eugh, dweebs all round!&quot;
- (track: &quot;EvilHaruNani&quot;,&quot;play&quot;)
- (set: $harukaRel to it +1)
- (set: $evilHarukaRel to it -1)
-(after:2s)[(t8n-arrive:&quot;instant&quot;)(go-to:&quot;HarukaHappy&quot;)[[HarukaHappy]]]
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="24" name="Left Corridor" tags="" position="1375,975" size="100,100">You turn left and are faced with a dead end, the dinosaur has you cornered 
+
+[[END: You have Perished]] 
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="25" name="Left Corridor 2" tags="" position="2100,1000" size="100,100">Turning left you see an exit, an escape is within your grasp. 
+
+[[Escape]] 
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="26" name="Open Politely" tags="" position="1850,775" size="100,100">You take your time and carefully open the door however, by taking such time the dinosaur has gained and is right on your tail. 
+
+[[Continue Fleeing]] 
+
+[[Stop and Face the Beast]]
+
+&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
+  		&lt;source src=&quot;https://www.shutterstock.com/shutterstock/videos/3452198553/preview/stock-footage-vertical-video-closeup-of-a-chrome-handle-on-a-white-interior-door-being-turned-then-a-man-s.webm&quot; type=&quot;video/mp4&quot;&gt;
+	&lt;/video&gt;
+</tw-passagedata><tw-passagedata pid="27" name="Open Violently" tags="" position="1975,725" size="100,100">With no care or respect for the doors you shoulder them in hard, potentially damaging them. You are still well ahead of the Dinosaur. 
+
+[[Continue Fleeing]] 
+
+[[Stop and Face the Beast]]
+
+&lt;video autoplay muted loop class=&quot;bg-video&quot;&gt;
+  		&lt;source src=&quot;https://videos.pond5.com/first-person-view-running-down-footage-144571314_main_xxl.mp4&quot; type=&quot;video/mp4&quot;&gt;
+	&lt;/video&gt;
+</tw-passagedata><tw-passagedata pid="28" name="Opening" tags="" position="1750,225" size="100,100">You are Student working on your latest assignment. All of a sudden you hear a strange noise in the corridor 
+
+(transition-depart: &quot;dissolve&quot;)[[Investigate]] 
+(transition-depart: &quot;dissolve&quot;)[[Jump out the nearest Window]] 
+(transition-depart: &quot;dissolve&quot;)[[Ignore]] 
+(transition-depart: &quot;dissolve&quot;)[[Hide]]
+
+(set: $Fear to 0)
+(set: $Adrenaline to 0)
+
+&lt;/style&gt;
+&lt;img src=https://resilienteducator.com/wp-content/uploads/2020/09/classroom-2093744_1280.jpg&gt;
 &lt;/div&gt;
 
-&lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
-}}}</tw-passagedata><tw-passagedata pid="12" name="HarukaSad" tags="" position="2025,200" size="100,100">{{{
-&lt;div id=&quot;vn-background&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;vn-stage&quot;&gt;
-&lt;!--Relationship Menu--&gt;
-(display:&quot;RelMenu&quot;)
 
-&lt;div id=&quot;vn-character&quot;&gt;&lt;img src=&quot;VNAssets/SadHaru.png&quot;&gt;&lt;/div&gt;
+</tw-passagedata><tw-passagedata pid="29" name="Remain" tags="" position="2425,450" size="100,100">The longer you remain in your hiding spot the closer the beast gets
 
-&lt;div id=&quot;vn-dialogue&quot;&gt;
-  &lt;div id=&quot;vn-name&quot;&gt;Evil Haruka&lt;/div&gt;
- &quot;I... I didn&#39;t think you&#39;d like things like that... I don&#39;t think we&#39;ll be friends after all.&quot;
- [[Restart-&gt;Haruka Line 1]]
-&lt;/div&gt;
+[[Remain Longer]]
 
-&lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
-}}}</tw-passagedata><tw-passagedata pid="13" name="HarukaHappy" tags="" position="2025,400" size="100,100">{{{
-&lt;div id=&quot;vn-background&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;vn-stage&quot;&gt;
-&lt;!--Relationship Menu--&gt;
-(display:&quot;RelMenu&quot;)
+[[Flee]] 
 
-&lt;div id=&quot;vn-character&quot;&gt;&lt;img src=&quot;VNAssets/LaughingHaru.png&quot;&gt;&lt;/div&gt;
-
-&lt;div id=&quot;vn-dialogue&quot;&gt;
-  &lt;div id=&quot;vn-name&quot;&gt;Evil Haruka&lt;/div&gt;
- &quot;Wow! I&#39;m so impressed by how brave you are! Way to stand your ground. Hey, i-if you don&#39;t mind, maybe we could go to Summer Festival together?&quot;
- [[Restart-&gt;Haruka Line 1]]
-&lt;/div&gt;
-
-&lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
-}}}</tw-passagedata><tw-passagedata pid="14" name="hal.tracks" tags="" position="425,275" size="100,100">bgmus: VNAssets\bgmus.mp3
-HaruEh: VNAssets\haruEh.mp3
-EvilHaruEh: VNAssets\EvilHaruEh.mp3
-EvilHaruNani: VNAssets\EvilHaruNani.mp3</tw-passagedata><tw-passagedata pid="15" name="hal.config" tags="" position="300,275" size="100,100">showControls: false</tw-passagedata><tw-passagedata pid="16" name="Template Passage" tags="" position="300,400" size="100,100">&lt;!--Copy/Paste this blank Passage to tell your story--&gt;
-
-{{{ &lt;!--These 3 curly braces stop Twine Harlowe from autoformatting what comes below. This can be really useful for stopping animations doing weird things--&gt;
-
-&lt;div id=&quot;vn-background&quot;&gt;&lt;/div&gt;
-&lt;!--This is your background. Set the image in the CSS or use the enchant macro--&gt;
-
-&lt;div id=&quot;vn-stage&quot;&gt;
-&lt;!--This is the &#39;space&#39; the game takes place in. Leave this alone--&gt;
-
-&lt;!--Below is the relationship menu. You can copy paste this into any passage where you want the relationship menu to be visible. You can add animation macros to this--&gt;
-|closedMenu&gt;[(link-rerun:&quot;&lt;img class=&#39;icon&#39; id=&#39;menuOpen&#39; src=&#39;VNAssets/randoseru.png&#39;&gt;&lt;/img&gt;&quot;)[(show:?openedMenu)(hide:?closedMenu)]]
-|openedMenu)[
-Haruka likes you $harukaRel &lt;br&gt;
-Evil Haruka likes you $evilHarukaRel &lt;br&gt;
-(link-rerun:&quot;X&quot;)[(show:?closedMenu)(hide:?openedMenu)]
+(set: $timer to 10)
+Time remaining: (live: 1s)[
+    (set: $timer to it - 1)
+    $timer
+        (if: $timer is 0)[(goto: &quot;Remain Longer&quot;)]
 ]
 
-&lt;!--This is where you put characters--&gt;
-&lt;div id=&quot;vn-character&quot;&gt;&lt;img src=&quot;Your Assets Folder/Your Pictures.png&quot;&gt;&lt;/div&gt;
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="30" name="Remain Longer" tags="" position="2575,450" size="100,100">The Dinosaur has found you
 
-&lt;!--This is where you put dialogue--&gt;
-&lt;div id=&quot;vn-dialogue&quot;&gt;
-  &lt;div id=&quot;vn-name&quot;&gt;Your Character Name&lt;/div&gt;
-  “Placeholder dialogues”   
-  [[]] [[]] &lt;!--Choices--&gt;  
-&lt;/div&gt;
+[[END: You have Perished]] 
 
-&lt;!-- 
-add sounds like this: (track: &#39;example&#39;, &#39;play&#39;) 
-You must add sounds to the hal.tracks passage and have them in your project folder
---&gt;
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="31" name="Right Corridor" tags="" position="1200,975" size="100,100">You turn right and encounter and exit straigh ahead.
 
-&lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
+[[Dash for the Exit]]
 
-}}}</tw-passagedata><tw-passagedata pid="17" name="Untitled Passage" tags="" position="350,700" size="100,100">&lt;!--Copy/Paste this blank Passage to tell your story--&gt;
+[[Stop and Face the Beast]] 
 
-{{{ &lt;!--These 3 curly braces stop Twine Harlowe from autoformatting what comes below. This can be really useful for stopping animations doing weird things--&gt;
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="32" name="Right Corridor 2" tags="" position="2350,1000" size="100,100">Turning right you pass through a set of double doors into an large room with tables and comfortable pue seats. 
 
-&lt;div id=&quot;vn-background&quot;&gt;&lt;/div&gt;
-&lt;!--This is your background. Set the image in the CSS or use the enchant macro--&gt;
+[[Hide Under Table]] 
 
-&lt;div id=&quot;vn-stage&quot;&gt;
-&lt;!--This is the &#39;space&#39; the game takes place in. Leave this alone--&gt;
+[[Hide Under Pue]] 
 
-&lt;!--Below is the relationship menu. You can copy paste this into any passage where you want the relationship menu to be visible. You can add animation macros to this--&gt;
-|closedMenu&gt;[(link-rerun:&quot;&lt;img class=&#39;icon&#39; id=&#39;menuOpen&#39; src=&#39;VNAssets/randoseru.png&#39;&gt;&lt;/img&gt;&quot;)[(show:?openedMenu)(hide:?closedMenu)]]
-|openedMenu)[
-Haruka likes you $harukaRel &lt;br&gt;
-Evil Haruka likes you $evilHarukaRel &lt;br&gt;
-(link-rerun:&quot;X&quot;)[(show:?closedMenu)(hide:?openedMenu)]
+[[Continue running]]
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="33" name="Stop and Face the Beast" tags="" position="1750,975" size="100,100">[[END: You have Perished]] 
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="34" name="Try and Run" tags="" position="1475,675" size="100,100">You Dash From your seat 
+
+
+(set: $timer to 10)
+Time remaining: (live: 1s)[
+    (set: $timer to it - 1)
+    $timer
+        (if: $timer is 0)[(goto: &quot;END: You have Perished&quot;)]
 ]
 
-&lt;!--This is where you put characters--&gt;
-&lt;div id=&quot;vn-character&quot;&gt;&lt;img src=&quot;Your Assets/Your Pictures.png&quot;&gt;&lt;/div&gt;
+(transition-arrive: &quot;slide-left&quot;)[[Option A|Dash Left]]
+(transition-arrive: &quot;slide-right&quot;)[[Option B|Dash Right]]
 
-&lt;!--This is where you put dialogue--&gt;
-&lt;div id=&quot;vn-dialogue&quot;&gt;
-  &lt;div id=&quot;vn-name&quot;&gt;Your Character Name&lt;/div&gt;
-  “Lorem ipsum dolorr”   
-  [[]] [[]] &lt;!--Choices--&gt;  
-&lt;/div&gt;
 
-&lt;!-- 
-add sounds like this: (track: &#39;example&#39;, &#39;play&#39;) 
-You must add sounds to the hal.tracks passage and have them in your project folder
---&gt;
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="35" name="Under Desk" tags="" position="2225,425" size="100,100">You hide under the desk luckily the Dinosaur cannot see you but it can smell you
 
-&lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
+[[Remain]]
 
-}}}	</tw-passagedata><tw-passagedata pid="18" name="Splash Screen" tags="" position="650,150" size="100,100">&lt;button onclick=&quot;document.documentElement.requestFullscreen();&quot;&gt;
-    Go Fullscreen
-&lt;/button&gt;
-[[Start Game-&gt;Haruka Line 1]]</tw-passagedata><tw-passagedata pid="19" name="RelMenu" tags="" position="425,400" size="100,100">{{{
-(align:&quot;==&gt;&quot;)[
-&lt;!--Below is the relationship menu. --&gt;
+[[Flee]] 
 
-|closedMenu&gt;[(link-rerun:&quot;&lt;img class=&#39;icon&#39; id=&#39;menuClosed&#39; src=&#39;VNAssets/randoseru.png&#39;&gt;&lt;/img&gt;&quot;)[(show:?openedMenu)(hide:?closedMenu)]]
-
-|openedMenu)[
-Haruka likes you $harukaRel &lt;br&gt;
-Evil Haruka likes you $evilHarukaRel &lt;br&gt;
-(link-rerun:&quot;X&quot;)[(show:?closedMenu)(hide:?openedMenu)]
-
+(set: $timer to 5)
+Time remaining: (live: 1s)[
+    (set: $timer to it - 1)
+    $timer
+        (if: $timer is 0)[(goto: &quot;Remain&quot;)]
 ]
-]
-}}}</tw-passagedata></tw-storydata>
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="36" name="Use your head" tags="" position="1700,775" size="100,100">Upon using your head you suffer a severe concussion, giving the Dinosaur ample time to catch up and consume (what little brains you had. Seriously who runs head first into a set of double door.) 
+
+[[END: You have Perished]]
+
+&lt;/style&gt;
+&lt;img src=https://www.designingbuildings.co.uk/w/images/9/9b/Corridor.jpg&gt;
+&lt;/div&gt;</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
