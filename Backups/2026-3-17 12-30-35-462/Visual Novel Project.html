@@ -22,7 +22,6 @@ It is designed to be a fixed size to work on most browsers, but it might have so
 YOU MUST HAVE THE STORY JAVASCRIPT AS WELL
 */
 
-/*Harlowe Hacking*/
 body{overflow:hidden;background:black;}
 
 tw-story{font-family: Verdana, sans-serif;
@@ -35,12 +34,14 @@ tw-story{font-family: Verdana, sans-serif;
   transform-origin: top left;
   overflow: hidden;
 }
+
+/*hide the sidebar*/
 tw-sidebar{visibility: hidden;}
 tw-include{position:absolute;}
 
-/* Fullscreen background needed for scaling*/
+/* Fullscreen background */
 #vn-background {
-  position: absolute;
+  position: absolute;  /* was: fixed */
   top: 0;
   left: 0;
   width: 100%
@@ -130,29 +131,14 @@ img.icon
   font-size: 20px;
   line-height: 1.5;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+grid-template-columns: 1fr;
+grid-template-rows: repeat(5, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
   align-items: center;
   z-index: 4;
-}
 
-#fSButton{ 
-  cursor:pointer;
-  top: 8%;
-  left: 80%;
-  background-color: #0033cc; /*blue*/
-  border: 4px solid white;
-  border-radius: 20px;
-  padding: 20px;
-  box-sizing: border-box;
-  color: white; /*font color*/
-  font-family: Verdana, sans-serif;
-  font-size: 20px;
-  line-height: 1.5;
-  align-items: center;
-  z-index: 4;}
+}
 
 #vn-name {
   position: absolute;
@@ -172,6 +158,7 @@ tw-hook[name="closedmenu"]
   position: absolute;
   right: 50px;
   top: 2em;
+ 
   background-color: #0033cc;
   border: 2px solid white;
   border-radius: 10px;
@@ -184,8 +171,9 @@ tw-hook[name="closedmenu"]
 tw-hook[name="openedmenu"]
 {
   position: absolute;
-  right: 50px;
+right: 50px;
   top: 2em;
+  
   background-color: #0033cc;
   border: 2px solid white;
   border-radius: 10px;
@@ -524,22 +512,25 @@ You must add sounds to the hal.tracks passage and have them in your project fold
 
 &lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
 
-}}}	</tw-passagedata><tw-passagedata pid="18" name="Splash Screen" tags="" position="650,150" size="100,100">{{{
+}}}	</tw-passagedata><tw-passagedata pid="18" name="Splash Screen" tags="" position="650,150" size="100,100">&lt;button onclick=&quot;document.documentElement.requestFullscreen();&quot;&gt;
+    Go Fullscreen
+&lt;/button&gt;
+
+{{{
 &lt;!--These 3 curly braces stop Twine Harlowe from autoformatting what comes below. This can be really useful for stopping animations doing weird things--&gt;
+
 
 &lt;div id=&quot;vn-background&quot;&gt;&lt;/div&gt;
 &lt;!--This is your background--&gt;
 
 &lt;div id=&quot;vn-stage&quot;&gt;
 &lt;!--This is the &#39;space&#39; the game takes place in--&gt;
+
 &lt;!--This is where you put dialogue--&gt;
 &lt;div id=&quot;vn-dialogue&quot;&gt;
   &lt;div id=&quot;vn-name&quot;&gt;Visual Novel Game&lt;/div&gt;
  [[Start Game-&gt;Haruka Line 1]]
 &lt;/div&gt;
-&lt;button id=&quot;fSButton&quot; onclick=&quot;document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()&quot;&gt;
-    Toggle Fullscreen
-&lt;/button&gt;
 
 &lt;!--This is needed to stop weird things happening with the formatting--&gt;
 &lt;/div&gt;

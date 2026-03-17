@@ -32,6 +32,43 @@ body{
   height: 100%;
   z-index: -10;
   aspect-ratio: 16/9;
+  transition: transform 4s ease, filter 4s ease;
+}
+
+.bg-video.animated{animation: cinematicDim 1.2s ease 4s forwards;}
+
+@keyframes cinematicDim {
+  from {
+    filter: brightness(1) saturate(1) blur(0);
+    transform: scale(1);
+  }
+  to {
+    filter: brightness(0.8) saturate(0.9) blur(2px);
+    transform: scale(1.03);
+  }
+}
+
+.bg-video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 1.2s ease;
+  pointer-events: none;
+}
+
+.bg-video.dimmed {
+  filter: brightness(0.8) saturate(0.9) blur(2px);
+  transform: scale(1.03);
+}
+
+.bg-video.dimmed::after {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* ===== Choice Video ===== */
+.choice-video {
+  width: 100%;
 }
 
 /* ===== Text Formatting ===== */
@@ -90,33 +127,8 @@ tw-passage
   height: 500px;
 }
 
-/* ===== Setting up the Interactive Video space ===== */
-.main-section
-{
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end; /* pushes content to bottom */
-  min-height: 80dvh; /* better than 100vh for mobile */
-}
-
-/* ===== Space that holds the Link Buttons ===== */
-.choices {
-  display: flex;
-
-  flex-wrap: wrap;
-  z-index: 6;
-  gap: 2rem;
-  justify-content: space-evenly;
-  align-items: center;
-  /* Fade-in animation */
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.8s cubic-bezier(.22,.61,.36,1) forwards;
-}
-
 /* ===== Turning Links into Buttons ===== */
-tw-link
+tw-link, .choice
 {
   color: white;
   display: flex;
@@ -154,11 +166,7 @@ tw-link
   max-width: 500px;/* cap growth */
 }
 
-.choices:has(> :nth-child(4):last-child) > * {
-  min-width: 10vw;
-}
-
-tw-link:hover {
+tw-link:hover, .choice:hover{
   background: rgba(100, 100, 100, 0.55);
   transform: translateY(-3px);
   box-shadow:
@@ -166,7 +174,7 @@ tw-link:hover {
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-tw-link:active {
+tw-link:active, .choice:active{
   transform: translateY(0px) scale(0.98);
 }
 
@@ -181,6 +189,35 @@ tw-link:active {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+
+/* ===== Setting up the Interactive Video space ===== */
+.main-section
+{
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* pushes content to bottom */
+  min-height: 80dvh; /* better than 100vh for mobile */
+}
+
+/* ===== Space that holds the Link Buttons ===== */
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 6;
+  gap: 2rem;
+  justify-content: space-evenly;
+  align-items: center;
+  /* Fade-in animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+.choices:has(> :nth-child(4):last-child) > * {
+  min-width: 10vw;
 }
 
 /* =========== Countdown Bar ======== */
@@ -1219,6 +1256,7 @@ body {
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 
 \(if:$videosSeen &gt; 2)[[[You Unlocked a Secret-&gt;SecretPassage]]]
+&lt;!--\(if: $hasKey is true)[[[YOU OPEN THE DOOR!]]]--&gt;
 \(else:)[[Timer Passage-&gt;TimedTemplate2]]
 
 &lt;/div&gt;
@@ -1228,6 +1266,7 @@ body {
 (set:$videosSeen to 0)
 
 &lt;script&gt;
+/*SELECT A THEME HERE*/
 /*
 setTheme(&quot;theme-horror&quot;);
 setTheme(&quot;theme-indie&quot;);
@@ -1556,6 +1595,50 @@ cursor: pointer;
 		(link-goto:&quot;More Detailed Example&quot;)[&lt;div class=&quot;choice&quot;&gt;Test&lt;/div&gt;]
 		(link-goto:&quot;More Detailed Example&quot;)[&lt;div class=&quot;choice bottomRow&quot;&gt;Test&lt;/div&gt;]
 	&lt;/div&gt;
+&lt;/div&gt;
+}}}</tw-passagedata><tw-passagedata pid="15" name="[YOU OPEN THE DOOR!" tags="" position="1175,475" size="100,100"></tw-passagedata><tw-passagedata pid="16" name="Video Choices Menu" tags="" position="1925,50" size="100,100">{{{
+&lt;!----VIDEO CHOICE SECTION------------------&gt;
+
+&lt;div class=&quot;choices&quot; style=&quot;width:50%; flex-wrap:nowrap&quot;&gt;
+    
+    	&lt;video autoplay muted loop class=&quot;choice-video&quot;&gt;
+  			&lt;source src=&quot;Quick Vid 2.mp4&quot; type=&quot;video/mp4&quot;&gt;
+		&lt;/video&gt;
+    
+
+    	&lt;video autoplay muted loop class=&quot;choice-video&quot;&gt;
+  			&lt;source src=&quot;Quick Vid 3.mp4&quot; type=&quot;video/mp4&quot;&gt;
+		&lt;/video&gt;
+    
+&lt;/div&gt;
+
+&lt;script&gt;
+/*
+var mS = 4000; //4 seconds
+setTimeout(() =&gt; {
+	const background = document.querySelector(&quot;.bg-video&quot;);
+	background.classList.toggle(&quot;dimmed&quot;);
+	});
+    */
+&lt;/script&gt;
+
+&lt;!-----------------------------------------------&gt;
+}}}</tw-passagedata><tw-passagedata pid="17" name="Video Choices Example" tags="" position="1925,175" size="100,100">{{{
+&lt;!----------VIDEO SECTION-------------------&gt;
+	&lt;video autoplay muted loop class=&quot;bg-video animated&quot; style=&quot;animation-delay:2s&quot;&gt;
+  		&lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
+	&lt;/video&gt;
+&lt;!-----------------------------------------------&gt;
+
+&lt;!----------CHOICE SECTION------------------&gt;
+	&lt;div class=&quot;main-section&quot;&gt;
+	&lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
+        (display:&quot;Video Choices Menu&quot;)
+	[[Go to same with more choices -&gt;BlankTemplate2]]
+	[[Timed Example-&gt;TimedTemplate]]
+&lt;!-----------------------------------------------&gt;
+
+&lt;/div&gt;
 &lt;/div&gt;
 }}}</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
