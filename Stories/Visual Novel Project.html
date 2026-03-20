@@ -9,7 +9,7 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Visual Novel Project.</tw-noscript></noscript></tw-story>
-<tw-storydata name="Visual Novel Project" startnode="18" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="26407949-4252-4A42-8107-74166E6CF44D" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/*This stylesheet will help you making Visual Novels in a traditional sense. It's modelled after the kind of content that was popular in the early 1990's with a few modern touches. 
+<tw-storydata name="Visual Novel Project" startnode="18" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="26407949-4252-4A42-8107-74166E6CF44D" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/*This stylesheet will help you making Visual Novels in a traditional sense. It's modelled after the kind of content that was popular in the early 1990's with a few modern touches. 
 
 The text box is only suited for about 3 lines of text so try to avoid:
 having more than one line with two options on screen at once
@@ -196,6 +196,8 @@ tw-hook[name="openedmenu"]
   z-index: 100;
 }
 
+
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">/*---------SCALING---------------------------*/
 function scaleStage() {
   const stage = document.querySelector('tw-story');
@@ -292,7 +294,7 @@ scaleStage(); /* run once on load */
 (display:&quot;RelMenu&quot;)
 
 &lt;div id=&quot;vn-character&quot;&gt;(t8n:&quot;rumble&quot;)[&lt;img src=&quot;VNAssets/ShockedHaru.png&quot;&gt;]&lt;/div&gt;
-(track: &#39;HaruEh&#39;,&#39;play&#39;)
+(track: &#39;haruEh&#39;,&#39;play&#39;)
 &lt;div id=&quot;vn-dialogue&quot;&gt;
   &lt;div id=&quot;vn-name&quot;&gt;Haruka&lt;/div&gt;
  
@@ -452,9 +454,10 @@ They&#39;ll begin at 1.
 
 &lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
 }}}</tw-passagedata><tw-passagedata pid="14" name="hal.tracks" tags="" position="425,275" size="100,100">bgmus: VNAssets\bgmus.mp3
-HaruEh: VNAssets\haruEh.mp3
+haruEh: VNAssets\haruEh.mp3
 EvilHaruEh: VNAssets\EvilHaruEh.mp3
-EvilHaruNani: VNAssets\EvilHaruNani.mp3</tw-passagedata><tw-passagedata pid="15" name="hal.config" tags="" position="300,275" size="100,100">showControls: false</tw-passagedata><tw-passagedata pid="16" name="Template Passage" tags="" position="300,400" size="100,100">&lt;!--Copy/Paste this blank Passage to tell your story--&gt;
+EvilHaruNani: VNAssets\EvilHaruNani.mp3
+</tw-passagedata><tw-passagedata pid="15" name="hal.config" tags="" position="300,275" size="100,100">showControls: false</tw-passagedata><tw-passagedata pid="16" name="Template Passage" tags="" position="300,400" size="100,100">&lt;!--Copy/Paste this blank Passage to tell your story--&gt;
 
 {{{ &lt;!--These 3 curly braces stop Twine Harlowe from autoformatting what comes below. This can be really useful for stopping animations doing weird things--&gt;
 
