@@ -1289,7 +1289,17 @@ setTheme(&quot;theme-indie&quot;);
 setTheme(&quot;theme-skater&quot;);
 
 */
-&lt;/script&gt;</tw-passagedata><tw-passagedata pid="10" name="SecretPassage" tags="" position="1275,250" size="100,100">{{{
+&lt;/script&gt;
+
+&lt;!--
+In this passage I&#39;ll set the initial states of the relationships in the game
+At present I only have two characters, Haruka and Evil Haruka. 
+I want the relationships to range from 1 to 5 throughout the game. 
+They&#39;ll begin at 1.
+--&gt;
+
+(track: &#39;bgmus&#39;, &#39;loop&#39;, true)
+(track: &#39;bgmus&#39;, &#39;playwhenpossible&#39;)</tw-passagedata><tw-passagedata pid="10" name="SecretPassage" tags="" position="1275,250" size="100,100">{{{
 &lt;div class=&quot;main-section&quot;&gt;
 &lt;p class=&quot;TopText&quot;&gt;
 Because you watched enough videos the secret option was unlocked.
@@ -1669,15 +1679,7 @@ It&#39;s important to have a &#39;splash screen&#39; or &#39;start screen&#39; b
 	[[Timed Choice-&gt;TimedTemplate]] 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;!-----------------------------------------------&gt;</tw-passagedata><tw-passagedata pid="19" name="hal.tracks" tags="" position="1400,625" size="100,100"></tw-passagedata><tw-passagedata pid="20" name="hal.config" tags="" position="1525,625" size="100,100">showControls: false</tw-passagedata><tw-passagedata pid="21" name="startup" tags="" position="325,225" size="100,100">&lt;!--
-In this passage I&#39;ll set the initial states of the relationships in the game
-At present I only have two characters, Haruka and Evil Haruka. 
-I want the relationships to range from 1 to 5 throughout the game. 
-They&#39;ll begin at 1.
---&gt;
-
-(track: &#39;bgmus&#39;, &#39;loop&#39;, true)
-(track: &#39;bgmus&#39;, &#39;playwhenpossible&#39;)</tw-passagedata></tw-storydata>
+&lt;!-----------------------------------------------&gt;</tw-passagedata><tw-passagedata pid="19" name="hal.tracks" tags="" position="1400,625" size="100,100"></tw-passagedata><tw-passagedata pid="20" name="hal.config" tags="" position="1525,625" size="100,100">showControls: false</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
