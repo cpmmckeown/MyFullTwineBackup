@@ -397,10 +397,9 @@ window.startComp = function() {
     // Ensure that the AudioContext is created after a user interaction
     let audioElement = document.querySelector('audio');
     console.log("Audio element is", audioElement);
-    audioElement.crossOrigin = 'anonymous'; // for local testing
     audioElement.autoplay = false; // Disable autoplay to trigger on user interaction
     audioElement.id = "myAudio";
-    
+    audioElement.crossOrigin = 'anonymous'; // for local testing
 
     // Create the AudioContext
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -1763,6 +1762,11 @@ setTimeout(() =&gt; {
 &lt;/div&gt;
 &lt;/div&gt;
 }}}</tw-passagedata><tw-passagedata pid="18" name="Untitled Passage" tags="" position="825,0" size="100,100">{{{
+&lt;!--Start Compressor--&gt;
+&lt;script&gt;window.startComp();&lt;/script&gt;
+&lt;!--MUSIC--&gt;
+
+
 &lt;!----------CHOICE SECTION------------------&gt;
 &lt;div class=&quot;main-section&quot;&gt;
 
@@ -1780,31 +1784,25 @@ It&#39;s important to have a &#39;splash screen&#39; or &#39;start screen&#39; b
 }}}</tw-passagedata><tw-passagedata pid="19" name="hal.tracks" tags="" position="375,200" size="100,100">bgmus: bgmus.mp3</tw-passagedata><tw-passagedata pid="20" name="hal.config" tags="" position="350,325" size="100,100">showControls: false</tw-passagedata><tw-passagedata pid="21" name="Audio Example" tags="" position="950,125" size="100,100">{{{
 (track: &#39;bgmus&#39;, &#39;play&#39;)
 (track: &#39;bgmus&#39;, &#39;loop&#39;, true)
+&lt;script&gt;
+window.compressor();
+&lt;/script&gt;
 &lt;!----------VIDEO SECTION-------------------&gt;
 	&lt;video id=&quot;myVideo&quot; autoplay loop class=&quot;bg-video&quot;&gt; &lt;!--Is your video muted? --&gt;
-  		&lt;source src=&quot;ClipForAudio.mp4&quot; type=&quot;video/mp4&quot;&gt;
+  		&lt;source src=&quot;ExampleForDucking.mp4&quot; type=&quot;video/mp4&quot;&gt;
 	&lt;/video&gt;
 &lt;!-----------------------------------------------&gt;
 &lt;!----------CHOICE SECTION------------------&gt;
 &lt;div class=&quot;main-section&quot;&gt;
 
-This is an audio example passage. You can have background music start playing and it will play underneath your clips (it&#39;s also possible to have auto-ducking, but that takes some work!)
+This is an audio example. It should play a noise on making a choice that dims music.
 
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 [[Untitled Passage]]
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;!-----------------------------------------------&gt;
-}}}</tw-passagedata><tw-passagedata pid="22" name="Compressor Explanation" tags="" position="2200,75" size="100,100">I have made a little add on for Twine that allows the use of a pseudo compressor. 
-
-However it requires a different approach to working, either using a local server like &quot;npx serve .&quot; or else having your game hosted
-
-&lt;!--Start Compressor--&gt;
-&lt;script&gt;
-// window.startComp();
-// window.compressor();
-&lt;/script&gt;
-</tw-passagedata></tw-storydata>
+}}}</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim

@@ -397,10 +397,10 @@ window.startComp = function() {
     // Ensure that the AudioContext is created after a user interaction
     let audioElement = document.querySelector('audio');
     console.log("Audio element is", audioElement);
-    audioElement.crossOrigin = 'anonymous'; // for local testing
-    audioElement.autoplay = false; // Disable autoplay to trigger on user interaction
+    //audioElement.autoplay = false; // Disable autoplay to trigger on user interaction
     audioElement.id = "myAudio";
-    
+    audioElement.crossOrigin = 'anonymous'; // for local testing
+    audioElement.loop = true; // Optional, if you want it to loop
 
     // Create the AudioContext
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -420,62 +420,83 @@ window.startComp = function() {
         audioContext.resume();
     }*/
 
+    // Play the audio after the AudioContext has been resumed
+    audioElement.play().catch((error) => {
+        console.log("Error starting audio: ", error);
+    });
+
     window.audioElement = audioElement;
 }
 
 //-----------------------------------------------
 //A METHOD TO START THE COMPRESSING WHEN NEEDED
 
-window.compressor = function() {
-  try {
-    console.log("Starting Compressor");
-    const video1 = document.getElementById('myVideo');
-    if (!video1) throw new Error('Element with id "myVideo" not found');
+//Method for compression
+window.compressor = function()
+{
+try {
+console.log("Starting Compressor");
+const video1 = document.getElementById('myVideo');
 
+    // Create nodes to analyse the Video's volume
     const analyser1 = window.audioContext.createAnalyser();
     const source1 = window.audioContext.createMediaElementSource(video1);
     source1.connect(analyser1);
     analyser1.connect(audioContext.destination);
 
+    // Set analyser properties
     analyser1.fftSize = 256;
     const bufferLength = analyser1.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
 
-    // Attack/release settings — tweak these to taste
-    const attack = 0.1;   // 0-1, lower = faster duck
-    const release = 0.02; // 0-1, lower = faster recovery
-    let currentGain = 0.5;
-
     function updateVolume() {
+      
+      // Get the frequency data from the first audio (audio1)
       analyser1.getByteFrequencyData(dataArray);
-
+      
+      // Calculate the volume of audio1 based on frequency data
       let sum = 0;
-      for (let i = 0; i < bufferLength; i++) { sum += dataArray[i]; }
-      const averageVolume = sum / bufferLength;
-      const normalizedVolume = averageVolume / 255;
-      const targetGain = 0.5 - (normalizedVolume * 4);
-
-      // Smooth toward target using attack or release rate
-      if (targetGain < currentGain) {
-        currentGain += (targetGain - currentGain) * (1 - attack);   // ducking
-      } else {
-        currentGain += (targetGain - currentGain) * (1 - release);  // recovering
+      for (let i = 0; i < bufferLength; i++) {
+        sum += dataArray[i];
       }
-
-      window.gainNode2.gain.setValueAtTime(currentGain, audioContext.currentTime);
-      console.log("Current gain value:", currentGain);
-
-      if (!video1.paused) { requestAnimationFrame(updateVolume); }
+      const averageVolume = sum / bufferLength;
+      
+      // Map the average volume (0 to 255) to a range between 0 and 1 for video audio (audio2)
+      const normalizedVolume = averageVolume / 255;
+      
+      
+      // Set the volume of video1's audio based on the volume of audio1
+     window.gainNode2.gain.setValueAtTime((1-(normalizedVolume*4)), audioContext.currentTime);
+      
+      //Print the gain value after calculation
+//      console.log("Current gain value:", gainNode2.gain.value);
+      
+      // Continuously adjust the volume
+      if(!video1.paused)
+      {requestAnimationFrame(updateVolume);}
     }
 
-    video1.onplay = () => { audioContext.resume().then(() => { updateVolume(); }); };
-    if (!video1.paused) { audioContext.resume().then(() => { updateVolume(); }); }
-
-  } catch (error) {
-    console.log('Error: ', error.message);
-  }
+    // Start updating the volume when audio1 starts playing
+    video1.onplay = () => 
+    {
+      audioContext.resume().then(() =>{updateVolume();});
+    }
+// Also kick it off immediately if already playing
+if (!video1.paused) {
+  audioContext.resume().then(() => { updateVolume(); });
 }
-  
+
+// Check if the element was found
+  if (!myVideo) 
+  {  
+    throw new Error('Element with id "myVideo" not found');
+  }
+	} 
+  catch (error) 
+    {
+ 	 console.log('Error: ', error.message);
+	}
+}
 }
 
 /**
@@ -1366,36 +1387,31 @@ body {
 
 &lt;/div&gt;
 &lt;/div&gt;
-}}}</tw-passagedata><tw-passagedata pid="9" name="StartUp Variables" tags="startup" position="425,75" size="100,100">&lt;!--VARIABLES------------------&gt;
-&lt;!--Variables are initialised here--&gt;
+}}}</tw-passagedata><tw-passagedata pid="9" name="StartUp Variables" tags="startup" position="425,75" size="100,100">&lt;!--Variables are initialised here--&gt;
 
 (set:$videosSeen to 0)
 
-&lt;!------------------------------&gt;
 
-&lt;!--SELECT A THEME----------------------------&gt;
-&lt;!-- If you would like to use a theme I have made, feel free to move one of the &#39;set theme&#39; options &#39;outside&#39; of the /* */ context. Copy and paste a line right under where it says &quot;script&quot; --&gt;
 
 &lt;script&gt;
-
+/*SELECT A THEME HERE*/
 /*
 setTheme(&quot;theme-horror&quot;);
 
 setTheme(&quot;theme-arcade&quot;);
 
 setTheme(&quot;theme-indie&quot;);
-
 setTheme(&quot;theme-skater&quot;);
+
 */
 &lt;/script&gt;
-&lt;!------------------------------&gt;
 
-&lt;!--MUSIC--------------------&gt;
-&lt;!--You can add music tracks here in the following way to play when the game starts --&gt;
 &lt;!--
-(track: &#39;YOUR TRACK NAME&#39;, &#39;loop&#39;, true)
-(track: &#39;YOUR TRACK NAME&#39;, &#39;playwhenpossible&#39;)
---&gt;</tw-passagedata><tw-passagedata pid="10" name="SecretPassage" tags="" position="1275,250" size="100,100">{{{
+These are music tracks that will play when the game starts 
+--&gt;
+
+(track: &#39;bgmus&#39;, &#39;loop&#39;, true)
+(track: &#39;bgmus&#39;, &#39;playwhenpossible&#39;)</tw-passagedata><tw-passagedata pid="10" name="SecretPassage" tags="" position="1275,250" size="100,100">{{{
 &lt;div class=&quot;main-section&quot;&gt;
 &lt;p class=&quot;TopText&quot;&gt;
 Because you watched enough videos the secret option was unlocked.
@@ -1778,33 +1794,26 @@ It&#39;s important to have a &#39;splash screen&#39; or &#39;start screen&#39; b
 &lt;/div&gt;
 &lt;!-----------------------------------------------&gt;
 }}}</tw-passagedata><tw-passagedata pid="19" name="hal.tracks" tags="" position="375,200" size="100,100">bgmus: bgmus.mp3</tw-passagedata><tw-passagedata pid="20" name="hal.config" tags="" position="350,325" size="100,100">showControls: false</tw-passagedata><tw-passagedata pid="21" name="Audio Example" tags="" position="950,125" size="100,100">{{{
-(track: &#39;bgmus&#39;, &#39;play&#39;)
-(track: &#39;bgmus&#39;, &#39;loop&#39;, true)
+&lt;script&gt;
+window.startComp();
+window.compressor();
+&lt;/script&gt;
 &lt;!----------VIDEO SECTION-------------------&gt;
 	&lt;video id=&quot;myVideo&quot; autoplay loop class=&quot;bg-video&quot;&gt; &lt;!--Is your video muted? --&gt;
-  		&lt;source src=&quot;ClipForAudio.mp4&quot; type=&quot;video/mp4&quot;&gt;
+  		&lt;source src=&quot;ExampleForDucking.mp4&quot; type=&quot;video/mp4&quot;&gt;
 	&lt;/video&gt;
 &lt;!-----------------------------------------------&gt;
 &lt;!----------CHOICE SECTION------------------&gt;
 &lt;div class=&quot;main-section&quot;&gt;
 
-This is an audio example passage. You can have background music start playing and it will play underneath your clips (it&#39;s also possible to have auto-ducking, but that takes some work!)
+This is an audio example. It should play a noise on making a choice that dims music.
 
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
 [[Untitled Passage]]
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;!-----------------------------------------------&gt;
-}}}</tw-passagedata><tw-passagedata pid="22" name="Compressor Explanation" tags="" position="2200,75" size="100,100">I have made a little add on for Twine that allows the use of a pseudo compressor. 
-
-However it requires a different approach to working, either using a local server like &quot;npx serve .&quot; or else having your game hosted
-
-&lt;!--Start Compressor--&gt;
-&lt;script&gt;
-// window.startComp();
-// window.compressor();
-&lt;/script&gt;
-</tw-passagedata></tw-storydata>
+}}}</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
