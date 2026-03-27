@@ -1,0 +1,15 @@
+<tw-storydata name="Harlowe: Importing External JavaScript" startnode="" creator="Twine" creator-version="2.8.1" format="" format-version="" ifid="51dcf338-6bf4-4501-9494-34b6bf490db1" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript">/* import jQuery UI library. */
+$(function () {
+	$.getScript("https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js",
+		function (data, textStatus, jqxhr) {
+			console.log('jquery ui file loaded');
+		}
+	);
+});</script><tw-passagedata pid="1" name="Start" tags="" position="25,25" size="100,100">&lt;p&gt;Click on the grey box below to see it bounce.&lt;/p&gt;
+&lt;div id=&quot;box&quot; style=&quot;width: 100px; height: 100px; background: #ccc;&quot;&gt;&lt;/div&gt;
+ 
+&lt;script&gt;
+$(&quot;#box&quot;).click(function () {
+  $(&quot;#box&quot;).toggle(&quot;bounce&quot;, {times: 3}, &quot;slow&quot;);
+});
+&lt;/script&gt;</tw-passagedata></tw-storydata>
