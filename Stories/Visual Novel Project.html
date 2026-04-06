@@ -49,7 +49,7 @@ tw-include{position:absolute;}
 }
 
 /* The "stage" is a fixed design resolution that scales uniformly */
-#vn-stage, #vn-stage2 {
+#vn-stage, #vn-stage2, #vn-stage3, #vn-stage4  {
   position: absolute;
   width: 1280px;    /* your design width */
   height: 720px;    /* your design height */
@@ -61,7 +61,15 @@ tw-include{position:absolute;}
 
 /* The "stage2" inherits from vn-stage with some changes */
 #vn-stage2 {
-  background-image: url('VNAssets/bear.avif');
+  background-image: url('school entrance.');
+}
+/* The "stage2" inherits from vn-stage with some changes */
+#vn-stage3 {
+  background-image: url('school hall.png');
+}
+/* The "stage2" inherits from vn-stage with some changes */
+#vn-stage4 {
+  background-image: url('scary classroom.png');
 }
 
 /*This is for the menu icons*/
@@ -338,14 +346,13 @@ scaleStage(); /* run once on load */
 &lt;/div&gt;
 
 &lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
-}}}</tw-passagedata><tw-passagedata pid="7" name="startup" tags="startup" position="175,275" size="100,100">
-&lt;!--
+}}}</tw-passagedata><tw-passagedata pid="7" name="startup" tags="startup" position="175,275" size="100,100">&lt;!--
 In this passage I&#39;ll set the initial states of the relationships in the game
 At present I only have two characters, Haruka and Evil Haruka. 
 I want the relationships to range from 1 to 5 throughout the game. 
 They&#39;ll begin at 1.
 --&gt;
-
+&lt;!--TO PLAY BACKGROUND MUSIC FOREVER FROM START--&gt;
 (track: &#39;bgmus&#39;, &#39;loop&#39;, true)
 (track: &#39;bgmus&#39;, &#39;playwhenpossible&#39;)
 
@@ -529,24 +536,25 @@ You must add sounds to the hal.tracks passage and have them in your project fold
 
 }}}	</tw-passagedata><tw-passagedata pid="18" name="Splash Screen" tags="" position="650,150" size="100,100">{{{
 &lt;!--These 3 curly braces stop Twine Harlowe from autoformatting what comes below. This can be really useful for stopping animations doing weird things--&gt;
-
+&lt;!--This is your black box background it keeps things nice--&gt;
 &lt;div id=&quot;vn-background&quot;&gt;&lt;/div&gt;
-&lt;!--This is your background--&gt;
 
+&lt;!--This is the &#39;space&#39; the game takes place--&gt;
 &lt;div id=&quot;vn-stage&quot;&gt;
-&lt;!--This is the &#39;space&#39; the game takes place in--&gt;
+
 &lt;!--This is where you put dialogue--&gt;
 &lt;div id=&quot;vn-dialogue&quot;&gt;
-  &lt;div id=&quot;vn-name&quot;&gt;Visual Novel Game&lt;/div&gt;
- [[Start Game-&gt;Haruka Line 1]]
+  &lt;div id=&quot;vn-name&quot;&gt;Visual Novel Game&lt;/div&gt; &lt;!--This is where character name goes--&gt;
+ [[Start Game-&gt;Haruka Line 1]] &lt;!--ANY DIALOGUE YOU WANT!--&gt;
 &lt;/div&gt;
+
+&lt;!--FULL SCREEN BUTTON--&gt;
 &lt;button id=&quot;fSButton&quot; onclick=&quot;document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()&quot;&gt;
     Toggle Fullscreen
 &lt;/button&gt;
 
 &lt;!--This is needed to stop weird things happening with the formatting--&gt;
-&lt;/div&gt;
-&lt;!--ENDOFVNSTAGE--&gt;
+&lt;/div&gt;&lt;!--ENDOFVNSTAGE--&gt;
 }}}</tw-passagedata><tw-passagedata pid="19" name="RelMenu" tags="" position="425,400" size="100,100">{{{
 (align:&quot;==&gt;&quot;)[
 &lt;!--Below is the relationship menu. --&gt;
@@ -557,8 +565,8 @@ You must add sounds to the hal.tracks passage and have them in your project fold
 Haruka likes you $harukaRel &lt;br&gt;
 Evil Haruka likes you $evilHarukaRel &lt;br&gt;
 (link-rerun:&quot;X&quot;)[(show:?closedMenu)(hide:?openedMenu)]
-
 ]
+
 ]
 }}}</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";

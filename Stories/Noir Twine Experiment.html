@@ -15,15 +15,116 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Notable&family=VT323&display=swap');
-/*=======================*/
-
 /* ===== Background ===== */
 body{
-	min-height: 100vh;
+	min-height: 100vh; //<!--Essential for scaling
 	margin: 0;
 	background-color:black;
 	text-align: center;
 }
+
+/*=======================*/
+/*OFFICE SCENE CSS*/
+#glass {
+  position: absolute;
+  border: 3px solid #000;
+  border-radius: 50%;
+  cursor: none;
+  width: 300px;  /* Your requested diameter */
+  height: 300px;
+  display: none; /* Hidden until hover */
+  pointer-events: none; /* Prevents the lens from flickering */
+  background-repeat: no-repeat;
+}
+
+.scene {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+}
+.scene-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.door { left:1636px; top:78px; width:278px; height:602px; }
+.board { left:1024px; top:206px; width:246px; height:216px; }
+.filea { left:1092px; top:626px; width:200px; height:200px; }
+.fileb { left:268px; top:630px; width:200px; height:200px; }
+.phone { left:888px; top:514px; width:102px; height:94px; }
+
+.hotspot {
+  position: absolute;
+  display: block;
+  transition: filter 0.15s ease;
+}
+
+.hotspot img { width: 100%; height: 100%; display: block; cursor: zoom-in; }
+.hotspot.door img {cursor:pointer}
+.hotspot:hover {
+  filter: brightness(1.60) drop-shadow(0 0 6px #ffee88); z-index:1;
+}
+
+.ev
+{
+  width: 795px;
+  height: 1014px;
+  z-index:1;
+  position: fixed;
+  top: 20px;
+  left:562.5px;
+  cursor: pointer;
+  filter:drop-shadow(0 0 10px black)
+}
+
+/*===========Inventory*/
+
+.inventoryBlackOut
+{
+  position:fixed;
+  top:0;
+  left:0;
+  width:1920px;
+  height:1080px;
+  pointer-events: auto;
+  background-color: rgba(1,1,1,0.5);
+}
+
+.inventory {
+  z-index:10;
+  left:415px;
+  top:20px;
+  width: 80%;
+  height:10vh;
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+grid-template-rows: 1fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+  pointer-events: auto
+}
+
+.inventory img
+{width: 100%;        /* Fill the width of the grid cell */
+  height: 100%;       /* Fill the height of the grid cell (the 200px) */
+  object-fit: cover;  /* KEY: Scale image to fill area without stretching */
+  object-position: center;}
+
+.inventoryBackButton
+{
+  display: initial;
+  position: fixed;
+  top:20px;
+  width:180px;
+  height:180px;
+  contain:content;
+}
+
+
 
 /* ===== Background Video ===== */
 .bg-video {
@@ -80,6 +181,10 @@ body{
 
 
 /* ===== Harlowe Tweaks ===== */
+tw-hook, tw-expression {
+    display: contents;
+}
+
 tw-hook{filter:blur(0px);}
 
 tw-sidebar
@@ -374,7 +479,10 @@ tw-story.theme-indie tw-link:hover {
 
 tw-story.theme-indie tw-link:active {
   transform: scale(0.98);
-}	</style><script role="script" id="twine-user-script" type="text/twine-javascript">/*---------SCALING---------------------------*/
+}	
+
+
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">/*---------SCALING---------------------------*/
 function scaleStage() {
   const stage = document.querySelector('tw-story');
   const scaleX = window.innerWidth  / 1920;
@@ -390,70 +498,52 @@ function scaleStage() {
 }
 
 window.addEventListener('resize', scaleStage);
-scaleStage(); /* run once on load */</script><tw-tag name="startup" color="yellow"></tw-tag><tw-passagedata pid="1" name="Office" tags="" position="825,350" size="100,100">{{{
-&lt;div class=&quot;scene&quot;&gt;
+scaleStage(); /* run once on load */
 
+/*---------TRACKING MOUSE ON CLICK---------------*/
+window.addEventListener("pointerdown", (event) => {
+    console.log(`Pointer at: ${event.clientX}, ${event.clientY}`);
+}, { capture: true });</script><tw-tag name="startup" color="yellow"></tw-tag><tw-passagedata pid="1" name="Office" tags="" position="825,350" size="100,100">{{{
+&lt;div class=&quot;scene&quot;&gt;
   &lt;!-- Background --&gt;
   &lt;img src=&quot;BaseLayer.png&quot; class=&quot;scene-bg&quot; alt=&quot;&quot;&gt;
-
   &lt;!-- Door --&gt;
   &lt;a class=&quot;hotspot door&quot; [[Thinking]]&gt;
     (link:&quot;&lt;img src=&#39;Door.png&#39; alt=&#39;Door&#39;&gt;&lt;/img&gt;&quot;)[(go-to:&quot;Thinking&quot;)]
   &lt;/a&gt;
-
+	
   &lt;!-- Board --&gt;
   &lt;a class=&quot;hotspot board&quot;&gt;
-   (link: &#39;&lt;img src=&quot;NoticeBoard.png&quot; alt=&quot;Board&quot;&gt;&#39;)[]
+  (link-rerun: &#39;&lt;img src=&quot;NoticeBoard.png&quot; alt=&quot;Board&quot;&gt;&#39;)[
+  (if: $inventory contains &quot;note&quot;)[(display:&quot;Evidence&quot;)]
+  (else:)[(set: $inventory to it + (a: &quot;note&quot;))(display:&quot;Evidence&quot;)]
+  ]
   &lt;/a&gt;
 
   &lt;!-- FileA --&gt;
   &lt;a class=&quot;hotspot filea&quot;&gt;
-    (link:&#39;&lt;img src=&quot;FileA.png&quot; alt=&quot;FileA&quot;&gt;&#39;)[]
+    (link-rerun:&#39;&lt;img src=&quot;FileA.png&quot; alt=&quot;FileA&quot;&gt;&#39;)[
+      (display:&quot;Evidence1&quot;)
+    ]
   &lt;/a&gt;
 
   &lt;!-- FileB --&gt;
   &lt;a class=&quot;hotspot fileb&quot;&gt;
-    &lt;img src=&quot;FileB.png&quot; alt=&quot;FileB&quot;&gt;
+    (link-rerun:&#39;&lt;img src=&quot;FileB.png&quot; alt=&quot;FileB&quot;&gt;&#39;)[
+      (display:&quot;Evidence&quot;)
+    ]
   &lt;/a&gt;
 
   &lt;!-- Phone --&gt;
   &lt;a class=&quot;hotspot phone&quot;&gt;
-    &lt;img src=&quot;Phone.png&quot; alt=&quot;Phone&quot;&gt;
+    (link-rerun:&#39;&lt;img src=&quot;Phone.png&quot; alt=&quot;Phone&quot;&gt;&#39;)[
+      (display:&quot;Evidence&quot;)
+    ]
   &lt;/a&gt;
-
+ (align:&quot;&lt;==&quot;)[
+(link-rerun:&quot;&lt;img class=&#39;inventoryBackButton&#39; src=&#39;randoseru.png&#39;&gt;&quot;)[(display:&quot;Inventory&quot;)]
+]
 &lt;/div&gt;
-
-&lt;style&gt;
-.scene {
-  position: relative;
-  width: 1920px;
-  height: 1080px;
-  overflow: hidden;
-}
-.scene-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.hotspot {
-  position: absolute;
-  cursor: pointer;
-  display: block;
-  transition: filter 0.15s ease;
-}
-.hotspot img { width: 100%; height: 100%; display: block; }
-.hotspot:hover {
-  filter: brightness(1.60) drop-shadow(0 0 6px #ffee88);
-}
-
-.door { left:1636px; top:78px; width:278px; height:602px; }
-.board { left:1024px; top:206px; width:246px; height:216px; }
-.filea { left:1092px; top:626px; width:200px; height:200px; }
-.fileb { left:268px; top:630px; width:200px; height:200px; }
-.phone { left:888px; top:514px; width:102px; height:94px; }
-&lt;/style&gt;
 }}}</tw-passagedata><tw-passagedata pid="2" name="Thinking" tags="" position="550,475" size="100,100">{{{
 (hide:?2,?3)
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:2s;&quot;&gt;
@@ -482,7 +572,8 @@ or do you want to (align:&quot;=&gt;&lt;=&quot;)[[Try again-&gt;Thinking]]
 ]
 &lt;/div&gt;
 }}}
-</tw-passagedata><tw-passagedata pid="3" name="Init" tags="startup" position="475,200" size="100,100">(set: $answers to (a:))
+</tw-passagedata><tw-passagedata pid="3" name="Init" tags="startup" position="425,150" size="100,100">(set: $answers to (a:))
+(set: $inventory to (a:))
 </tw-passagedata><tw-passagedata pid="4" name="Showdown" tags="" position="650,700" size="100,100">{{{
 &lt;!----------VIDEO SECTION-------------------&gt;	
 (if:$answers&#39;s 1st is &quot;Goldstein&quot; and $answers&#39;s 2nd is &quot;a property racket&quot; and $answers&#39;s 3rd is &quot;12th July&quot;)[
@@ -512,7 +603,238 @@ or do you want to (align:&quot;=&gt;&lt;=&quot;)[[Try again-&gt;Thinking]]
 
 &lt;div class=&quot;choices&quot; style=&quot;animation-delay:37s;&quot;&gt;
 (link:&quot;&lt;div class=&#39;choice&#39;[[Office]]&gt;Start&lt;/div&gt;&quot;)[(go-to:&quot;Office&quot;)]
-&lt;/div&gt;</tw-passagedata></tw-storydata>
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="Evidence" tags="" position="625,100" size="100,100">(link:&quot;
+&lt;div id=&#39;glass&#39;&gt;&lt;/div&gt;
+&lt;script&gt;  
+const image = document.querySelector(&#39;.ev&#39;);
+const glass = document.getElementById(&#39;glass&#39;);
+const stage = document.querySelector(&#39;.scene&#39;);
+const zoom = 3;
+const glassRadius = 150;
+
+handleEvidenceClick();
+
+/**
+ * HELPER: Converts screen pixels to your 1920x1080 stage units.
+ * This accounts for the CSS scale() and the letterboxing (left/top offsets).
+ */
+function getStageCoords(clientX, clientY) {
+    const stage = document.querySelector(&#39;tw-story&#39;);
+    const stageRect = stage.getBoundingClientRect();
+    const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+
+    return {
+        x: (clientX - stageRect.left) / scale,
+        y: (clientY - stageRect.top) / scale
+    		};
+}
+
+
+function handleEvidenceClick() {
+    // If image is already in the DOM, close it
+    if (image) {
+        hideEvidence();
+    } else {
+        showEvidence();
+    }
+}
+
+function hideEvidence() {
+    image.remove();
+    glass.remove();
+    // Remove the mousemove listener if necessary to save performance
+    window.removeEventListener(&#39;mousemove&#39;, moveMagnifier);
+}
+
+
+function showEvidence(){
+document.querySelector(&#39;tw-story&#39;).insertAdjacentHTML(&#39;beforeend&#39;, `&lt;img class=&#39;ev&#39; id=&#39;evidence&#39; src=&#39;evidence1.png&#39;&gt;`);
+const image = document.querySelector(&#39;.ev&#39;);
+const glass = document.getElementById(&#39;glass&#39;);
+if (image) {
+
+    stage.appendChild(image);
+    stage.appendChild(glass);
+
+    // Initial placement on click - now uses the same math as moveMagnifier
+    window.addEventListener(&#39;pointerdown&#39;, (event) =&gt; {
+        const coords = getStageCoords(event.clientX, event.clientY);
+        glass.style.left = `${coords.x - glassRadius}px`;
+        glass.style.top = `${coords.y - glassRadius}px`;
+    }, { capture: true });
+    image.addEventListener(&#39;click&#39;, () =&gt; {
+        image.remove();
+        glass.remove();
+    });
+
+    // We pass the event &#39;e&#39; to moveMagnifier so it can grab clientX/Y
+    image.addEventListener(&#39;mousemove&#39;, (e) =&gt; moveMagnifier(e));
+    image.addEventListener(&#39;mouseenter&#39;, (e) =&gt; {
+        glass.style.display = &#39;block&#39;;
+        glass.style.zIndex = &#39;4&#39;;
+        moveMagnifier(e); 
+    });
+
+    image.addEventListener(&#39;mouseleave&#39;, () =&gt; glass.style.display = &#39;none&#39;);
+}
+}
+
+
+function moveMagnifier(e) {
+    const docImage = document.getElementById(&#39;evidence&#39;); 
+    const coords = getStageCoords(e.clientX, e.clientY);
+
+    // Position of the portrait doc relative to the 1920x1080 stage
+    const stageRect = stage.getBoundingClientRect();
+const imgRect = docImage.getBoundingClientRect();
+const docX = imgRect.left - stageRect.left;
+const docY = imgRect.top - stageRect.top;
+
+    // Mouse position relative ONLY to the document image
+    const relX = coords.x - docX;
+    const relY = coords.y - docY;
+
+    // 1. Move the glass element on the stage
+    glass.style.left = `${coords.x - glassRadius}px`;
+    glass.style.top = `${coords.y - glassRadius}px`;
+
+    // 2. Set background image and scale it up
+    glass.style.backgroundImage = `url(&#39;${docImage.src}&#39;)`;
+    glass.style.backgroundSize = `${docImage.width * zoom* 1.08}px ${docImage.height * zoom*1.08}px`;
+
+    // 3. Align the background-position
+    // We multiply the relative mouse position by zoom, then subtract radius to center it
+    const bgX = (relX * zoom) - glassRadius;
+    const bgY = (relY * zoom);
+    glass.style.backgroundPosition = `-${bgX}px -${bgY}px`;
+
+}
+&lt;/script&gt;&quot;)[]
+</tw-passagedata><tw-passagedata pid="8" name="Evidence1" tags="" position="425,275" size="100,100">(link:&quot;
+&lt;div id=&#39;glass&#39;&gt;&lt;/div&gt;
+&lt;script&gt;  
+const image = document.querySelector(&#39;.ev&#39;);
+const glass = document.getElementById(&#39;glass&#39;);
+const stage = document.querySelector(&#39;.scene&#39;);
+const zoom = 3;
+const glassRadius = 150;
+
+handleEvidenceClick();
+
+/**
+ * HELPER: Converts screen pixels to your 1920x1080 stage units.
+ * This accounts for the CSS scale() and the letterboxing (left/top offsets).
+ */
+function getStageCoords(clientX, clientY) {
+    const stage = document.querySelector(&#39;tw-story&#39;);
+    const stageRect = stage.getBoundingClientRect();
+    const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+
+    return {
+        x: (clientX - stageRect.left) / scale,
+        y: (clientY - stageRect.top) / scale
+    		};
+}
+
+function handleEvidenceClick() {
+    // If image is already in the DOM, close it
+    if (image) {
+        hideEvidence();
+    } else {
+        showEvidence();
+    }
+}
+
+function hideEvidence() {
+    image.remove();
+    glass.remove();
+    // Remove the mousemove listener if necessary to save performance
+    window.removeEventListener(&#39;mousemove&#39;, moveMagnifier);
+}
+
+function showEvidence(){
+document.querySelector(&#39;tw-story&#39;).insertAdjacentHTML(&#39;beforeend&#39;, `&lt;img class=&#39;ev&#39; id=&#39;evidence&#39; src=&#39;randoseru.png&#39;&gt;`);
+const image = document.querySelector(&#39;.ev&#39;);
+const glass = document.getElementById(&#39;glass&#39;);
+if (image) {
+
+    stage.appendChild(image);
+    stage.appendChild(glass);
+
+    // Initial placement on click - now uses the same math as moveMagnifier
+    window.addEventListener(&#39;pointerdown&#39;, (event) =&gt; {
+        const coords = getStageCoords(event.clientX, event.clientY);
+        glass.style.left = `${coords.x - glassRadius}px`;
+        glass.style.top = `${coords.y - glassRadius}px`;
+    }, { capture: true });
+    image.addEventListener(&#39;click&#39;, () =&gt; {
+        image.remove();
+        glass.remove();
+    });
+
+    // We pass the event &#39;e&#39; to moveMagnifier so it can grab clientX/Y
+    image.addEventListener(&#39;mousemove&#39;, (e) =&gt; moveMagnifier(e));
+    image.addEventListener(&#39;mouseenter&#39;, (e) =&gt; {
+        glass.style.display = &#39;block&#39;;
+        glass.style.zIndex = &#39;4&#39;;
+        moveMagnifier(e); 
+    });
+
+    image.addEventListener(&#39;mouseleave&#39;, () =&gt; glass.style.display = &#39;none&#39;);
+}
+}
+
+
+function moveMagnifier(e) {
+    const docImage = document.getElementById(&#39;evidence&#39;); 
+    const coords = getStageCoords(e.clientX, e.clientY);
+
+    // Position of the portrait doc relative to the 1920x1080 stage
+    const docX = docImage.offsetLeft; 
+    const docY = docImage.offsetTop;
+
+    // Mouse position relative ONLY to the document image
+    const relX = coords.x - docX;
+    const relY = coords.y - docY;
+
+    // 1. Move the glass element on the stage
+    glass.style.left = `${coords.x - glassRadius}px`;
+    glass.style.top = `${coords.y - glassRadius}px`;
+
+    // 2. Set background image and scale it up
+    glass.style.backgroundImage = `url(&#39;${docImage.src}&#39;)`;
+
+    // Width and Height of the Object
+    glass.style.backgroundSize = `${795 * zoom}px ${1014 * zoom}px`;
+
+    // 3. Align the background-position
+    // We multiply the relative mouse position by zoom, then subtract radius to center it
+    const bgX = (relX * zoom) - glassRadius;
+    const bgY = (relY * zoom) - glassRadius;
+    glass.style.backgroundPosition = `-${bgX}px -${bgY}px`;
+
+}
+
+&lt;/script&gt;&quot;)[]
+</tw-passagedata><tw-passagedata pid="9" name="Inventory" tags="" position="750,100" size="100,100">{{{
+|openedMenu&gt;[
+&lt;div class=&quot;inventoryBlackOut&quot;&gt;
+
+&lt;div class=&quot;inventory&quot;&gt;
+
+(display:&quot;InventoryLoop&quot;)
+&lt;/div&gt;
+&lt;/div&gt;
+
+(align:&quot;&lt;==&quot;)[(link-rerun:&quot;&lt;img class=&#39;inventoryBackButton&#39; src=&#39;randoseru.png&#39;&gt;&quot;)[(hide:?openedMenu)]]
+
+]
+}}}</tw-passagedata><tw-passagedata pid="10" name="InventoryLoop" tags="" position="300,150" size="100,100">(set: $countTheBollocks to it +1)
+(for: each _item, ...$inventory)[
+  (set: _path to &quot;&lt;img src=&quot;+_item+&quot;.png&gt;&quot;) 
+  (link-rerun: _path)[
+  (if:_item is &#39;note&#39;)[
+  (display:&#39;Evidence&#39;)]]]</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
